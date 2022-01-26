@@ -23,6 +23,13 @@ class OnGoingTaskTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configure(with task: Task) {
+        
+        taskTitle.text = task.title
+        taskNote.text = "01/26/20 Dummy task note"
+        
+    }
+    
     @IBAction func taskCircleTapped(_ sender: UIButton) {
         
     }

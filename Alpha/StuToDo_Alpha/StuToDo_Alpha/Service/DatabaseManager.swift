@@ -7,7 +7,6 @@
 
 import FirebaseFirestore
 
-
 class DatabaseManager {
     
     private var listener: ListenerRegistration?
