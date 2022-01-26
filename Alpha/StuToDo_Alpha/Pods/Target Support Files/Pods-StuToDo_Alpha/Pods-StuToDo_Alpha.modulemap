@@ -1,0 +1,6 @@
+framework module Pods_StuToDo_Alpha {
+  umbrella header "Pods-StuToDo_Alpha-umbrella.h"
+
+  export *
+  module * { export * }
+}
