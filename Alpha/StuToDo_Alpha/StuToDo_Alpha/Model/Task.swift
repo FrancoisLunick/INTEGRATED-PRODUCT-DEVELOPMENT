@@ -41,3 +41,27 @@ func taskDictionaryFrom(_ task: Task) -> NSDictionary {
     return NSDictionary(objects: [task.id, task.createdAt, task.title, task.note], forKeys: ["taskID" as NSCopying, "createdAt" as NSCopying, "title" as NSCopying, "note" as NSCopying])
     
 }
+
+func downloadTasksFromFirebase(_ withTaskId: String, completion: @escaping (_ tasks: [Task]) -> Void) {
+    
+    var tasks: [Task] = []
+    
+    FBReference(.Tasks).whereField("taskID", isEqualTo: withTaskId).getDocuments { snapchat, error in
+        
+        guard let snapchat = snapchat else {
+            
+            completion(tasks)
+            return
+        }
+        
+        if !snapchat.isEmpty {
+            
+            for taskDictionary in snapchat.documents {
+                
+                tasks.append(Task(dictionary: taskDictionary.data() as NSDictionary))
+            }
+        }
+        
+        completion(tasks)
+    }
+}

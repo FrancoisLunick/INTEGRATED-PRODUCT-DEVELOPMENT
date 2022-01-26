@@ -11,10 +11,27 @@ class OnGoingTasksViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var taskModel: Task?
+    
+    private var tasks: [Task] = [] {
+        
+        didSet {
+            
+            tableView.reloadData()
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadTasks()
     }
     
 
@@ -27,6 +44,15 @@ class OnGoingTasksViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    private func loadTasks() {
+        
+        downloadTasksFromFirebase(taskModel) { tasks in
+            
+            self.tasks = tasks
+        }
+        
+    }
 
 }
 
@@ -43,6 +69,10 @@ extension OnGoingTasksViewController: UITableViewDataSource {
             
             return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
         }
+        
+        let task = tasks[indexPath.row]
+        
+        cell.taskTitle.text 
         
         return cell
     }
