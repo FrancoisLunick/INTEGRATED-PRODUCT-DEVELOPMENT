@@ -12,6 +12,7 @@ class NewTaskViewController: UIViewController {
 
     @IBOutlet weak var addTitleTextField: UITextField!
     @IBOutlet weak var addTaskButton: UIButton!
+    @IBOutlet weak var taskNote: UITextView!
     
     private var subscribers = Set<AnyCancellable>()
     @Published private var titleString: String?
@@ -75,11 +76,46 @@ class NewTaskViewController: UIViewController {
     
     @IBAction func addTask(_ sender: UIButton) {
         
-        guard let titleString = self.titleString else {
-            return
+//        guard let titleString = self.titleString else {
+//            return
+//        }
+//
+//        let task = Task(title: titleString)
+        
+        //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        //let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
+        
+        let noteString = taskNote.text
+        
+        let task = Task()
+        
+        task.id = UUID().uuidString
+        task.createdAt = "2022"
+        task.title = addTitleTextField.text!
+        
+        if noteString!.isEmpty {
+            
+            task.note = "No additional text"
+            saveTaskToFirestore(task)
+            
+            self.navigationController?.popViewController(animated: true)
+        
+            
+            //self.present(onGoingViewController, animated: true, completion: nil)
+            
+        } else {
+            
+            saveTaskToFirestore(task)
+            
+            self.navigationController?.popViewController(animated: true)
+            
+            //self.present(onGoingViewController, animated: true, completion: nil)
+            
         }
         
-        let task = Task(title: titleString)
+        
+        
+        
 
     }
 }

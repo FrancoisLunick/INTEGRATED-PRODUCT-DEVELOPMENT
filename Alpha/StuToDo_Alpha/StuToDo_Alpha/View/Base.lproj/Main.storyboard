@@ -109,6 +109,7 @@
                     <connections>
                         <outlet property="addTaskButton" destination="7Zr-pG-7JF" id="3BA-0g-dbr"/>
                         <outlet property="addTitleTextField" destination="hTT-UF-Fhs" id="tKu-HA-aPG"/>
+                        <outlet property="taskNote" destination="GCz-fM-Vtg" id="EeC-Of-kur"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Xs-gD-JvW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -118,7 +119,7 @@
         <!--Tasks-->
         <scene sceneID="oZG-Nf-gPI">
             <objects>
-                <viewController id="CnY-8t-CpB" customClass="OnGoingTasksViewController" customModule="StuToDo_Alpha" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskScreen" id="CnY-8t-CpB" customClass="OnGoingTasksViewController" customModule="StuToDo_Alpha" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gae-N3-2Cw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
