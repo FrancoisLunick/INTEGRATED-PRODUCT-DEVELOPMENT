@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>796638736061-ng1afru6a4e30hbc2ar1putvg9tu8ohm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.796638736061-ng1afru6a4e30hbc2ar1putvg9tu8ohm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAN_rL6tv9fTDESW1IrLCfHD9Y5NYPU9hU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>796638736061</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.FrancoisLu.StuToDo-Alpha</string>
+	<key>PROJECT_ID</key>
+	<string>stutodo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>stutodo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:796638736061:ios:4c3dd35a7448b807c251d4</string>
+</dict>
+</plist>

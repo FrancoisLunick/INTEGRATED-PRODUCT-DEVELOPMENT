@@ -6,13 +6,20 @@
 //
 
 import UIKit
+import Combine
 
 class NewTaskViewController: UIViewController {
 
     @IBOutlet weak var addTitleTextField: UITextField!
+    @IBOutlet weak var addTaskButton: UIButton!
+    
+    private var subscribers = Set<AnyCancellable>()
+    @Published private var titleString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        validateNewTaskForm()
 
         addTitleTextField.delegate = self
     }
@@ -21,6 +28,25 @@ class NewTaskViewController: UIViewController {
         super.viewDidAppear(animated)
         
         addTitleTextField.becomeFirstResponder()
+    }
+    
+    private func validateNewTaskForm() {
+        
+        NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification).map({
+            
+            ($0.object as? UITextField)?.text
+            
+        }).sink { [unowned self] text in
+            
+            self.titleString = text
+            
+        }.store(in: &subscribers)
+        
+        $titleString.sink { [unowned self] text in
+            
+            self.addTaskButton.isEnabled = text?.isEmpty == false
+            
+        }.store(in: &subscribers)
     }
     
 //    private func setupGestures() {
@@ -40,7 +66,22 @@ class NewTaskViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func calendarButtonTapped(_ sender: UIButton) {
+        
+        
+        
+    }
+    
+    @IBAction func addTask(_ sender: UIButton) {
+        
+        guard let titleString = self.titleString else {
+            return
+        }
+        
+        let task = Task(title: titleString)
 
+    }
 }
 
 extension NewTaskViewController: UITextFieldDelegate {
