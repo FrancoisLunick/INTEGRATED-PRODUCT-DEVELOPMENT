@@ -9,6 +9,7 @@ import UIKit
 
 class TasksHistoryViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,11 +32,14 @@ class TasksHistoryViewController: UIViewController {
 extension TasksHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
+        
+        return cell
     }
     
 }

@@ -9,11 +9,26 @@ import UIKit
 
 class NewTaskViewController: UIViewController {
 
+    @IBOutlet weak var addTitleTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        addTitleTextField.delegate = self
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        addTitleTextField.becomeFirstResponder()
+    }
+    
+//    private func setupGestures() {
+//
+//        let tapGestures = UITapGestureRecognizer(target: self, action: <#T##Selector?#>)
+//    }
+//
+//    @objc private func
     
 
     /*
@@ -26,4 +41,16 @@ class NewTaskViewController: UIViewController {
     }
     */
 
+}
+
+extension NewTaskViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        return true
+        
+    }
+    
 }
