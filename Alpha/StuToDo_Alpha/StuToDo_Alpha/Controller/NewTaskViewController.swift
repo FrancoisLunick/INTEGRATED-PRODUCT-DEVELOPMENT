@@ -23,6 +23,7 @@ class NewTaskViewController: UIViewController {
         validateNewTaskForm()
 
         addTitleTextField.delegate = self
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
