@@ -1,5 +1,5 @@
 //
-//  TasksHistoryViewController.swift
+//  NewTaskViewController.swift
 //  StuToDo_Alpha
 //
 //  Created by Lunick Francois on 1/25/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TasksHistoryViewController: UIViewController {
+class NewTaskViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,20 +26,4 @@ class TasksHistoryViewController: UIViewController {
     }
     */
 
-}
-
-extension TasksHistoryViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-    
-}
-
-extension TasksHistoryViewController: UITableViewDelegate {
-    
 }

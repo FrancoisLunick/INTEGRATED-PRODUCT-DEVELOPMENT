@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		4E01D75D27A0D5EC00065787 /* OnGoingTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01D75C27A0D5EC00065787 /* OnGoingTasksViewController.swift */; };
 		4E01D75F27A0D61B00065787 /* TasksHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01D75E27A0D61B00065787 /* TasksHistoryViewController.swift */; };
+		4E01D76127A0E7BD00065787 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01D76027A0E7BD00065787 /* NewTaskViewController.swift */; };
 		4E7E1775279F4A4200358EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7E1774279F4A4200358EE1 /* AppDelegate.swift */; };
 		4E7E1777279F4A4200358EE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7E1776279F4A4200358EE1 /* SceneDelegate.swift */; };
-		4E7E1779279F4A4200358EE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7E1778279F4A4200358EE1 /* ViewController.swift */; };
 		4E7E177C279F4A4200358EE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7E177A279F4A4200358EE1 /* Main.storyboard */; };
 		4E7E177E279F4A4B00358EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E7E177D279F4A4B00358EE1 /* Assets.xcassets */; };
 		4E7E1781279F4A4B00358EE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7E177F279F4A4B00358EE1 /* LaunchScreen.storyboard */; };
@@ -23,10 +23,10 @@
 		35084B1DDBAA14A36E2D3CF6 /* Pods_StuToDo_Alpha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StuToDo_Alpha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E01D75C27A0D5EC00065787 /* OnGoingTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnGoingTasksViewController.swift; sourceTree = "<group>"; };
 		4E01D75E27A0D61B00065787 /* TasksHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksHistoryViewController.swift; sourceTree = "<group>"; };
+		4E01D76027A0E7BD00065787 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		4E7E1771279F4A4200358EE1 /* StuToDo_Alpha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StuToDo_Alpha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E7E1774279F4A4200358EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E7E1776279F4A4200358EE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4E7E1778279F4A4200358EE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4E7E177B279F4A4200358EE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4E7E177D279F4A4B00358EE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E7E1780279F4A4B00358EE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,9 +58,9 @@
 		4E01D759279FCF2600065787 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4E7E1778279F4A4200358EE1 /* ViewController.swift */,
 				4E01D75C27A0D5EC00065787 /* OnGoingTasksViewController.swift */,
 				4E01D75E27A0D61B00065787 /* TasksHistoryViewController.swift */,
+				4E01D76027A0E7BD00065787 /* NewTaskViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -236,8 +236,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E7E1779279F4A4200358EE1 /* ViewController.swift in Sources */,
 				4E7E1775279F4A4200358EE1 /* AppDelegate.swift in Sources */,
+				4E01D76127A0E7BD00065787 /* NewTaskViewController.swift in Sources */,
 				4E01D75D27A0D5EC00065787 /* OnGoingTasksViewController.swift in Sources */,
 				4E7E1777279F4A4200358EE1 /* SceneDelegate.swift in Sources */,
 				4E01D75F27A0D61B00065787 /* TasksHistoryViewController.swift in Sources */,
