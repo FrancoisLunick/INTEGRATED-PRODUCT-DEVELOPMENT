@@ -15,11 +15,19 @@ class DatabaseManager {
     private let db = Firestore.firestore()
 
     private lazy var tasksCollection = db.collection("Tasks")
-//    
-//    func addTask(_ task: Task, completion: (Result<Void, Error>) -> Void) {
-//
-//        try tasksCollection.addDocument(data: <#T##[String : Any]#>, completion: T##((Error?) -> Void)?)
-//
+
+//    func addTask(_ task: Task, completion: @escaping (Result<Void, Error>) -> Void) {
+//        do {
+//            _ = try tasksCollection.addDocument(from: task, completion: { (error) in
+//                if let error = error {
+//                    completion(.failure(error))
+//                } else {
+//                    completion(.success(()))
+//                }
+//            })
+//        } catch(let error) {
+//            completion(.failure(error))
+//        }
 //    }
     
     func addTaskListener(isDone: Bool, completion: @escaping (Result<[Task], Error>) -> Void) {
