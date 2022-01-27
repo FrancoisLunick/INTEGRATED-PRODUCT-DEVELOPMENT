@@ -84,4 +84,22 @@ class DatabaseManager {
         
     }
     
+    func updateStatus(id: String, isDone: Bool, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        var fields: [String : Any] = [:]
+        if isDone {
+            fields = ["isDone" : true, "completedAt" : Date()]
+        } else {
+            fields = ["isDone" : false, "completedAt" : FieldValue.delete()]
+        }
+        tasksCollection.document(id).updateData(fields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+        
+    }
+    
 }

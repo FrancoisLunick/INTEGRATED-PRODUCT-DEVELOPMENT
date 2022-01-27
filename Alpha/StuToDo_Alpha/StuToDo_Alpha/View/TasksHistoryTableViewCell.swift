@@ -12,6 +12,8 @@ class TasksHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskNotesLabel: UILabel!
     
+    var didTapCheck: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,5 +31,10 @@ class TasksHistoryTableViewCell: UITableViewCell {
         taskNotesLabel.text = "01/26/20 Dummy task note"
         
     }
-
+    @IBAction func CheckDidTapped(_ sender: UIButton) {
+        
+        didTapCheck?()
+        
+    }
+    
 }

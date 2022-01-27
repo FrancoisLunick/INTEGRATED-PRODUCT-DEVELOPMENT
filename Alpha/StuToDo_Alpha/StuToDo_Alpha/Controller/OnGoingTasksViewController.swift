@@ -51,26 +51,11 @@ class OnGoingTasksViewController: UIViewController, Animations {
                 self?.tasks = tasks
                 
             case .failure(let error):
-                print(error)
+                self?.toast(loafState: .error, message: error.localizedDescription)
                 
             }
-            
         }
-        
-        
-        
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     private func loadTasks() {
         
@@ -156,20 +141,17 @@ class OnGoingTasksViewController: UIViewController, Animations {
         
         guard let id = task.id else { return }
         
-        databaseManager.updateTaskToDone(id: id, completion: { result in
+        databaseManager.updateStatus(id: id, isDone: true) { [weak self] result in
             
             switch result {
                 
             case .success:
-                
-                self.toast(loafState: .info, message: "Task Completed")
-                
-                print("Success")
+                self?.toast(loafState: .info, message: "Task Completed", duration: 1.5)
             case .failure(let error):
-                print(error.localizedDescription)
+                self?.toast(loafState: .error, message: error.localizedDescription)
             }
             
-        })
+        }
         
     }
 

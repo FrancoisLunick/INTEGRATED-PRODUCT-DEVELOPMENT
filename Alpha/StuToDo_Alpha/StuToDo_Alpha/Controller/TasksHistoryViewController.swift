@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TasksHistoryViewController: UIViewController {
+class TasksHistoryViewController: UIViewController, Animations {
     
 
     @IBOutlet weak var tableView: UITableView!
@@ -38,8 +38,25 @@ class TasksHistoryViewController: UIViewController {
                 self?.tasks = tasks
                 
             case .failure(let error):
-                print(error)
+                self?.toast(loafState: .error, message: error.localizedDescription)
                 
+            }
+            
+        }
+        
+    }
+    
+    private func handleTaskCheck(for task: Task) {
+        
+        guard let id = task.id else { return }
+        
+        databaseManager.updateStatus(id: id, isDone: false) { [weak self] result in
+            
+            switch result {
+            case .success:
+                self?.toast(loafState: .info, message: "Task Moved To Ongoing", duration: 1.5)
+            case .failure(let error):
+                self?.toast(loafState: .error, message: error.localizedDescription)
             }
             
         }
@@ -63,12 +80,17 @@ extension TasksHistoryViewController: UITableViewDataSource {
         
         let task = tasks[indexPath.row]
         
+        cell.didTapCheck = { [weak self] in
+            
+            self?.handleTaskCheck(for: task)
+            print("\(task.id), \(task.title), \(task.createdAt), \(task.note)")
+            
+        }
+        
         cell.configure(with: task)
         
         return cell
     }
-    
-    
 }
 
 extension TasksHistoryViewController: UITableViewDelegate {
