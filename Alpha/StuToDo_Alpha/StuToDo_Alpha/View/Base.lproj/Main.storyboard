@@ -405,6 +405,134 @@
             </objects>
             <point key="canvasLocation" x="-2807" y="-15"/>
         </scene>
+        <!--Task Detail View Controller-->
+        <scene sceneID="wK9-8k-OrU">
+            <objects>
+                <viewController storyboardIdentifier="TaskDetail" id="PN2-g7-lJO" customClass="TaskDetailViewController" customModule="StuToDo_Alpha" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uSi-ZL-2be">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAw-E6-jqz">
+                                <rect key="frame" x="20" y="121" width="374" height="44"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor Doe Assignment Due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTs-x7-V0b">
+                                <rect key="frame" x="20" y="173" width="374" height="28"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uid-RA-Lfz">
+                                <rect key="frame" x="20" y="217" width="374" height="42"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01/25/2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cT9-Ta-Ref">
+                                <rect key="frame" x="20" y="267" width="374" height="28"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYk-0G-Skc">
+                                <rect key="frame" x="20" y="311" width="374" height="42"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3k-7w-mvU">
+                                <rect key="frame" x="20" y="361" width="374" height="28"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFX-th-jsE">
+                                <rect key="frame" x="20" y="405" width="374" height="42"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor Doe Assignment Due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUh-hl-kVZ">
+                                <rect key="frame" x="20" y="455" width="374" height="28"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCF-an-4Eu">
+                                <rect key="frame" x="133" y="695" width="148" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="Mdh-Oh-STs"/>
+                                    <constraint firstAttribute="width" constant="148" id="aJI-Lt-WYu"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="EDIT"/>
+                                <connections>
+                                    <action selector="editTask:" destination="PN2-g7-lJO" eventType="touchUpInside" id="Ow2-WD-DCp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Env-x4-kFL">
+                                <rect key="frame" x="133" y="609" width="148" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="148" id="DfB-QE-IQD"/>
+                                    <constraint firstAttribute="height" constant="52" id="lRe-pD-PIn"/>
+                                </constraints>
+                                <color key="tintColor" red="0.58324164150000002" green="0.12246673550000001" blue="0.29804837699999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="DELETE"/>
+                                <connections>
+                                    <action selector="deleteTask:" destination="PN2-g7-lJO" eventType="touchUpInside" id="rSV-8b-QJg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rAP-mx-BMb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rAP-mx-BMb" firstAttribute="trailing" secondItem="cT9-Ta-Ref" secondAttribute="trailing" constant="20" id="0b0-BQ-PsR"/>
+                            <constraint firstItem="nTs-x7-V0b" firstAttribute="leading" secondItem="rAP-mx-BMb" secondAttribute="leading" constant="20" id="2KT-ul-akq"/>
+                            <constraint firstItem="eYk-0G-Skc" firstAttribute="leading" secondItem="rAP-mx-BMb" secondAttribute="leading" constant="20" id="4M4-7i-7UM"/>
+                            <constraint firstItem="a3k-7w-mvU" firstAttribute="top" secondItem="eYk-0G-Skc" secondAttribute="bottom" constant="8" id="8GW-Q5-uUa"/>
+                            <constraint firstItem="a3k-7w-mvU" firstAttribute="leading" secondItem="rAP-mx-BMb" secondAttribute="leading" constant="20" id="8hr-pN-AZ5"/>
+                            <constraint firstItem="gCF-an-4Eu" firstAttribute="leading" secondItem="rAP-mx-BMb" secondAttribute="leading" constant="133" id="AXI-RJ-i64"/>
+                            <constraint firstItem="lUh-hl-kVZ" firstAttribute="leading" secondItem="rAP-mx-BMb" secondAttribute="leading" constant="20" id="B36-O0-nrg"/>
+                            <constraint firstItem="uid-RA-Lfz" firstAttribute="leading" secondItem="rAP-mx-BMb" secondAttribute="leading" constant="20" id="EQA-36-Kzh"/>
+                            <constraint firstItem="dFX-th-jsE" firstAttribute="leading" secondItem="rAP-mx-BMb" secondAttribute="leading" constant="20" id="GE7-kX-M3b"/>
+                            <constraint firstItem="Env-x4-kFL" firstAttribute="top" secondItem="lUh-hl-kVZ" secondAttribute="bottom" constant="126" id="Hb4-29-bbj"/>
+                            <constraint firstItem="gCF-an-4Eu" firstAttribute="top" secondItem="Env-x4-kFL" secondAttribute="bottom" constant="34" id="IxQ-t5-lW4"/>
+                            <constraint firstItem="rAP-mx-BMb" firstAttribute="trailing" secondItem="cAw-E6-jqz" secondAttribute="trailing" constant="20" id="K4N-fG-7qV"/>
+                            <constraint firstItem="nTs-x7-V0b" firstAttribute="top" secondItem="cAw-E6-jqz" secondAttribute="bottom" constant="8" id="Kef-Vd-Gnc"/>
+                            <constraint firstItem="rAP-mx-BMb" firstAttribute="trailing" secondItem="nTs-x7-V0b" secondAttribute="trailing" constant="20" id="LZi-GE-Ue9"/>
+                            <constraint firstItem="cAw-E6-jqz" firstAttribute="top" secondItem="rAP-mx-BMb" secondAttribute="top" constant="77" id="NbL-zT-mWx"/>
+                            <constraint firstItem="rAP-mx-BMb" firstAttribute="trailing" secondItem="eYk-0G-Skc" secondAttribute="trailing" constant="20" id="NgH-sR-K2s"/>
+                            <constraint firstItem="rAP-mx-BMb" firstAttribute="trailing" secondItem="dFX-th-jsE" secondAttribute="trailing" constant="20" id="O5e-gH-Hdt"/>
+                            <constraint firstItem="uid-RA-Lfz" firstAttribute="top" secondItem="nTs-x7-V0b" secondAttribute="bottom" constant="16" id="QCX-TD-61N"/>
+                            <constraint firstItem="dFX-th-jsE" firstAttribute="top" secondItem="a3k-7w-mvU" secondAttribute="bottom" constant="16" id="QEb-HM-lpI"/>
+                            <constraint firstItem="rAP-mx-BMb" firstAttribute="trailing" secondItem="uid-RA-Lfz" secondAttribute="trailing" constant="20" id="T5m-qH-rVW"/>
+                            <constraint firstItem="lUh-hl-kVZ" firstAttribute="top" secondItem="dFX-th-jsE" secondAttribute="bottom" constant="8" id="XdC-25-zMP"/>
+                            <constraint firstItem="cAw-E6-jqz" firstAttribute="leading" secondItem="rAP-mx-BMb" secondAttribute="leading" constant="20" id="aaM-Ub-Obj"/>
+                            <constraint firstItem="cT9-Ta-Ref" firstAttribute="leading" secondItem="rAP-mx-BMb" secondAttribute="leading" constant="20" id="gDB-PY-jNZ"/>
+                            <constraint firstItem="Env-x4-kFL" firstAttribute="leading" secondItem="rAP-mx-BMb" secondAttribute="leading" constant="133" id="khS-Jw-77W"/>
+                            <constraint firstItem="rAP-mx-BMb" firstAttribute="trailing" secondItem="Env-x4-kFL" secondAttribute="trailing" constant="133" id="lDc-z1-N6F"/>
+                            <constraint firstItem="rAP-mx-BMb" firstAttribute="trailing" secondItem="lUh-hl-kVZ" secondAttribute="trailing" constant="20" id="oia-lh-G0N"/>
+                            <constraint firstItem="eYk-0G-Skc" firstAttribute="top" secondItem="cT9-Ta-Ref" secondAttribute="bottom" constant="16" id="qxU-Ug-6h5"/>
+                            <constraint firstItem="cT9-Ta-Ref" firstAttribute="top" secondItem="uid-RA-Lfz" secondAttribute="bottom" constant="8" id="r5g-cI-tZ7"/>
+                            <constraint firstItem="rAP-mx-BMb" firstAttribute="trailing" secondItem="a3k-7w-mvU" secondAttribute="trailing" constant="20" id="tE7-nd-3mi"/>
+                            <constraint firstItem="rAP-mx-BMb" firstAttribute="trailing" secondItem="gCF-an-4Eu" secondAttribute="trailing" constant="133" id="uux-iH-fQ9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="cT9-Ta-Ref" id="yH7-Uj-y2N"/>
+                        <outlet property="notesLabel" destination="lUh-hl-kVZ" id="0xj-oq-Rnp"/>
+                        <outlet property="taskTitleLabel" destination="nTs-x7-V0b" id="9aA-aW-zbx"/>
+                        <outlet property="timeLabel" destination="a3k-7w-mvU" id="J4L-OJ-jzS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wVZ-Ep-4Rf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2807.2463768115945" y="713.83928571428567"/>
+        </scene>
     </scenes>
     <resources>
         <image name="add" width="90" height="90"/>

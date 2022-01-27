@@ -102,4 +102,18 @@ class DatabaseManager {
         
     }
     
+    func deleteTask(id: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        tasksCollection.document(id).delete() { error in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+            
+        }
+        
+    }
+    
 }

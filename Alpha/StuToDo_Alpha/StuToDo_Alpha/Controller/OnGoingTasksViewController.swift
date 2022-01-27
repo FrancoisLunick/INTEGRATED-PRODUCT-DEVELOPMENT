@@ -9,6 +9,10 @@ import UIKit
 import FirebaseFirestore
 import Loaf
 
+protocol OnGoingDelegate {
+    
+}
+
 class OnGoingTasksViewController: UIViewController, Animations {
 
     @IBOutlet weak var tableView: UITableView!
@@ -185,6 +189,17 @@ extension OnGoingTasksViewController: UITableViewDataSource {
         //cell.taskTitle.text = task.title
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let taskDetailViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TaskDetail") as! TaskDetailViewController
+        
+        taskDetailViewController.task = tasks[indexPath.row]
+        
+        self.navigationController?.pushViewController(taskDetailViewController, animated: true)
     }
     
 }
