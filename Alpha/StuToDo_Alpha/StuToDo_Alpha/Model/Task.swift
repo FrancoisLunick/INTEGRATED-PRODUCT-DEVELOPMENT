@@ -7,14 +7,13 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class Task: Codable {
-    
-    
-    
+
     //var id: ObjectIdentifier
-    var id: String!
-    var createdAt: Date?
+    @DocumentID var id: String!
+    @ServerTimestamp var createdAt: Date?
     var title: String!
     var note: String!
     var isDone: Bool!

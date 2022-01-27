@@ -7,8 +7,9 @@
 
 import UIKit
 import FirebaseFirestore
+import Loaf
 
-class OnGoingTasksViewController: UIViewController {
+class OnGoingTasksViewController: UIViewController, Animations {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -37,19 +38,17 @@ class OnGoingTasksViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
-        
         loadTasks()
     }
     
     private func addTasksListener() {
         
-        databaseManager.addTaskListener(isDone: false) { result in
+        databaseManager.addTaskListener(isDone: false) { [weak self] result in
             
             switch result {
                 
             case .success(let tasks):
-                self.tasks = tasks
+                self?.tasks = tasks
                 
             case .failure(let error):
                 print(error)
@@ -162,6 +161,9 @@ class OnGoingTasksViewController: UIViewController {
             switch result {
                 
             case .success:
+                
+                self.toast(loafState: .info, message: "Task Completed")
+                
                 print("Success")
             case .failure(let error):
                 print(error.localizedDescription)

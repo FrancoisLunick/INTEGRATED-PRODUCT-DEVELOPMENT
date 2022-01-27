@@ -8,39 +8,66 @@
 import UIKit
 
 class TasksHistoryViewController: UIViewController {
+    
 
     @IBOutlet weak var tableView: UITableView!
+    
+    private var databaseManager = DatabaseManager()
+    
+    private var tasks: [Task] = [] {
+        
+        didSet {
+            
+            tableView.reloadData()
+            
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        addTasksListener()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func addTasksListener() {
+        
+        databaseManager.addTaskListener(isDone: true) { [weak self] result in
+            
+            switch result {
+                
+            case .success(let tasks):
+                self?.tasks = tasks
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+            
+        }
+        
     }
-    */
-
+    
 }
 
 extension TasksHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as? TasksHistoryTableViewCell else {
+            
+            return tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
+        }
+        
+        let task = tasks[indexPath.row]
+        
+        cell.configure(with: task)
         
         return cell
     }
+    
     
 }
 

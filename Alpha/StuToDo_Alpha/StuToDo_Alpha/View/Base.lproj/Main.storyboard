@@ -101,6 +101,9 @@
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="cross"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="oIA-B3-ppx" eventType="touchUpInside" id="ISa-Gn-noH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="26N-fO-62s"/>
@@ -226,7 +229,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="84" id="P3c-rV-IoP">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="84" id="P3c-rV-IoP" customClass="TasksHistoryTableViewCell" customModule="StuToDo_Alpha" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P3c-rV-IoP" id="8fz-Bm-zth">
@@ -277,6 +280,10 @@
                                                 <constraint firstItem="RVJ-iv-kAb" firstAttribute="leading" secondItem="wXv-8o-2E7" secondAttribute="trailing" constant="70" id="xbW-8X-tAO"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="taskNotesLabel" destination="thg-zl-M0Q" id="hnw-CB-GmG"/>
+                                            <outlet property="taskTitleLabel" destination="wXv-8o-2E7" id="dFo-hA-ibf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

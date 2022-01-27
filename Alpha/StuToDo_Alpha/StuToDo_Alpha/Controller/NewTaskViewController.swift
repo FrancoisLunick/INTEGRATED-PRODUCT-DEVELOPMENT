@@ -17,6 +17,8 @@ class NewTaskViewController: UIViewController {
     private var subscribers = Set<AnyCancellable>()
     @Published private var titleString: String?
     
+    private let databaseManager = DatabaseManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,9 +71,20 @@ class NewTaskViewController: UIViewController {
     }
     */
     
+    @IBAction func cancelButtonTapped(_ sender: UIButton) {
+        
+        
+        
+    }
+    
     @IBAction func calendarButtonTapped(_ sender: UIButton) {
         
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
         
+        self.navigationController?.dismiss(animated: true)
+        
+        self.navigationController?.pushViewController(onGoingViewController, animated: true)
         
     }
     
