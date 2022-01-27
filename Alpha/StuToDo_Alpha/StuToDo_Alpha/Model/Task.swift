@@ -17,17 +17,19 @@ class Task: Codable {
     var createdAt: String!
     var title: String!
     var note: String!
+    var isDone: Bool!
     
     init() {
         
     }
     
-    init(id: String, createdAt: String, title: String, note: String) {
+    init(id: String, createdAt: String, title: String, note: String, isDone: Bool) {
         
         self.createdAt = createdAt
         self.title = title
         self.note = note
         self.id = id
+        self.isDone = isDone
         
     }
     
@@ -37,6 +39,7 @@ class Task: Codable {
         createdAt = dictionary["createdAt"] as? String
         title = dictionary["title"] as? String
         note = dictionary["note"] as? String
+        isDone = dictionary["isDone"] as? Bool
         
     }
     
@@ -49,7 +52,7 @@ func saveTaskToFirestore(_ task: Task) {
 
 func taskDictionaryFrom(_ task: Task) -> NSDictionary {
     
-    return NSDictionary(objects: [task.id, task.createdAt, task.title, task.note], forKeys: ["taskID" as NSCopying, "createdAt" as NSCopying, "title" as NSCopying, "note" as NSCopying])
+    return NSDictionary(objects: [task.id, task.createdAt, task.title, task.note, task.isDone], forKeys: ["taskID" as NSCopying, "createdAt" as NSCopying, "title" as NSCopying, "note" as NSCopying, "isDone" as NSCopying])
     
 }
 
@@ -111,7 +114,7 @@ func downloadTasksFromFirebase(_ tasks: [Task]) {
                     
                     tasks = snapshot.documents.map { doc in
                         
-                        return Task(id: doc.documentID, createdAt: doc["createdAt"] as? String ?? "", title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "")
+                        return Task(id: doc.documentID, createdAt: doc["createdAt"] as? String ?? "", title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false)
                     }
                     
                 }

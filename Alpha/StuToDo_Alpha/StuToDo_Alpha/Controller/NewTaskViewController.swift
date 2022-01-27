@@ -83,8 +83,8 @@ class NewTaskViewController: UIViewController {
 //
 //        let task = Task(title: titleString)
         
-        //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        //let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
         
         let noteString = taskNote.text
         
@@ -93,28 +93,37 @@ class NewTaskViewController: UIViewController {
         task.id = UUID().uuidString
         task.createdAt = "2022"
         task.title = addTitleTextField.text!
+        task.note = taskNote.text
+        task.isDone = false
+        saveTaskToFirestore(task)
         
-        if noteString!.isEmpty {
-            
-            task.note = "No additional text"
-            saveTaskToFirestore(task)
-            
-            self.navigationController?.popViewController(animated: true)
+        self.navigationController?.dismiss(animated: true)
         
-            
-            //self.present(onGoingViewController, animated: true, completion: nil)
-            
-        } else {
-            
-            saveTaskToFirestore(task)
-            
-            self.navigationController?.popViewController(animated: true)
-            
-            //self.present(onGoingViewController, animated: true, completion: nil)
-            
-        }
+//        if noteString!.isEmpty {
+//
+//            task.note = "No additional text"
+//            saveTaskToFirestore(task)
+//
+//            //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+//
+//
+//            //self.present(onGoingViewController, animated: true, completion: nil)
+//            self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.pushViewController(onGoingViewController, animated: true)
+     
+//
+//        } else {
+//
+//            saveTaskToFirestore(task)
+//
+//            //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+//
+//            //self.present(onGoingViewController, animated: true, completion: nil)
+//            self.navigationController?.popToRootViewController(animated: true)
+//
+//        }
         
-        
+        //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         
         
 

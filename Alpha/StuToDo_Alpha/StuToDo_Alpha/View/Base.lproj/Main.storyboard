@@ -93,7 +93,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzW-jb-MBp">
-                                <rect key="frame" x="20" y="44" width="40" height="40"/>
+                                <rect key="frame" x="20" y="88" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LyR-w9-3fm"/>
                                     <constraint firstAttribute="width" constant="40" id="m5k-Zk-Crf"/>
@@ -110,9 +110,7 @@
                             <constraint firstItem="HzW-jb-MBp" firstAttribute="top" secondItem="26N-fO-62s" secondAttribute="top" id="iGT-uE-wyr"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="add" id="kiq-rh-3DP">
-                        <inset key="imageInsets" minX="0.0" minY="-25" maxX="0.0" maxY="25"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="N4c-yf-Kd8"/>
                     <connections>
                         <outlet property="addTaskButton" destination="7Zr-pG-7JF" id="3BA-0g-dbr"/>
                         <outlet property="addTitleTextField" destination="hTT-UF-Fhs" id="tKu-HA-aPG"/>
@@ -121,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Xs-gD-JvW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2759.4202898550725" y="-15.401785714285714"/>
+            <point key="canvasLocation" x="-1931.8840579710147" y="714.50892857142856"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="oZG-Nf-gPI">
@@ -282,7 +280,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="CWl-SD-cMX" kind="relationship" relationship="viewControllers" id="hLn-xU-rPv"/>
-                        <segue destination="oIA-B3-ppx" kind="relationship" relationship="viewControllers" id="cc6-bS-grZ"/>
+                        <segue destination="BNr-TN-Xm7" kind="relationship" relationship="viewControllers" id="cc6-bS-grZ"/>
                         <segue destination="i8c-j1-t8k" kind="relationship" relationship="viewControllers" id="lu6-nw-M0B"/>
                     </connections>
                 </tabBarController>
@@ -345,6 +343,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oec-7W-8PU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1999" y="-15"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="boq-bo-Lbz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BNr-TN-Xm7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="add" id="kiq-rh-3DP">
+                        <inset key="imageInsets" minX="0.0" minY="-25" maxX="0.0" maxY="25"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HV5-If-zVq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oIA-B3-ppx" kind="relationship" relationship="rootViewController" id="PKQ-vY-GXG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P0q-47-MCR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2842.0289855072465" y="714.50892857142856"/>
         </scene>
     </scenes>
     <resources>

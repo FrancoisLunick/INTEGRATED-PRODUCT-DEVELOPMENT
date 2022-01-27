@@ -13,6 +13,7 @@ class OnGoingTasksViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var taskModel: Task?
+    var databaseManager: DatabaseManager?
     
     private var tasks: [Task] = [] {
         
@@ -25,12 +26,17 @@ class OnGoingTasksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.tabBar.isHidden = false
+
 
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        
         
         loadTasks()
     }
@@ -60,7 +66,7 @@ class OnGoingTasksViewController: UIViewController {
                         
                         self.tasks = snapshot.documents.map { doc in
                             
-                            return Task(id: doc.documentID, createdAt: doc["createdAt"] as? String ?? "", title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "")
+                            return Task(id: doc.documentID, createdAt: doc["createdAt"] as? String ?? "", title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false)
                         }
                         
                     }
@@ -125,6 +131,24 @@ class OnGoingTasksViewController: UIViewController {
 //        }
         
     }
+    
+    private func handleTaskCircle(for task: Task) {
+        
+        guard let id = task.id else { return }
+        
+        databaseManager?.updateTaskToDone(id: id, completion: { result in
+            
+            switch result {
+                
+            case .success:
+                print("Success")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            
+        })
+        
+    }
 
 }
 
@@ -143,6 +167,13 @@ extension OnGoingTasksViewController: UITableViewDataSource {
         }
         
         let task = tasks[indexPath.row]
+        
+        cell.didTapTaskCircle = { [weak self] in
+            
+            self?.handleTaskCircle(for: task)
+            print("\(task.id), \(task.title), \(task.createdAt), \(task.note)")
+            
+        }
         
         cell.configure(with: task)
         

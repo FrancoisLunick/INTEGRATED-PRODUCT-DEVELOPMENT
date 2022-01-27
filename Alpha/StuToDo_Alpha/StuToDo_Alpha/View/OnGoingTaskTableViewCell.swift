@@ -12,6 +12,8 @@ class OnGoingTaskTableViewCell: UITableViewCell {
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var taskNote: UILabel!
     
+    var didTapTaskCircle: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -32,6 +34,7 @@ class OnGoingTaskTableViewCell: UITableViewCell {
     
     @IBAction func taskCircleTapped(_ sender: UIButton) {
         
+        didTapTaskCircle?()
     }
     
 }
