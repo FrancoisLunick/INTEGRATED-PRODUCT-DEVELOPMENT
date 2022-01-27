@@ -23,6 +23,9 @@
 		4EA091B427A2507C008866E9 /* TasksHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091B327A2507C008866E9 /* TasksHistoryTableViewCell.swift */; };
 		4EA091B627A26378008866E9 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091B527A26377008866E9 /* Animations.swift */; };
 		4EA091B827A27FC8008866E9 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091B727A27FC8008866E9 /* TaskDetailViewController.swift */; };
+		4EA091BA27A32949008866E9 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091B927A32949008866E9 /* CalendarView.swift */; };
+		4EA091BC27A3435D008866E9 /* CalendarViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091BB27A3435D008866E9 /* CalendarViewDelegate.swift */; };
+		4EA091BF27A35262008866E9 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091BE27A35262008866E9 /* DateExtension.swift */; };
 		D0BF827FC21EDA8F9A38CD10 /* Pods_StuToDo_Alpha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35084B1DDBAA14A36E2D3CF6 /* Pods_StuToDo_Alpha.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +50,9 @@
 		4EA091B327A2507C008866E9 /* TasksHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		4EA091B527A26377008866E9 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		4EA091B727A27FC8008866E9 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		4EA091B927A32949008866E9 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		4EA091BB27A3435D008866E9 /* CalendarViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewDelegate.swift; sourceTree = "<group>"; };
+		4EA091BE27A35262008866E9 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		5AE6F4A11792FA5871738601 /* Pods-StuToDo_Alpha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuToDo_Alpha.release.xcconfig"; path = "Target Support Files/Pods-StuToDo_Alpha/Pods-StuToDo_Alpha.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +95,7 @@
 				4E7E177F279F4A4B00358EE1 /* LaunchScreen.storyboard */,
 				4E291A3727A19E7800DBF09D /* OnGoingTaskTableViewCell.swift */,
 				4EA091B327A2507C008866E9 /* TasksHistoryTableViewCell.swift */,
+				4EA091B927A32949008866E9 /* CalendarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -99,6 +106,7 @@
 				4E7E1774279F4A4200358EE1 /* AppDelegate.swift */,
 				4E7E1776279F4A4200358EE1 /* SceneDelegate.swift */,
 				4E291A3027A11D1900DBF09D /* Task.swift */,
+				4EA091BB27A3435D008866E9 /* CalendarViewDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -133,6 +141,7 @@
 		4E7E1773279F4A4200358EE1 /* StuToDo_Alpha */ = {
 			isa = PBXGroup;
 			children = (
+				4EA091BD27A35239008866E9 /* Extension */,
 				4E291A3227A122F800DBF09D /* Service */,
 				4E01D75B279FCF3100065787 /* Model */,
 				4E01D75A279FCF2C00065787 /* View */,
@@ -143,6 +152,14 @@
 				4E291A2E27A11B0700DBF09D /* GoogleService-Info.plist */,
 			);
 			path = StuToDo_Alpha;
+			sourceTree = "<group>";
+		};
+		4EA091BD27A35239008866E9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4EA091BE27A35262008866E9 /* DateExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		799D8F141022732DA8583085 /* Frameworks */ = {
@@ -270,15 +287,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E7E1775279F4A4200358EE1 /* AppDelegate.swift in Sources */,
+				4EA091BF27A35262008866E9 /* DateExtension.swift in Sources */,
 				4E01D76127A0E7BD00065787 /* NewTaskViewController.swift in Sources */,
 				4E291A3627A1274000DBF09D /* FirebaseReference.swift in Sources */,
 				4E01D75D27A0D5EC00065787 /* OnGoingTasksViewController.swift in Sources */,
 				4E7E1777279F4A4200358EE1 /* SceneDelegate.swift in Sources */,
 				4EA091B427A2507C008866E9 /* TasksHistoryTableViewCell.swift in Sources */,
+				4EA091BA27A32949008866E9 /* CalendarView.swift in Sources */,
 				4EA091B827A27FC8008866E9 /* TaskDetailViewController.swift in Sources */,
 				4E291A3127A11D1900DBF09D /* Task.swift in Sources */,
 				4E01D75F27A0D61B00065787 /* TasksHistoryViewController.swift in Sources */,
 				4E291A3827A19E7800DBF09D /* OnGoingTaskTableViewCell.swift in Sources */,
+				4EA091BC27A3435D008866E9 /* CalendarViewDelegate.swift in Sources */,
 				4EA091B627A26378008866E9 /* Animations.swift in Sources */,
 				4E291A3427A1234E00DBF09D /* DatabaseManager.swift in Sources */,
 			);

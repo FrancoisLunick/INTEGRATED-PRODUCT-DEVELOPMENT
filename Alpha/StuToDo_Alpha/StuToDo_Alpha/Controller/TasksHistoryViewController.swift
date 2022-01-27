@@ -58,11 +58,8 @@ class TasksHistoryViewController: UIViewController, Animations {
             case .failure(let error):
                 self?.toast(loafState: .error, message: error.localizedDescription)
             }
-            
         }
-        
     }
-    
 }
 
 extension TasksHistoryViewController: UITableViewDataSource {
@@ -90,6 +87,17 @@ extension TasksHistoryViewController: UITableViewDataSource {
         cell.configure(with: task)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let taskDetailViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TaskDetail") as! TaskDetailViewController
+        
+        taskDetailViewController.task = tasks[indexPath.row]
+        
+        self.navigationController?.pushViewController(taskDetailViewController, animated: true)
     }
 }
 

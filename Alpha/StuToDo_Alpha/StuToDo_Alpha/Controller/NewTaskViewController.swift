@@ -7,15 +7,33 @@
 
 import UIKit
 import Combine
+import FSCalendar
 
 class NewTaskViewController: UIViewController {
 
     @IBOutlet weak var addTitleTextField: UITextField!
     @IBOutlet weak var addTaskButton: UIButton!
     @IBOutlet weak var taskNote: UITextView!
+    @IBOutlet weak var CalendarUIView: CalendarView!
+    @IBOutlet weak var showCalendarButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var timePicker: UIDatePicker!
+    
     
     private var subscribers = Set<AnyCancellable>()
+    
     @Published private var titleString: String?
+    @Published private var dueDate: Date?
+    
+    private lazy var calendarView: CalendarView = {
+        
+        let view = CalendarView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.calendarViewDelegate = self
+        
+        return view
+        
+    }()
     
     private let databaseManager = DatabaseManager()
     
@@ -51,6 +69,11 @@ class NewTaskViewController: UIViewController {
             self.addTaskButton.isEnabled = text?.isEmpty == false
             
         }.store(in: &subscribers)
+        
+        $dueDate.sink { date in
+            
+            self.dateLabel.text = date?.toString() ?? ""
+        }.store(in: &subscribers)
     }
     
 //    private func setupGestures() {
@@ -60,24 +83,23 @@ class NewTaskViewController: UIViewController {
 //
 //    @objc private func
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func displayCalendar() {
+        
+        let margins = view.layoutMarginsGuide
+        
+        view.addSubview(calendarView)
+        //calendarUIView.addSubview(calendarView)
+        NSLayoutConstraint.activate([
+            calendarView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 2),
+            calendarView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 2),
+            calendarView.bottomAnchor.constraint(equalTo: taskNote.topAnchor, constant: 2),
+            calendarView.topAnchor.constraint(equalTo: showCalendarButton.bottomAnchor),
+            //calendarView.heightAnchor.constraint(equalToConstant: 222),
+            CalendarUIView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
     }
-    */
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        
-        
-        
-    }
-    
-    @IBAction func calendarButtonTapped(_ sender: UIButton) {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
@@ -85,6 +107,14 @@ class NewTaskViewController: UIViewController {
         self.navigationController?.dismiss(animated: true)
         
         self.navigationController?.pushViewController(onGoingViewController, animated: true)
+        
+    }
+    
+    @IBAction func calendarButtonTapped(_ sender: UIButton) {
+        
+        addTitleTextField.resignFirstResponder()
+        
+        displayCalendar()
         
     }
     
@@ -99,7 +129,7 @@ class NewTaskViewController: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
         
-        let noteString = taskNote.text
+        //let noteString = taskNote.text
         
         let task = Task()
         
@@ -108,7 +138,10 @@ class NewTaskViewController: UIViewController {
         task.title = addTitleTextField.text!
         task.note = taskNote.text
         task.isDone = false
+        
         saveTaskToFirestore(task)
+        
+        addTitleTextField.text = ""
         
         self.navigationController?.dismiss(animated: true)
         
@@ -141,6 +174,11 @@ class NewTaskViewController: UIViewController {
         
 
     }
+    
+    private func dismissCalendarView(completion: () -> Void) {
+        calendarView.removeFromSuperview()
+        completion()
+    }
 }
 
 extension NewTaskViewController: UITextFieldDelegate {
@@ -152,5 +190,24 @@ extension NewTaskViewController: UITextFieldDelegate {
         return true
         
     }
+    
+}
+
+extension NewTaskViewController: CalendarViewDelegate {
+    
+    func didSelectDate(date: Date) {
+        
+        self.dueDate = date
+        
+    }
+    
+    func didTapRemoveButton() {
+        
+        dismissCalendarView {
+            
+            self.dueDate = nil
+        }
+    }
+    
     
 }

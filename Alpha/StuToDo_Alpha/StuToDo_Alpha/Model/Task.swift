@@ -18,18 +18,20 @@ class Task: Codable {
     var note: String!
     var isDone: Bool!
     var completedAt: Date?
+    var dueDate: Date?
     
     init() {
         
     }
     
-    init(id: String, createdAt: Date?, title: String, note: String, isDone: Bool) {
+    init(id: String, createdAt: Date?, title: String, note: String, isDone: Bool, dueDate: Date?) {
         
         self.createdAt = createdAt
         self.title = title
         self.note = note
         self.id = id
         self.isDone = isDone
+        self.dueDate = dueDate
         
     }
     
@@ -41,6 +43,7 @@ class Task: Codable {
         note = dictionary["note"] as? String
         isDone = dictionary["isDone"] as? Bool
         completedAt = dictionary["completedAt"] as? Date
+        dueDate = dictionary["dueDate"] as? Date
         
     }
     
@@ -53,7 +56,7 @@ func saveTaskToFirestore(_ task: Task) {
 
 func taskDictionaryFrom(_ task: Task) -> NSDictionary {
     
-    return NSDictionary(objects: [task.id, task.createdAt, task.title, task.note, task.isDone, task.completedAt], forKeys: ["taskID" as NSCopying, "createdAt" as NSCopying, "title" as NSCopying, "note" as NSCopying, "isDone" as NSCopying, "completedAt" as NSCopying])
+    return NSDictionary(objects: [task.id, task.createdAt, task.title, task.note, task.isDone, task.completedAt, task.dueDate], forKeys: ["taskID" as NSCopying, "createdAt" as NSCopying, "title" as NSCopying, "note" as NSCopying, "isDone" as NSCopying, "completedAt" as NSCopying, "dueDate" as NSCopying])
     
 }
 
@@ -115,7 +118,7 @@ func downloadTasksFromFirebase(_ tasks: [Task]) {
                     
                     tasks = snapshot.documents.map { doc in
                         
-                        return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false)
+                        return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false, dueDate: doc["dueDate"] as? Date ?? Date())
                     }
                     
                 }
