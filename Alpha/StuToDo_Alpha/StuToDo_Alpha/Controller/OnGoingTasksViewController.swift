@@ -13,7 +13,7 @@ class OnGoingTasksViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var taskModel: Task?
-    var databaseManager: DatabaseManager?
+    private var databaseManager = DatabaseManager()
     
     private var tasks: [Task] = [] {
         
@@ -28,6 +28,7 @@ class OnGoingTasksViewController: UIViewController {
         super.viewDidLoad()
         
         self.tabBarController?.tabBar.isHidden = false
+        addTasksListener()
 
 
         // Do any additional setup after loading the view.
@@ -39,6 +40,26 @@ class OnGoingTasksViewController: UIViewController {
         
         
         loadTasks()
+    }
+    
+    private func addTasksListener() {
+        
+        databaseManager.addTaskListener(isDone: false) { result in
+            
+            switch result {
+                
+            case .success(let tasks):
+                self.tasks = tasks
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+            
+        }
+        
+        
+        
     }
     
 
@@ -66,7 +87,7 @@ class OnGoingTasksViewController: UIViewController {
                         
                         self.tasks = snapshot.documents.map { doc in
                             
-                            return Task(id: doc.documentID, createdAt: doc["createdAt"] as? String ?? "", title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false)
+                            return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false)
                         }
                         
                     }
@@ -136,7 +157,7 @@ class OnGoingTasksViewController: UIViewController {
         
         guard let id = task.id else { return }
         
-        databaseManager?.updateTaskToDone(id: id, completion: { result in
+        databaseManager.updateTaskToDone(id: id, completion: { result in
             
             switch result {
                 

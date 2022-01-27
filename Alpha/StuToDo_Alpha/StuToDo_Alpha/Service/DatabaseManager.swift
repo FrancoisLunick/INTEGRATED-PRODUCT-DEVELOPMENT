@@ -6,13 +6,14 @@
 //
 
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class DatabaseManager {
     
     private var listener: ListenerRegistration?
     
     private let db = Firestore.firestore()
-//
+
     private lazy var tasksCollection = db.collection("Tasks")
 //    
 //    func addTask(_ task: Task, completion: (Result<Void, Error>) -> Void) {
@@ -21,38 +22,57 @@ class DatabaseManager {
 //
 //    }
     
-//    func addTaskListener(completion: (Result<Void, Error>) -> Void) {
-//
-//        listener = tasksCollection.addSnapshotListener({ snapchat, error in
-//
-//            if let error = error {
-//
-//                completion(.failure(error))
-//
-//            } else {
-//                
-//                var tempTasks = [Task]()
-//
-//                snapchat?.documents.forEach({ queryDocumentSnapshot in
-//
-//                    if let task = try? queryDocumentSnapshot.data(as: Task.self) {
-//                        
-//                        tempTasks.append(task)
-//                        
-//                    }
-//
-//                })
-//                
-//                completion(.success(tempTasks))
-//            }
-//
-//        })
-//
-//    }
+    func addTaskListener(isDone: Bool, completion: @escaping (Result<[Task], Error>) -> Void) {
+
+        listener = tasksCollection
+            .whereField("isDone", isEqualTo: isDone)
+            .order(by: "createdAt", descending: true)
+            .addSnapshotListener({ snapshot, error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
+            } else {
+                
+                var tasks = [Task]()
+                
+                do {
+                    
+                    tasks = try snapshot?.documents.compactMap({
+                        
+                        return try $0.data(as: Task.self)
+                        
+                    }) ?? []
+                    
+                } catch(let error) {
+                    
+                    completion(.failure(error))
+                    
+                }
+                
+                completion(.success(tasks))
+            }
+
+        })
+
+    }
     
-    func updateTaskToDone(id: String, completion: (Result<Void, Error>) -> Void) {
+    func updateTaskToDone(id: String, completion: @escaping (Result<Void, Error>) -> Void) {
         
-        
+        let fields: [String : Any] = ["isDone" : true, "completedAt" : Date()]
+        tasksCollection.document(id).updateData(fields) { error in
+            
+            if let error = error {
+                
+                completion(.failure(error))
+                
+            } else {
+                
+                completion(.success(()))
+                
+            }
+        }
         
     }
     

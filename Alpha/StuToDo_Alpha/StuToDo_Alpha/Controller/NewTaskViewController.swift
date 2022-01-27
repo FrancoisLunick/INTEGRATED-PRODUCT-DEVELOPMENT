@@ -91,7 +91,7 @@ class NewTaskViewController: UIViewController {
         let task = Task()
         
         task.id = UUID().uuidString
-        task.createdAt = "2022"
+        task.createdAt = Date()
         task.title = addTitleTextField.text!
         task.note = taskNote.text
         task.isDone = false

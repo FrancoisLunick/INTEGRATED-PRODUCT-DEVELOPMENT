@@ -10,6 +10,7 @@ target 'StuToDo_Alpha' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
+  pod 'FirebaseFirestoreSwift', '~> 8.0-beta'
   pod 'Loaf'
   pod 'FSCalendar'
   pod 'MBProgressHUD'
