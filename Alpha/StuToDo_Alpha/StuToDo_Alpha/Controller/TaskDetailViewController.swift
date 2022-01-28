@@ -31,9 +31,9 @@ class TaskDetailViewController: UIViewController, Animations {
         if task != nil {
             
             taskTitleLabel.text = task.title
-            dateLabel.text = "01/22/2022"
+            dateLabel.text = task.dueDate?.toString()
             timeLabel.text = "10:32 PM"
-            notesLabel.text = "Notes"
+            notesLabel.text = task.note
             
         }
         
@@ -59,6 +59,12 @@ class TaskDetailViewController: UIViewController, Animations {
         
     }
     
+    private func editTaskHelper(task: Task) {
+        
+        performSegue(withIdentifier: "showEditTask", sender: task)
+        
+    }
+    
     @IBAction func deleteTask(_ sender: UIButton) {
         
         guard let id = task.id else { return }
@@ -69,5 +75,18 @@ class TaskDetailViewController: UIViewController, Animations {
     @IBAction func editTask(_ sender: UIButton) {
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showEditTask" {
+            
+            if let destination = segue.destination as? EditTaskViewController {
+                
+                let taskToEdit = sender as? Task
+                
+                destination.taskToEdit = taskToEdit
+            }
+            
+        }
+    }
     
 }
