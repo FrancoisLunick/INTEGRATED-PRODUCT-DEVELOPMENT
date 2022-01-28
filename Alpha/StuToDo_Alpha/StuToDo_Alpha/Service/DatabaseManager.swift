@@ -11,24 +11,8 @@ import FirebaseFirestoreSwift
 class DatabaseManager {
     
     private var listener: ListenerRegistration?
-    
     private let db = Firestore.firestore()
-
     private lazy var tasksCollection = db.collection("Tasks")
-
-//    func addTask(_ task: Task, completion: @escaping (Result<Void, Error>) -> Void) {
-//        do {
-//            _ = try tasksCollection.addDocument(from: task, completion: { (error) in
-//                if let error = error {
-//                    completion(.failure(error))
-//                } else {
-//                    completion(.success(()))
-//                }
-//            })
-//        } catch(let error) {
-//            completion(.failure(error))
-//        }
-//    }
     
     func addTaskListener(isDone: Bool, completion: @escaping (Result<[Task], Error>) -> Void) {
 
@@ -56,14 +40,11 @@ class DatabaseManager {
                 } catch(let error) {
                     
                     completion(.failure(error))
-                    
                 }
                 
                 completion(.success(tasks))
             }
-
         })
-
     }
     
     func updateTaskToDone(id: String, completion: @escaping (Result<Void, Error>) -> Void) {
@@ -78,10 +59,8 @@ class DatabaseManager {
             } else {
                 
                 completion(.success(()))
-                
             }
         }
-        
     }
     
     func updateStatus(id: String, isDone: Bool, completion: @escaping (Result<Void, Error>) -> Void) {
@@ -99,7 +78,6 @@ class DatabaseManager {
                 completion(.success(()))
             }
         }
-        
     }
     
     func deleteTask(id: String, completion: @escaping (Result<Void, Error>) -> Void) {
@@ -111,9 +89,6 @@ class DatabaseManager {
             } else {
                 completion(.success(()))
             }
-            
         }
-        
     }
-    
 }

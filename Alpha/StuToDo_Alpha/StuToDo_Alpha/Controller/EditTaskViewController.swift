@@ -11,6 +11,8 @@ import FSCalendar
 
 class EditTaskViewController: UIViewController {
 
+    // MARK: - Properties
+    
     @IBOutlet weak var addTitleTextField: UITextField!
     @IBOutlet weak var addTaskButton: UIButton!
     @IBOutlet weak var taskNote: UITextView!
@@ -18,7 +20,6 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var showCalendarButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timePicker: UIDatePicker!
-    
     
     private var subscribers = Set<AnyCancellable>()
     
@@ -39,6 +40,8 @@ class EditTaskViewController: UIViewController {
     
     private let databaseManager = DatabaseManager()
     
+    // MARK: - View Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +58,8 @@ class EditTaskViewController: UIViewController {
         
         addTitleTextField.becomeFirstResponder()
     }
+    
+    // MARK: - Helpers
     
     private func setupViews() {
         
@@ -91,13 +96,6 @@ class EditTaskViewController: UIViewController {
         }.store(in: &subscribers)
     }
     
-//    private func setupGestures() {
-//
-//        let tapGestures = UITapGestureRecognizer(target: self, action: <#T##Selector?#>)
-//    }
-//
-//    @objc private func
-    
     private func displayCalendar() {
         
         let margins = view.layoutMarginsGuide
@@ -114,6 +112,12 @@ class EditTaskViewController: UIViewController {
         ])
     }
     
+    private func dismissCalendarView(completion: () -> Void) {
+        calendarView.removeFromSuperview()
+        completion()
+    }
+    
+    // MARK: - Actions
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -140,16 +144,8 @@ class EditTaskViewController: UIViewController {
     
     @IBAction func addTask(_ sender: UIButton) {
         
-//        guard let titleString = self.titleString else {
-//            return
-//        }
-//
-//        let task = Task(title: titleString)
-        
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
-        
-        //let noteString = taskNote.text
         
         let task = Task()
         
@@ -165,42 +161,13 @@ class EditTaskViewController: UIViewController {
         addTitleTextField.text = ""
         
         self.navigationController?.dismiss(animated: true)
-        
-//        if noteString!.isEmpty {
-//
-//            task.note = "No additional text"
-//            saveTaskToFirestore(task)
-//
-//            //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-//
-//
-//            //self.present(onGoingViewController, animated: true, completion: nil)
-//            self.navigationController?.popToRootViewController(animated: true)
+    
         self.navigationController?.pushViewController(onGoingViewController, animated: true)
-     
-//
-//        } else {
-//
-//            saveTaskToFirestore(task)
-//
-//            //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-//
-//            //self.present(onGoingViewController, animated: true, completion: nil)
-//            self.navigationController?.popToRootViewController(animated: true)
-//
-//        }
-        
-        //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        
-        
 
     }
-    
-    private func dismissCalendarView(completion: () -> Void) {
-        calendarView.removeFromSuperview()
-        completion()
-    }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension EditTaskViewController: UITextFieldDelegate {
     
@@ -213,6 +180,8 @@ extension EditTaskViewController: UITextFieldDelegate {
     }
     
 }
+
+// MARK: - CalendarViewDelegate
 
 extension EditTaskViewController: CalendarViewDelegate {
     

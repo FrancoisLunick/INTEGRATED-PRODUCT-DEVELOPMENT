@@ -9,6 +9,8 @@ import UIKit
 
 class TaskDetailViewController: UIViewController, Animations {
 
+    // MARK: - Properties
+    
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -17,14 +19,15 @@ class TaskDetailViewController: UIViewController, Animations {
     var task: Task!
     private var databaseManager = DatabaseManager()
     
+    // MARK: - View Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.tabBarController?.tabBar.isHidden = true
-        
         setupUI()
-
     }
+    
+    // MARK: - Helpers
     
     private func setupUI() {
         
@@ -34,9 +37,7 @@ class TaskDetailViewController: UIViewController, Animations {
             dateLabel.text = task.dueDate?.toString()
             timeLabel.text = "10:32 PM"
             notesLabel.text = task.note
-            
         }
-        
     }
     
     private func deleteTaskHelper(_ id: String) {
@@ -64,6 +65,8 @@ class TaskDetailViewController: UIViewController, Animations {
         performSegue(withIdentifier: "showEditTask", sender: task)
         
     }
+    
+    // MARK: - Actions
     
     @IBAction func deleteTask(_ sender: UIButton) {
         

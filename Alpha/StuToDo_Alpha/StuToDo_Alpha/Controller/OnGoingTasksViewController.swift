@@ -15,6 +15,8 @@ protocol OnGoingDelegate {
 
 class OnGoingTasksViewController: UIViewController, Animations {
 
+    // MARK: - Properties
+    
     @IBOutlet weak var tableView: UITableView!
     
     var taskModel: Task!
@@ -27,6 +29,7 @@ class OnGoingTasksViewController: UIViewController, Animations {
             tableView.reloadData()
         }
     }
+    // MARK: - View Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +43,8 @@ class OnGoingTasksViewController: UIViewController, Animations {
         
         loadTasks()
     }
+    
+    // MARK: - Helpers
     
     private func addTasksListener() {
         
@@ -109,6 +114,8 @@ class OnGoingTasksViewController: UIViewController, Animations {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension OnGoingTasksViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -149,6 +156,8 @@ extension OnGoingTasksViewController: UITableViewDataSource {
     }
     
 }
+
+// MARK: - UITableViewDelegate
 
 extension OnGoingTasksViewController: UITableViewDelegate {
     

@@ -9,24 +9,27 @@ import UIKit
 
 class TasksHistoryViewController: UIViewController, Animations {
     
+    // MARK: - Properties
 
     @IBOutlet weak var tableView: UITableView!
     
     private var databaseManager = DatabaseManager()
     
     private var tasks: [Task] = [] {
-        
         didSet {
-            
             tableView.reloadData()
-            
         }
     }
+    
+    // MARK: - View Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addTasksListener()
     }
+    
+    // MARK: - Helpers
     
     private func addTasksListener() {
         
@@ -39,11 +42,8 @@ class TasksHistoryViewController: UIViewController, Animations {
                 
             case .failure(let error):
                 self?.toast(loafState: .error, message: error.localizedDescription)
-                
             }
-            
         }
-        
     }
     
     private func handleTaskCheck(for task: Task) {
@@ -61,6 +61,8 @@ class TasksHistoryViewController: UIViewController, Animations {
         }
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension TasksHistoryViewController: UITableViewDataSource {
     
@@ -100,6 +102,8 @@ extension TasksHistoryViewController: UITableViewDataSource {
         self.navigationController?.pushViewController(taskDetailViewController, animated: true)
     }
 }
+
+// MARK: - UITableViewDelegate
 
 extension TasksHistoryViewController: UITableViewDelegate {
     

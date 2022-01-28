@@ -9,6 +9,7 @@ import UIKit
 
 class OnGoingTaskTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var taskNote: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
@@ -18,14 +19,16 @@ class OnGoingTaskTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
+    
+    // MARK: - Helpers
     
     func configure(with task: Task) {
         
@@ -40,6 +43,8 @@ class OnGoingTaskTableViewCell: UITableViewCell {
         }
         
     }
+    
+    // MARK: - Actions
     
     @IBAction func taskCircleTapped(_ sender: UIButton) {
         

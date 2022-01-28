@@ -9,6 +9,8 @@ import UIKit
 
 class TasksHistoryTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskNotesLabel: UILabel!
     
@@ -16,22 +18,24 @@ class TasksHistoryTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
+    
+    // MARK: - Helpers
     
     func configure(with task: Task) {
         
         taskTitleLabel.text = task.title
         taskNotesLabel.text = "01/26/20 Dummy task note"
-        
-        
     }
+    
+    // MARK: - Actions
+    
     @IBAction func CheckDidTapped(_ sender: UIButton) {
         
         didTapCheck?()

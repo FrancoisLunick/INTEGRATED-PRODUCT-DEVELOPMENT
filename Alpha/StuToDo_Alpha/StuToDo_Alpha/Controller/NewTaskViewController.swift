@@ -10,6 +10,8 @@ import Combine
 import FSCalendar
 
 class NewTaskViewController: UIViewController {
+    
+    // MARK: - Properties
 
     @IBOutlet weak var addTitleTextField: UITextField!
     @IBOutlet weak var addTaskButton: UIButton!
@@ -18,7 +20,6 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var showCalendarButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timePicker: UIDatePicker!
-    
     
     private var subscribers = Set<AnyCancellable>()
     
@@ -37,6 +38,8 @@ class NewTaskViewController: UIViewController {
     
     private let databaseManager = DatabaseManager()
     
+    // MARK: - View Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +54,8 @@ class NewTaskViewController: UIViewController {
         
         addTitleTextField.becomeFirstResponder()
     }
+    
+    // MARK: - Helpers
     
     private func validateNewTaskForm() {
         
@@ -76,19 +81,12 @@ class NewTaskViewController: UIViewController {
         }.store(in: &subscribers)
     }
     
-//    private func setupGestures() {
-//
-//        let tapGestures = UITapGestureRecognizer(target: self, action: <#T##Selector?#>)
-//    }
-//
-//    @objc private func
-    
     private func displayCalendar() {
         
         let margins = view.layoutMarginsGuide
         
         view.addSubview(calendarView)
-        //calendarUIView.addSubview(calendarView)
+        
         NSLayoutConstraint.activate([
             calendarView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 2),
             calendarView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 2),
@@ -98,6 +96,13 @@ class NewTaskViewController: UIViewController {
             CalendarUIView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
+    
+    private func dismissCalendarView(completion: () -> Void) {
+        calendarView.removeFromSuperview()
+        completion()
+    }
+    
+    // MARK: - Actions
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         
@@ -125,16 +130,9 @@ class NewTaskViewController: UIViewController {
     
     @IBAction func addTask(_ sender: UIButton) {
         
-//        guard let titleString = self.titleString else {
-//            return
-//        }
-//
-//        let task = Task(title: titleString)
-        
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
         
-        //let noteString = taskNote.text
         
         let task = Task()
         
@@ -151,41 +149,11 @@ class NewTaskViewController: UIViewController {
         
         self.navigationController?.dismiss(animated: true)
         
-//        if noteString!.isEmpty {
-//
-//            task.note = "No additional text"
-//            saveTaskToFirestore(task)
-//
-//            //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-//
-//
-//            //self.present(onGoingViewController, animated: true, completion: nil)
-//            self.navigationController?.popToRootViewController(animated: true)
         self.navigationController?.pushViewController(onGoingViewController, animated: true)
-     
-//
-//        } else {
-//
-//            saveTaskToFirestore(task)
-//
-//            //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-//
-//            //self.present(onGoingViewController, animated: true, completion: nil)
-//            self.navigationController?.popToRootViewController(animated: true)
-//
-//        }
-        
-        //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        
-        
-
-    }
-    
-    private func dismissCalendarView(completion: () -> Void) {
-        calendarView.removeFromSuperview()
-        completion()
     }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension NewTaskViewController: UITextFieldDelegate {
     
@@ -194,10 +162,10 @@ extension NewTaskViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         
         return true
-        
     }
-    
 }
+
+// MARK: - CalendarViewDelegate
 
 extension NewTaskViewController: CalendarViewDelegate {
     
@@ -214,6 +182,4 @@ extension NewTaskViewController: CalendarViewDelegate {
             self.dueDate = nil
         }
     }
-    
-    
 }

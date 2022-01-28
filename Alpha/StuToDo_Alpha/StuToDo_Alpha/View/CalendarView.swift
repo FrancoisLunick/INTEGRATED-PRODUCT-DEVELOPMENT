@@ -81,10 +81,7 @@ class CalendarView: UIView {
         
     }
     
-
-    
     @objc func removeCalendar(_ sender: UIButton) {
-        
         
         if let selectedDate = fsCalendar.selectedDate {
             
@@ -92,10 +89,10 @@ class CalendarView: UIView {
             calendarViewDelegate?.didTapRemoveButton()
             
         }
-        
     }
-
 }
+
+// MARK: - FSCalendarDelegate
 
 extension CalendarView: FSCalendarDelegate {
     
