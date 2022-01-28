@@ -60,6 +60,10 @@ class CalendarView: UIView {
         
     }
     
+    func selectDate(date: Date?) {
+        fsCalendar.select(date, scrollToDate: true)
+    }
+    
     private func setup() {
         
         backgroundColor = .white
@@ -77,19 +81,7 @@ class CalendarView: UIView {
         
     }
     
-//    override func willMove(toSuperview newSuperview: UIView?) {
-//        
-//        if fsCalendar.selectedDate == nil {
-//            
-//            removeButton.removeFromSuperview()
-//            
-//        } else {
-//            
-//            stackView.addArrangedSubview(removeButton)
-//            
-//        }
-//        
-//    }
+
     
     @objc func removeCalendar(_ sender: UIButton) {
         
