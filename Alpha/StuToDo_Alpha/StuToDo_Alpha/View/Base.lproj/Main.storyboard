@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nhs-HM-vgN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tnm-f8-1VO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -277,7 +277,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" id="gDY-NB-IzV">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.fill" catalog="system" id="qmR-wd-1VP"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.fill" catalog="system" id="qmR-wd-1VP">
+                            <connections>
+                                <segue destination="xj4-c2-3A1" kind="show" identifier="ToProfilePage" id="ICj-Za-QNR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="lMp-YE-rDd" id="G5P-UK-qes"/>
@@ -285,7 +289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KyM-7T-yLK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3536.2318840579715" y="-15.401785714285714"/>
+            <point key="canvasLocation" x="-3536" y="-15"/>
         </scene>
         <!--History-->
         <scene sceneID="rZA-g6-dfm">
@@ -387,7 +391,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="History" id="ifI-D7-83u">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.fill" catalog="system" id="0Id-A4-GKX"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.fill" catalog="system" id="0Id-A4-GKX">
+                            <connections>
+                                <segue destination="xj4-c2-3A1" kind="show" identifier="ToProfileSegue" id="Abb-hN-W5n"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="pRL-Vo-Beo" id="2Xy-LK-8gw"/>
@@ -433,6 +441,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h32-AT-rma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="165" y="-429"/>
+        </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="pxc-Dp-cSr">
+            <objects>
+                <viewController id="tnm-f8-1VO" customClass="LoadingViewController" customModule="StuToDo_Alpha" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NuW-Rd-yMZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="gp0-Su-twg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pi9-xV-yUn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6113" y="-765"/>
         </scene>
         <!--Onboarding View Controller-->
         <scene sceneID="Aaf-Dy-uu2">
@@ -536,8 +559,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="odA-8D-X8w">
-                                <rect key="frame" x="87" y="428" width="240" height="40"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="odA-8D-X8w">
+                                <rect key="frame" x="87" y="400" width="240" height="96"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGB-FP-6bh">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
@@ -553,6 +576,18 @@
                                         <connections>
                                             <action selector="loginButtonTapped:" destination="MEw-C6-6rc" eventType="touchUpInside" id="xZq-No-4ys"/>
                                         </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X08-1T-bcV">
+                                        <rect key="frame" x="0.0" y="56" width="240" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="2Fc-Zz-jdx"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign Up">
+                                            <fontDescription key="titleFontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="18"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -630,6 +665,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P0q-47-MCR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2807" y="-15"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="8wB-Kg-VAH">
+            <objects>
+                <viewController id="xj4-c2-3A1" customClass="ProfileViewController" customModule="StuToDo_Alpha" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qob-qW-Ttz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjK-5Q-Uxg">
+                                <rect key="frame" x="170" y="710" width="76" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.58324164150000002" green="0.12246673550000001" blue="0.29804837699999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Log Out"/>
+                                <connections>
+                                    <action selector="logOutPressed:" destination="xj4-c2-3A1" eventType="touchUpInside" id="bTd-VS-4S9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bca-ue-PmA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yh5-Tc-FkE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hE4-PB-yVa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3536" y="714"/>
         </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="wK9-8k-OrU">
@@ -895,6 +958,9 @@
             <point key="canvasLocation" x="-2104" y="714"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ICj-Za-QNR"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="StuToDoLogo" width="1970" height="1970"/>
         <image name="add" width="90" height="90"/>
@@ -916,6 +982,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
