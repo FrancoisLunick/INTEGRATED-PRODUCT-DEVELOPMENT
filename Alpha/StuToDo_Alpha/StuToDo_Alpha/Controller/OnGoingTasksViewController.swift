@@ -17,15 +17,14 @@ class OnGoingTasksViewController: UIViewController, Animations {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var taskModel: Task?
+    var taskModel: Task!
     private var databaseManager = DatabaseManager()
     
+    weak var editTaskDelegate: EditTaskDelegate?
+    
     private var tasks: [Task] = [] {
-        
         didSet {
-            
             tableView.reloadData()
-            
         }
     }
     
@@ -34,9 +33,6 @@ class OnGoingTasksViewController: UIViewController, Animations {
         
         self.tabBarController?.tabBar.isHidden = false
         addTasksListener()
-
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,7 +52,6 @@ class OnGoingTasksViewController: UIViewController, Animations {
                 
             case .failure(let error):
                 self?.toast(loafState: .error, message: error.localizedDescription)
-                
             }
         }
     }
@@ -71,74 +66,19 @@ class OnGoingTasksViewController: UIViewController, Animations {
                 
                 if let snapshot = snapshot {
                     
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [self] in
                         
                         self.tasks = snapshot.documents.map { doc in
                             
                             return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false, dueDate: doc["dueDate"] as? Date ?? Date())
                         }
-                        
                     }
-                    
                 }
                 
             } else {
                 
             }
         }
-        
-//        let db = Firestore.firestore()
-//        let docRef = db.collection("Tasks").document("")
-//
-//        docRef.getDocument { (document, error) in
-//            if let document = document, document.exists {
-//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-//                print("Document data: \(dataDescription)")
-//            } else {
-//                print("Document does not exist")
-//            }
-//        }
-        
-//        let db = Firestore.firestore()
-//
-//        db.collection("Tasks").getDocuments { snapshot, error in
-//
-//            if error == nil {
-//
-//                if let snapshot = snapshot {
-//
-//                    DispatchQueue.main.async {
-//
-//                        self.tasks = snapshot.documents.map { doc in
-//
-//                            return Task(id: doc.documentID, createdAt: doc["createdAt"] as? String ?? "", title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "")
-//                        }
-//
-//                    }
-//
-//                }
-//
-//            } else {
-//
-//            }
-//        }
-        
-        
-
-//        docRef.getDocument { (document, error) in
-//            if let document = document, document.exists {
-//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-//                print("Document data: \(dataDescription)")
-//            } else {
-//                print("Document does not exist")
-//            }
-//        }
-        
-//        downloadTasksFromFirebase((taskModel?.id)!) { tasks in
-//
-//            self.tasks = tasks
-//        }
-        
     }
     
     private func handleTaskCircle(for task: Task) {
@@ -154,11 +94,19 @@ class OnGoingTasksViewController: UIViewController, Animations {
             case .failure(let error):
                 self?.toast(loafState: .error, message: error.localizedDescription)
             }
-            
         }
-        
     }
-
+    
+    private func handleEditTask(indexPath: IndexPath) {
+        print("Edit Task")
+        
+        editTaskDelegate?.sendTask(task: tasks[indexPath.row])
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newTaskViewController = storyBoard.instantiateViewController(withIdentifier: "NewTask") as! NewTaskViewController
+        
+        self.navigationController?.pushViewController(newTaskViewController, animated: true)
+    }
 }
 
 extension OnGoingTasksViewController: UITableViewDataSource {
@@ -180,13 +128,11 @@ extension OnGoingTasksViewController: UITableViewDataSource {
         cell.didTapTaskCircle = { [weak self] in
             
             self?.handleTaskCircle(for: task)
-            print("\(task.id), \(task.title), \(task.createdAt), \(task.note)")
+            //print("\(task.id), \(task.title), \(task.createdAt), \(task.note)")
             
         }
         
         cell.configure(with: task)
-        
-        //cell.taskTitle.text = task.title
         
         return cell
     }
@@ -206,4 +152,23 @@ extension OnGoingTasksViewController: UITableViewDataSource {
 
 extension OnGoingTasksViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] action, view, handler in
+            
+            self?.handleEditTask(indexPath: indexPath)
+            handler(true)
+            
+        }
+        
+        action.backgroundColor = .blue
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        
+        return .none
+    }
 }
+
