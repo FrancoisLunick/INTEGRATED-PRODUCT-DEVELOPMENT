@@ -93,7 +93,7 @@ class OnGoingTasksViewController: UIViewController, Animations {
         databaseManager.updateStatus(id: id, isDone: true) { [weak self] result in
             
             switch result {
-                
+            
             case .success:
                 self?.toast(loafState: .info, message: "Task Completed", duration: 1.5)
             case .failure(let error):
