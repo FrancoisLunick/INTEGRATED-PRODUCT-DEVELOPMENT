@@ -12,6 +12,7 @@ class OnGoingTaskTableViewCell: UITableViewCell {
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var taskNote: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var dueReminderLabel: UILabel!
     
     var didTapTaskCircle: (() -> Void)?
     
@@ -31,6 +32,12 @@ class OnGoingTaskTableViewCell: UITableViewCell {
         taskTitle.text = task.title
         taskNote.text = task.note
         dueDateLabel.text = task.dueDate?.toString()
+        dueReminderLabel.text = task.dueDate?.toRelativeString()
+        
+        if task.dueDate?.isOverDue() == true {
+            dueDateLabel.textColor = .red
+            dueDateLabel.font = UIFont(name: "AvenirNext-Medium", size: 12)
+        }
         
     }
     
