@@ -11,6 +11,7 @@ class OnGoingTaskTableViewCell: UITableViewCell {
 
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var taskNote: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
     
     var didTapTaskCircle: (() -> Void)?
     
@@ -28,7 +29,8 @@ class OnGoingTaskTableViewCell: UITableViewCell {
     func configure(with task: Task) {
         
         taskTitle.text = task.title
-        taskNote.text = "01/26/20 Dummy task note"
+        taskNote.text = task.note
+        dueDateLabel.text = task.dueDate?.toString()
         
     }
     
