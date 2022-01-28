@@ -42,7 +42,7 @@
         <!--New Task View Controller-->
         <scene sceneID="kg5-HQ-6tg">
             <objects>
-                <viewController id="oIA-B3-ppx" customClass="NewTaskViewController" customModule="StuToDo_Alpha" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewTask" id="oIA-B3-ppx" customClass="NewTaskViewController" customModule="StuToDo_Alpha" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qSB-Pk-cf0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -71,25 +71,15 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="JRc-UA-2Fq">
-                                <rect key="frame" x="300" y="280" width="94" height="48"/>
+                                <rect key="frame" x="272" y="280" width="122" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="94" id="PdG-bm-e0k"/>
+                                    <constraint firstAttribute="width" constant="122" id="PdG-bm-e0k"/>
                                     <constraint firstAttribute="height" constant="48" id="d3A-6x-2bS"/>
                                 </constraints>
                                 <connections>
                                     <action selector="timeChanged:" destination="oIA-B3-ppx" eventType="valueChanged" id="rc4-oq-uxS"/>
                                 </connections>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzW-jb-MBp">
-                                <rect key="frame" x="187" y="150" width="40" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="cross"/>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="oIA-B3-ppx" eventType="touchUpInside" id="ISa-Gn-noH"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mha-vm-8OF">
                                 <rect key="frame" x="20" y="96" width="374" height="44"/>
                                 <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="31"/>
@@ -242,7 +232,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due in 3 days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3E-fV-uIR">
-                                                    <rect key="frame" x="38" y="65" width="86" height="17"/>
+                                                    <rect key="frame" x="38" y="65" width="176" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -271,6 +261,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dueDateLabel" destination="bAY-L4-Ig5" id="gJ0-Rk-VlW"/>
+                                            <outlet property="dueReminderLabel" destination="P3E-fV-uIR" id="f3a-gq-0mu"/>
                                             <outlet property="taskNote" destination="1Dq-p2-LHU" id="Vb7-Yx-KZ6"/>
                                             <outlet property="taskTitle" destination="knI-Ag-evm" id="VSa-41-QzW"/>
                                         </connections>
@@ -568,6 +559,7 @@
                                 <buttonConfiguration key="configuration" style="tinted" title="EDIT"/>
                                 <connections>
                                     <action selector="editTask:" destination="PN2-g7-lJO" eventType="touchUpInside" id="Ow2-WD-DCp"/>
+                                    <segue destination="2hJ-BZ-v0M" kind="presentation" identifier="showEditTask" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="Z1I-yA-p9C"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Env-x4-kFL">
@@ -629,6 +621,140 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wVZ-Ep-4Rf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2807.2463768115945" y="713.83928571428567"/>
+        </scene>
+        <!--Edit Task View Controller-->
+        <scene sceneID="deD-fO-cG3">
+            <objects>
+                <viewController storyboardIdentifier="EditTask" id="2hJ-BZ-v0M" customClass="EditTaskViewController" customModule="StuToDo_Alpha" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="McA-Gz-WUv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbI-9L-jP6">
+                                <rect key="frame" x="20" y="177" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ef6-eB-EhG">
+                                <rect key="frame" x="20" y="186" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Notes" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="C9a-mZ-VCS">
+                                <rect key="frame" x="20" y="514" width="374" height="116"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="116" id="5QQ-mB-kWB"/>
+                                    <constraint firstAttribute="width" constant="374" id="TDq-qR-GqS"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="ajP-y1-yAY">
+                                <rect key="frame" x="300" y="236" width="94" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="lL9-hf-drM"/>
+                                    <constraint firstAttribute="height" constant="48" id="qNg-nn-jmq"/>
+                                </constraints>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDi-Hd-hq9">
+                                <rect key="frame" x="20" y="52" width="374" height="44"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTY-6Z-fSs">
+                                <rect key="frame" x="20" y="245" width="42" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Lix-8H-2iS"/>
+                                    <constraint firstAttribute="width" constant="42" id="X88-0p-TS5"/>
+                                </constraints>
+                                <color key="tintColor" red="0.074759118740000005" green="0.72156862749999995" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="">
+                                    <imageReference key="image" image="calendar.badge.plus" catalog="system" symbolScale="large"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="calendarButtonTapped:" destination="2hJ-BZ-v0M" eventType="touchUpInside" id="CwO-xN-bHB"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqA-oN-oNz" customClass="CalendarView" customModule="StuToDo_Alpha" customModuleProvider="target">
+                                <rect key="frame" x="20" y="284" width="374" height="222"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="222" id="NaK-zS-eXD"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uol-Ed-bcD">
+                                <rect key="frame" x="20" y="769" width="374" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="Rfg-vF-QX6"/>
+                                    <constraint firstAttribute="height" constant="44" id="dUl-2B-t9p"/>
+                                </constraints>
+                                <color key="tintColor" red="0.074759118740000005" green="0.72156862749999995" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="UPDATE"/>
+                                <connections>
+                                    <action selector="addTask:" destination="2hJ-BZ-v0M" eventType="touchUpInside" id="rCl-u8-lBJ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01/22/2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbz-rl-TOO">
+                                <rect key="frame" x="70" y="250" width="157" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="157" id="Aco-uf-lY3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kyg-yR-Hqo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="Ef6-eB-EhG" secondAttribute="trailing" constant="20" id="0IS-52-y9T"/>
+                            <constraint firstItem="uol-Ed-bcD" firstAttribute="bottom" secondItem="kyg-yR-Hqo" secondAttribute="bottom" id="0tu-kM-qif"/>
+                            <constraint firstItem="Ef6-eB-EhG" firstAttribute="top" secondItem="bDi-Hd-hq9" secondAttribute="bottom" constant="90" id="4N4-5S-HQV"/>
+                            <constraint firstItem="C9a-mZ-VCS" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="5uv-vE-jRI"/>
+                            <constraint firstItem="Ef6-eB-EhG" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="8R5-ld-LHg"/>
+                            <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="bDi-Hd-hq9" secondAttribute="trailing" constant="20" id="8gd-LP-hNM"/>
+                            <constraint firstItem="xTY-6Z-fSs" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="Bcr-8m-Tlg"/>
+                            <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="qqA-oN-oNz" secondAttribute="trailing" constant="20" id="BiN-Fe-Qps"/>
+                            <constraint firstItem="C9a-mZ-VCS" firstAttribute="top" secondItem="qqA-oN-oNz" secondAttribute="bottom" constant="8" id="KbF-k6-uvA"/>
+                            <constraint firstItem="xTY-6Z-fSs" firstAttribute="top" secondItem="Ef6-eB-EhG" secondAttribute="bottom" constant="25" id="LrK-QY-gBh"/>
+                            <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="uol-Ed-bcD" secondAttribute="trailing" constant="20" id="Pke-41-Ykg"/>
+                            <constraint firstItem="bDi-Hd-hq9" firstAttribute="top" secondItem="kyg-yR-Hqo" secondAttribute="top" constant="8" id="S1m-vL-mjc"/>
+                            <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="ajP-y1-yAY" secondAttribute="trailing" constant="20" id="SHq-aQ-zK6"/>
+                            <constraint firstItem="uol-Ed-bcD" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="ZxL-Kv-Svu"/>
+                            <constraint firstItem="qqA-oN-oNz" firstAttribute="top" secondItem="ajP-y1-yAY" secondAttribute="bottom" id="aZh-9j-MrZ"/>
+                            <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="C9a-mZ-VCS" secondAttribute="trailing" constant="20" id="b1b-ca-emI"/>
+                            <constraint firstItem="qqA-oN-oNz" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="edq-Yk-tAH"/>
+                            <constraint firstItem="rbz-rl-TOO" firstAttribute="top" secondItem="Ef6-eB-EhG" secondAttribute="bottom" constant="30" id="ibP-28-EuS"/>
+                            <constraint firstItem="bDi-Hd-hq9" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="jPK-ay-GBL"/>
+                            <constraint firstItem="rbz-rl-TOO" firstAttribute="leading" secondItem="xTY-6Z-fSs" secondAttribute="trailing" constant="8" id="maj-Et-Xnj"/>
+                            <constraint firstItem="ajP-y1-yAY" firstAttribute="top" secondItem="Ef6-eB-EhG" secondAttribute="bottom" constant="16" id="xnF-w8-4RE"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="nUo-17-d0u">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="cross" id="htN-Rs-kjB"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="CalendarUIView" destination="qqA-oN-oNz" id="YYi-GW-mQU"/>
+                        <outlet property="addTaskButton" destination="uol-Ed-bcD" id="w2L-UW-ken"/>
+                        <outlet property="addTitleTextField" destination="Ef6-eB-EhG" id="fBl-Sv-wsx"/>
+                        <outlet property="dateLabel" destination="rbz-rl-TOO" id="7Po-9P-NH2"/>
+                        <outlet property="showCalendarButton" destination="xTY-6Z-fSs" id="17r-NG-XuG"/>
+                        <outlet property="taskNote" destination="C9a-mZ-VCS" id="pAh-Hb-zce"/>
+                        <outlet property="timePicker" destination="ajP-y1-yAY" id="Od6-38-vde"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hoM-Gx-fEE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2104" y="714"/>
         </scene>
     </scenes>
     <resources>
