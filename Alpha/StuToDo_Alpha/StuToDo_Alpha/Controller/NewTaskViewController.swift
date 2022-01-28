@@ -131,8 +131,8 @@ class NewTaskViewController: UIViewController {
     @IBAction func addTask(_ sender: UIButton) {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
-        
+        //let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
+        let onGoingViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabScreen")
         
         let task = Task()
         
