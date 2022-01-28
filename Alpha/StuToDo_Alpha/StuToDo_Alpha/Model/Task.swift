@@ -17,7 +17,7 @@ class Task: Codable {
     var title: String!
     var note: String!
     var isDone: Bool!
-    var completedAt: Date?
+    @ServerTimestamp var completedAt: Date?
     var dueDate: Date?
     
     init() {
