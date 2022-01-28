@@ -33,6 +33,9 @@
 		4EA091C927A3CBA5008866E9 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091C827A3CBA5008866E9 /* RegistrationViewController.swift */; };
 		4EA091CB27A3CFA1008866E9 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091CA27A3CFA1008866E9 /* LoginDelegate.swift */; };
 		4EA091CD27A3D374008866E9 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091CC27A3D374008866E9 /* NavigationManager.swift */; };
+		4EA091CF27A455C8008866E9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091CE27A455C8008866E9 /* AuthManager.swift */; };
+		4EA091D127A47368008866E9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091D027A47368008866E9 /* ProfileViewController.swift */; };
+		4EA091D327A48B07008866E9 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091D227A48B07008866E9 /* LoadingViewController.swift */; };
 		D0BF827FC21EDA8F9A38CD10 /* Pods_StuToDo_Alpha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35084B1DDBAA14A36E2D3CF6 /* Pods_StuToDo_Alpha.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +70,9 @@
 		4EA091C827A3CBA5008866E9 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		4EA091CA27A3CFA1008866E9 /* LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
 		4EA091CC27A3D374008866E9 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		4EA091CE27A455C8008866E9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		4EA091D027A47368008866E9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4EA091D227A48B07008866E9 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		5AE6F4A11792FA5871738601 /* Pods-StuToDo_Alpha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuToDo_Alpha.release.xcconfig"; path = "Target Support Files/Pods-StuToDo_Alpha/Pods-StuToDo_Alpha.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +108,8 @@
 				4EA091C427A3C8A7008866E9 /* OnboardingViewController.swift */,
 				4EA091C627A3CB44008866E9 /* LoginViewController.swift */,
 				4EA091C827A3CBA5008866E9 /* RegistrationViewController.swift */,
+				4EA091D027A47368008866E9 /* ProfileViewController.swift */,
+				4EA091D227A48B07008866E9 /* LoadingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -137,6 +145,7 @@
 				4E291A3327A1234E00DBF09D /* DatabaseManager.swift */,
 				4E291A3527A1274000DBF09D /* FirebaseReference.swift */,
 				4EA091CC27A3D374008866E9 /* NavigationManager.swift */,
+				4EA091CE27A455C8008866E9 /* AuthManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -308,10 +317,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E7E1775279F4A4200358EE1 /* AppDelegate.swift in Sources */,
+				4EA091CF27A455C8008866E9 /* AuthManager.swift in Sources */,
 				4EA091BF27A35262008866E9 /* DateExtension.swift in Sources */,
 				4E01D76127A0E7BD00065787 /* NewTaskViewController.swift in Sources */,
 				4E291A3627A1274000DBF09D /* FirebaseReference.swift in Sources */,
 				4EA091C727A3CB44008866E9 /* LoginViewController.swift in Sources */,
+				4EA091D127A47368008866E9 /* ProfileViewController.swift in Sources */,
+				4EA091D327A48B07008866E9 /* LoadingViewController.swift in Sources */,
 				4E01D75D27A0D5EC00065787 /* OnGoingTasksViewController.swift in Sources */,
 				4E7E1777279F4A4200358EE1 /* SceneDelegate.swift in Sources */,
 				4EA091B427A2507C008866E9 /* TasksHistoryTableViewCell.swift in Sources */,
