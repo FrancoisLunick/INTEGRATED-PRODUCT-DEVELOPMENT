@@ -26,6 +26,8 @@
 		4EA091BA27A32949008866E9 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091B927A32949008866E9 /* CalendarView.swift */; };
 		4EA091BC27A3435D008866E9 /* CalendarViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091BB27A3435D008866E9 /* CalendarViewDelegate.swift */; };
 		4EA091BF27A35262008866E9 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091BE27A35262008866E9 /* DateExtension.swift */; };
+		4EA091C127A38990008866E9 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091C027A38990008866E9 /* EditTaskViewController.swift */; };
+		4EA091C327A39F5E008866E9 /* EditTaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091C227A39F5E008866E9 /* EditTaskDelegate.swift */; };
 		D0BF827FC21EDA8F9A38CD10 /* Pods_StuToDo_Alpha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35084B1DDBAA14A36E2D3CF6 /* Pods_StuToDo_Alpha.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		4EA091B927A32949008866E9 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4EA091BB27A3435D008866E9 /* CalendarViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewDelegate.swift; sourceTree = "<group>"; };
 		4EA091BE27A35262008866E9 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		4EA091C027A38990008866E9 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		4EA091C227A39F5E008866E9 /* EditTaskDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskDelegate.swift; sourceTree = "<group>"; };
 		5AE6F4A11792FA5871738601 /* Pods-StuToDo_Alpha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuToDo_Alpha.release.xcconfig"; path = "Target Support Files/Pods-StuToDo_Alpha/Pods-StuToDo_Alpha.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +88,7 @@
 				4E01D75E27A0D61B00065787 /* TasksHistoryViewController.swift */,
 				4E01D76027A0E7BD00065787 /* NewTaskViewController.swift */,
 				4EA091B727A27FC8008866E9 /* TaskDetailViewController.swift */,
+				4EA091C027A38990008866E9 /* EditTaskViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -107,6 +112,7 @@
 				4E7E1776279F4A4200358EE1 /* SceneDelegate.swift */,
 				4E291A3027A11D1900DBF09D /* Task.swift */,
 				4EA091BB27A3435D008866E9 /* CalendarViewDelegate.swift */,
+				4EA091C227A39F5E008866E9 /* EditTaskDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 				4E7E1777279F4A4200358EE1 /* SceneDelegate.swift in Sources */,
 				4EA091B427A2507C008866E9 /* TasksHistoryTableViewCell.swift in Sources */,
 				4EA091BA27A32949008866E9 /* CalendarView.swift in Sources */,
+				4EA091C327A39F5E008866E9 /* EditTaskDelegate.swift in Sources */,
 				4EA091B827A27FC8008866E9 /* TaskDetailViewController.swift in Sources */,
 				4E291A3127A11D1900DBF09D /* Task.swift in Sources */,
 				4E01D75F27A0D61B00065787 /* TasksHistoryViewController.swift in Sources */,
@@ -301,6 +308,7 @@
 				4EA091BC27A3435D008866E9 /* CalendarViewDelegate.swift in Sources */,
 				4EA091B627A26378008866E9 /* Animations.swift in Sources */,
 				4E291A3427A1234E00DBF09D /* DatabaseManager.swift in Sources */,
+				4EA091C127A38990008866E9 /* EditTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
