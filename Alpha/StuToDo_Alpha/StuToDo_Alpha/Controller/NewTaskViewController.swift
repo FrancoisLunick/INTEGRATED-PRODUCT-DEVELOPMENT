@@ -118,6 +118,11 @@ class NewTaskViewController: UIViewController {
         
     }
     
+    @IBAction func timeChanged(_ sender: UIDatePicker) {
+        
+        
+    }
+    
     @IBAction func addTask(_ sender: UIButton) {
         
 //        guard let titleString = self.titleString else {
@@ -138,6 +143,7 @@ class NewTaskViewController: UIViewController {
         task.title = addTitleTextField.text!
         task.note = taskNote.text
         task.isDone = false
+        task.dueDate = dueDate
         
         saveTaskToFirestore(task)
         
