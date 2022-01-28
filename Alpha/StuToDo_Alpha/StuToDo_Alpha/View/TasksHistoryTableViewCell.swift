@@ -30,6 +30,7 @@ class TasksHistoryTableViewCell: UITableViewCell {
         taskTitleLabel.text = task.title
         taskNotesLabel.text = "01/26/20 Dummy task note"
         
+        
     }
     @IBAction func CheckDidTapped(_ sender: UIButton) {
         
