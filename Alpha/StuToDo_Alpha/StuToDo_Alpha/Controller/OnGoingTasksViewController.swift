@@ -21,9 +21,7 @@ class OnGoingTasksViewController: UIViewController, Animations {
     
     var taskModel: Task!
     private var databaseManager = DatabaseManager()
-    
     weak var editTaskDelegate: EditTaskDelegate?
-    
     private let authManager = AuthManager()
     
     private var tasks: [Task] = [] {
