@@ -19,6 +19,7 @@ class SignUpViewController: UIViewController, Animations {
     @IBOutlet weak var requirementsLabel: UILabel!
     
     weak var loginDelegate: LoginDelegate?
+    weak var signupDelegate: SignupDelegate?
     private let authManager = AuthManager()
     private var subscribers = Set<AnyCancellable>()
     
@@ -52,7 +53,7 @@ class SignUpViewController: UIViewController, Animations {
         
         $isLoginSuccessful.sink { [unowned self] (isSuccessful) in
             if isSuccessful {
-                self.loginDelegate?.didLogin()
+                self.signupDelegate?.didSignup()
             }
         }.store(in: &subscribers)
     }
@@ -60,13 +61,19 @@ class SignUpViewController: UIViewController, Animations {
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         
         guard let firstName = firstNameTextField.text,
-                !firstName.isEmpty, let lastName
+              !firstName.isEmpty,
+              let lastName = lastNameTextField.text,
+              !lastName.isEmpty,
+              let age = ageTextField.text,
+              !age.isEmpty,
+              let university = universityTextField.text,
+              !university.isEmpty,
               let email = emailTextField.text,
-            !email.isEmpty,
-            let password = passwordTextField.text,
-            !password.isEmpty else {
-            errorString = "Sign Up Form Incomplete"
-            return }
+              !email.isEmpty,
+              let password = passwordTextField.text,
+              !password.isEmpty else {
+                  errorString = "Sign Up Form Incomplete"
+                  return }
         
         errorString = ""
         showLoadingAnimation()
