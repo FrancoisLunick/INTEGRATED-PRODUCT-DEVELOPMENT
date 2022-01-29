@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController, Animations {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var requirementsLabel: UILabel!
+    @IBOutlet weak var profileImageButton: UIButton!
     
     weak var loginDelegate: LoginDelegate?
     weak var signupDelegate: SignupDelegate?
@@ -58,6 +59,15 @@ class SignUpViewController: UIViewController, Animations {
         }.store(in: &subscribers)
     }
     
+    private func handleProfileImage() {
+        
+        let imagePickerController = UIImagePickerController()
+        
+        imagePickerController.delegate = self
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         
         guard let firstName = firstNameTextField.text,
@@ -89,6 +99,11 @@ class SignUpViewController: UIViewController, Animations {
         }
     }
     
+    @IBAction func pickImageButton(_ sender: UIButton) {
+        
+        handleProfileImage()
+        
+    }
     /*
     // MARK: - Navigation
 
@@ -109,4 +124,25 @@ extension SignUpViewController: UITextFieldDelegate {
         
         return true
     }
+}
+
+extension SignUpViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let image = info[.originalImage] as? UIImage
+        
+        profileImageButton.setImage(image, for: .normal)
+        profileImageButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
+        //profileImageButton.layer.cornerRadius = 200 / 2
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension SignUpViewController: UINavigationControllerDelegate {
+    
+    
+    
 }

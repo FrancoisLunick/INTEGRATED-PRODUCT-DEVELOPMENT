@@ -664,17 +664,24 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="HpZ-KJ-AGz">
                                 <rect key="frame" x="87" y="45.5" width="240" height="805"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DummyProfile" translatesAutoresizingMaskIntoConstraints="NO" id="cZH-S4-l0E">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TA-bL-VMl">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="cZH-S4-l0E" secondAttribute="height" multiplier="1:1" id="dby-9N-aGY"/>
+                                            <constraint firstAttribute="width" secondItem="3TA-bL-VMl" secondAttribute="height" multiplier="1:1" id="4Rj-8F-s1o"/>
                                         </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="add-image" imagePadding="2">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                        </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="120"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                    </imageView>
+                                        <connections>
+                                            <action selector="pickImageButton:" destination="cJK-Wl-XhP" eventType="touchUpInside" id="NMP-Gs-Vks"/>
+                                        </connections>
+                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Y0I-Y2-p3t">
                                         <rect key="frame" x="0.0" y="256" width="240" height="62.5"/>
                                         <subviews>
@@ -812,6 +819,7 @@
                         <outlet property="firstNameTextField" destination="coi-Ae-Gln" id="lfB-en-pL0"/>
                         <outlet property="lastNameTextField" destination="07j-2u-9Kr" id="smI-xi-Geb"/>
                         <outlet property="passwordTextField" destination="1KJ-C3-lJC" id="jx0-rL-QdV"/>
+                        <outlet property="profileImageButton" destination="3TA-bL-VMl" id="mmk-6K-fb2"/>
                         <outlet property="requirementsLabel" destination="Kmd-dq-AGC" id="GVr-ad-FvN"/>
                         <outlet property="universityTextField" destination="BVQ-Uf-8Dy" id="U11-cK-X2e"/>
                     </connections>
@@ -1175,9 +1183,9 @@
         <segue reference="ICj-Za-QNR"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="DummyProfile" width="1200" height="1800"/>
         <image name="StuToDoLogo" width="1970" height="1970"/>
         <image name="add" width="90" height="90"/>
+        <image name="add-image" width="240" height="240"/>
         <image name="calendar.badge.plus" catalog="system" width="128" height="108"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
