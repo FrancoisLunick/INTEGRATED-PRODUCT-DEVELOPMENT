@@ -14,9 +14,10 @@ class DatabaseManager {
     private let db = Firestore.firestore()
     private lazy var tasksCollection = db.collection("Tasks")
     
-    func addTaskListener(isDone: Bool, completion: @escaping (Result<[Task], Error>) -> Void) {
+    func addTaskListener(isDone: Bool, uid: String, completion: @escaping (Result<[Task], Error>) -> Void) {
 
         listener = tasksCollection
+            .whereField("uid", isEqualTo: uid)
             .whereField("isDone", isEqualTo: isDone)
             .order(by: "createdAt", descending: true)
             .addSnapshotListener({ snapshot, error in
