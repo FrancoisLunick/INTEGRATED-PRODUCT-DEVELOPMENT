@@ -24,6 +24,8 @@ class OnGoingTasksViewController: UIViewController, Animations {
     
     weak var editTaskDelegate: EditTaskDelegate?
     
+    private let authManager = AuthManager()
+    
     private var tasks: [Task] = [] {
         didSet {
             tableView.reloadData()
@@ -48,7 +50,9 @@ class OnGoingTasksViewController: UIViewController, Animations {
     
     private func addTasksListener() {
         
-        databaseManager.addTaskListener(isDone: false) { [weak self] result in
+        guard let uid = authManager.getUserId() else { return }
+        
+        databaseManager.addTaskListener(isDone: false, uid: uid) { [weak self] result in
             
             switch result {
                 
@@ -75,7 +79,7 @@ class OnGoingTasksViewController: UIViewController, Animations {
                         
                         self.tasks = snapshot.documents.map { doc in
                             
-                            return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false, dueDate: doc["dueDate"] as? Date ?? Date())
+                            return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false, dueDate: doc["dueDate"] as? Date ?? Date(), uid: doc["uid"] as? String ?? "")
                         }
                     }
                 }
