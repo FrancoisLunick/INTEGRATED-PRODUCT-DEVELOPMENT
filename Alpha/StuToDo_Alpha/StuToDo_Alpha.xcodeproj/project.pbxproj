@@ -36,6 +36,7 @@
 		4EA091CF27A455C8008866E9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091CE27A455C8008866E9 /* AuthManager.swift */; };
 		4EA091D127A47368008866E9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091D027A47368008866E9 /* ProfileViewController.swift */; };
 		4EA091D327A48B07008866E9 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091D227A48B07008866E9 /* LoadingViewController.swift */; };
+		4EA091D527A4EFE9008866E9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091D427A4EFE9008866E9 /* SignUpViewController.swift */; };
 		D0BF827FC21EDA8F9A38CD10 /* Pods_StuToDo_Alpha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35084B1DDBAA14A36E2D3CF6 /* Pods_StuToDo_Alpha.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		4EA091CE27A455C8008866E9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		4EA091D027A47368008866E9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4EA091D227A48B07008866E9 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		4EA091D427A4EFE9008866E9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		5AE6F4A11792FA5871738601 /* Pods-StuToDo_Alpha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuToDo_Alpha.release.xcconfig"; path = "Target Support Files/Pods-StuToDo_Alpha/Pods-StuToDo_Alpha.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +112,7 @@
 				4EA091C827A3CBA5008866E9 /* RegistrationViewController.swift */,
 				4EA091D027A47368008866E9 /* ProfileViewController.swift */,
 				4EA091D227A48B07008866E9 /* LoadingViewController.swift */,
+				4EA091D427A4EFE9008866E9 /* SignUpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				4EA091B627A26378008866E9 /* Animations.swift in Sources */,
 				4E291A3427A1234E00DBF09D /* DatabaseManager.swift in Sources */,
 				4EA091CB27A3CFA1008866E9 /* LoginDelegate.swift in Sources */,
+				4EA091D527A4EFE9008866E9 /* SignUpViewController.swift in Sources */,
 				4EA091C127A38990008866E9 /* EditTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
