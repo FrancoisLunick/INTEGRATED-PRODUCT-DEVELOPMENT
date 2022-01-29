@@ -622,7 +622,7 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="cJK-Wl-XhP" kind="presentation" identifier="ShowSignUp" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="cs9-Jd-qjx"/>
+                                            <action selector="signUpButtonTapped:" destination="MEw-C6-6rc" eventType="touchUpInside" id="M1F-wn-rDe"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -642,6 +642,7 @@
                         <outlet property="emailTextField" destination="fEG-gm-lz1" id="aaU-WZ-dL5"/>
                         <outlet property="passwordTextField" destination="zCe-6a-Xl3" id="Ixl-CE-FTB"/>
                         <outlet property="requirementsLabel" destination="VUd-r7-Cjj" id="Aus-7g-CXS"/>
+                        <segue destination="cJK-Wl-XhP" kind="presentation" identifier="showSignupScreen" modalPresentationStyle="fullScreen" id="PIP-6g-E5o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYu-4d-fEs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
