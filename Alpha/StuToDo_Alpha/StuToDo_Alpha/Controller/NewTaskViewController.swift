@@ -22,6 +22,7 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     
     private var subscribers = Set<AnyCancellable>()
+    private let authManager = AuthManager()
     
     @Published private var titleString: String?
     @Published private var dueDate: Date?
@@ -130,6 +131,9 @@ class NewTaskViewController: UIViewController {
     
     @IBAction func addTask(_ sender: UIButton) {
         
+        
+        guard let uid = authManager.getUserId() else { return }
+        
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         //let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
         let onGoingViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabScreen")
@@ -142,6 +146,7 @@ class NewTaskViewController: UIViewController {
         task.note = taskNote.text
         task.isDone = false
         task.dueDate = dueDate
+        task.uid = uid
         
         saveTaskToFirestore(task)
         
