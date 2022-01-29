@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, Animations {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var requirementsLabel: UILabel!
     
+    private let navigationManager = NavigationManager.shared
     
     weak var loginDelegate: LoginDelegate?
     private let authManager = AuthManager()
@@ -78,34 +79,21 @@ class LoginViewController: UIViewController, Animations {
     
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         
-        showLoadingAnimation()
+        performSegue(withIdentifier: "showSignupScreen", sender: nil)
         
-        let email = "JaneDoe@gmail.com"
-        let password = "123456"
+    }
+    
+    
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        authManager.login(with: email, password: password) { [weak self] result in
-            
-            self?.hideLoadingAnimation()
-            
-            switch result {
-            case .success:
-                self?.loginDelegate?.didLogin()
-            case .failure(let error):
-                self?.toast(loafState: .error, message: error.localizedDescription, duration: 3.0)
-            }
+        if segue.identifier == "showSignupScreen", let destination = segue.destination as? SignUpViewController {
+            destination.signupDelegate = self
         }
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -117,4 +105,15 @@ extension LoginViewController: UITextFieldDelegate {
         
         return true
     }
+}
+
+extension LoginViewController: SignupDelegate {
+    
+    func didSignup() {
+        
+        presentedViewController?.dismiss(animated: true, completion: { [unowned self] in
+            self.navigationManager.show(scene: .tasks)
+        })
+    }
+    
 }
