@@ -14,6 +14,7 @@ class TasksHistoryViewController: UIViewController, Animations {
     @IBOutlet weak var tableView: UITableView!
     
     private var databaseManager = DatabaseManager()
+    private let authManager = AuthManager()
     
     private var tasks: [Task] = [] {
         didSet {
@@ -33,7 +34,9 @@ class TasksHistoryViewController: UIViewController, Animations {
     
     private func addTasksListener() {
         
-        databaseManager.addTaskListener(isDone: true) { [weak self] result in
+        guard let uid = authManager.getUserId() else { return }
+        
+        databaseManager.addTaskListener(isDone: true, uid: uid) { [weak self] result in
             
             switch result {
                 
