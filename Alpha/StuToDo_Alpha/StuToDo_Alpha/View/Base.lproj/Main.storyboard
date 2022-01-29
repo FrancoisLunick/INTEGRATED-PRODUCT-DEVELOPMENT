@@ -159,7 +159,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="N4c-yf-Kd8">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="cross" id="RaD-3C-UAi"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="cross" id="RaD-3C-UAi">
+                            <connections>
+                                <action selector="Cancel:" destination="oIA-B3-ppx" id="fSE-5Z-pcF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

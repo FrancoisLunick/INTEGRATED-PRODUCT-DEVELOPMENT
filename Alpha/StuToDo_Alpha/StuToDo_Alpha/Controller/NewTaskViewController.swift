@@ -129,6 +129,13 @@ class NewTaskViewController: UIViewController {
         
     }
     
+    @IBAction func Cancel(_ sender: UIBarButtonItem) {
+        //performSegue(withIdentifier: "unwindToHome", sender: self)
+    }
+    
+    @IBAction func unwind( _ seg: UIStoryboardSegue) {
+    }
+    
     @IBAction func addTask(_ sender: UIButton) {
         
         
