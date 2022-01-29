@@ -19,12 +19,13 @@ class Task: Codable {
     var isDone: Bool!
     @ServerTimestamp var completedAt: Date?
     var dueDate: Date?
+    var uid: String!
     
     init() {
         
     }
     
-    init(id: String, createdAt: Date?, title: String, note: String, isDone: Bool, dueDate: Date?) {
+    init(id: String, createdAt: Date?, title: String, note: String, isDone: Bool, dueDate: Date?, uid: String) {
         
         self.createdAt = createdAt
         self.title = title
@@ -32,6 +33,7 @@ class Task: Codable {
         self.id = id
         self.isDone = isDone
         self.dueDate = dueDate
+        self.uid = uid
         
     }
     
@@ -44,6 +46,7 @@ class Task: Codable {
         isDone = dictionary["isDone"] as? Bool
         completedAt = dictionary["completedAt"] as? Date
         dueDate = dictionary["dueDate"] as? Date
+        uid = dictionary["uid"] as? String
         
     }
     
@@ -56,7 +59,7 @@ func saveTaskToFirestore(_ task: Task) {
 
 func taskDictionaryFrom(_ task: Task) -> NSDictionary {
     
-    return NSDictionary(objects: [task.id, task.createdAt, task.title, task.note, task.isDone, task.completedAt, task.dueDate], forKeys: ["taskID" as NSCopying, "createdAt" as NSCopying, "title" as NSCopying, "note" as NSCopying, "isDone" as NSCopying, "completedAt" as NSCopying, "dueDate" as NSCopying])
+    return NSDictionary(objects: [task.id, task.createdAt, task.title, task.note, task.isDone, task.completedAt, task.dueDate, task.uid], forKeys: ["taskID" as NSCopying, "createdAt" as NSCopying, "title" as NSCopying, "note" as NSCopying, "isDone" as NSCopying, "completedAt" as NSCopying, "dueDate" as NSCopying, "uid" as NSCopying])
     
 }
 
@@ -118,7 +121,7 @@ func downloadTasksFromFirebase(_ tasks: [Task]) {
                     
                     tasks = snapshot.documents.map { doc in
                         
-                        return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false, dueDate: doc["dueDate"] as? Date ?? Date())
+                        return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false, dueDate: doc["dueDate"] as? Date ?? Date(), uid: doc["uid"] as? String ?? "")
                     }
                     
                 }
