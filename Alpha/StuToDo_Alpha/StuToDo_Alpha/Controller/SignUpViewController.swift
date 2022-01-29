@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Firebase
 
 class SignUpViewController: UIViewController, Animations {
 
@@ -19,6 +20,8 @@ class SignUpViewController: UIViewController, Animations {
     @IBOutlet weak var requirementsLabel: UILabel!
     @IBOutlet weak var profileImageButton: UIButton!
     
+    private var profileImage: UIImage?
+    
     weak var loginDelegate: LoginDelegate?
     weak var signupDelegate: SignupDelegate?
     private let authManager = AuthManager()
@@ -29,6 +32,9 @@ class SignUpViewController: UIViewController, Animations {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        profileImageButton.imageView?.clipsToBounds = true
+        profileImageButton.clipsToBounds = true
 
         validateForm()
         
@@ -45,6 +51,23 @@ class SignUpViewController: UIViewController, Animations {
         }
         
     }
+    
+//    @objc private func textDidChange(_ sender: UITextField) {
+//
+//        if sender == firstNameTextField {
+//
+//        } else if sender == lastNameTextField {
+//
+//        } else if sender == ageTextField {
+//
+//        } else if sender == universityTextField {
+//
+//        } else if sender == emailTextField {
+//
+//        } else if sender == passwordTextField {
+//
+//        }
+//    }
     
     private func validateForm() {
         
@@ -85,18 +108,69 @@ class SignUpViewController: UIViewController, Animations {
                   errorString = "Sign Up Form Incomplete"
                   return }
         
-        errorString = ""
-        showLoadingAnimation()
-        
-        authManager.signUp(with: email, password: password) { [weak self] (result) in
-            self?.hideLoadingAnimation()
-            switch result {
-            case .success:
-                self?.isLoginSuccessful = true
-            case .failure(let error):
-                self?.errorString = error.localizedDescription
-            }
+        guard let profileImage = profileImage else {
+            return
         }
+        
+        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
+
+        let fileName = NSUUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/profile_images/\(fileName)")
+        
+        ref.putData(imageData, metadata: nil) { meta, error in
+            
+            if let error = error {
+                
+                self.toast(loafState: .error, message: error.localizedDescription, duration: 3.0)
+                //print("Failed to upload image with error \(error.localizedDescription)")
+                return
+            }
+            
+            ref.downloadURL { url, error in
+                
+                guard let profileImageUrl = url?.absoluteString else {
+                    return
+                }
+
+                self.errorString = ""
+                self.showLoadingAnimation()
+                
+                self.authManager.signUp(with: email, password: password) { [weak self] (result) in
+                    self?.hideLoadingAnimation()
+                    switch result {
+                    case .success:
+                        
+                        guard let uid = self?.authManager.getUserId() else { return }
+                        
+                        let data = ["email": email,
+                                    "firstname": firstName,
+                                    "lastname": lastName,
+                                    "age": age,
+                                    "university": university,
+                                    "uid": uid,
+                                    "profileImageUrl": profileImageUrl] as [String : Any]
+                        
+                        Firestore.firestore().collection("users").document(uid).setData(data) { error in
+                            
+                            if let error = error {
+                                
+                                self?.toast(loafState: .error, message: error.localizedDescription, duration: 3.0)
+                                //print("Failed to upload image with error \(error.localizedDescription)")
+                                return
+                            }
+                            
+                        }
+                        
+                        self?.isLoginSuccessful = true
+                    case .failure(let error):
+                        self?.errorString = error.localizedDescription
+                    }
+                }
+            }
+            
+        }
+        
+        
     }
     
     @IBAction func pickImageButton(_ sender: UIButton) {
@@ -104,6 +178,16 @@ class SignUpViewController: UIViewController, Animations {
         handleProfileImage()
         
     }
+    
+//    private func configureNotificationObservers() {
+//
+//        firstNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+//        lastNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+//        ageTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+//        universityTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+//        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+//        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+//    }
     /*
     // MARK: - Navigation
 
@@ -132,9 +216,13 @@ extension SignUpViewController: UIImagePickerControllerDelegate {
         
         let image = info[.originalImage] as? UIImage
         
-        profileImageButton.setImage(image, for: .normal)
-        profileImageButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
-        //profileImageButton.layer.cornerRadius = 200 / 2
+        profileImage = image
+        
+        profileImageButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        profileImageButton.layer.borderColor = UIColor.white.cgColor
+        profileImageButton.layer.cornerRadius = 200 / 2
+        profileImageButton.layer.borderWidth = 3.0
+        profileImageButton.imageView?.contentMode = .scaleAspectFill
         
         dismiss(animated: true, completion: nil)
     }

@@ -37,6 +37,10 @@
 		4EA091D327A48B07008866E9 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091D227A48B07008866E9 /* LoadingViewController.swift */; };
 		4EA091D527A4EFE9008866E9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091D427A4EFE9008866E9 /* SignUpViewController.swift */; };
 		4EA091D727A51122008866E9 /* SignupDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091D627A51122008866E9 /* SignupDelegate.swift */; };
+		4EA091D927A5D1EF008866E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091D827A5D1EF008866E9 /* User.swift */; };
+		4EA091DB27A5D7AE008866E9 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091DA27A5D7AE008866E9 /* Service.swift */; };
+		4EA091DD27A5E571008866E9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091DC27A5E571008866E9 /* Constants.swift */; };
+		4EA091DF27A5F58D008866E9 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091DE27A5F58D008866E9 /* UIImageExtension.swift */; };
 		D0BF827FC21EDA8F9A38CD10 /* Pods_StuToDo_Alpha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35084B1DDBAA14A36E2D3CF6 /* Pods_StuToDo_Alpha.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +79,10 @@
 		4EA091D227A48B07008866E9 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		4EA091D427A4EFE9008866E9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4EA091D627A51122008866E9 /* SignupDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupDelegate.swift; sourceTree = "<group>"; };
+		4EA091D827A5D1EF008866E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4EA091DA27A5D7AE008866E9 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		4EA091DC27A5E571008866E9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4EA091DE27A5F58D008866E9 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		5AE6F4A11792FA5871738601 /* Pods-StuToDo_Alpha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuToDo_Alpha.release.xcconfig"; path = "Target Support Files/Pods-StuToDo_Alpha/Pods-StuToDo_Alpha.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +146,7 @@
 				4EA091C227A39F5E008866E9 /* EditTaskDelegate.swift */,
 				4EA091CA27A3CFA1008866E9 /* LoginDelegate.swift */,
 				4EA091D627A51122008866E9 /* SignupDelegate.swift */,
+				4EA091D827A5D1EF008866E9 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -149,6 +158,7 @@
 				4E291A3527A1274000DBF09D /* FirebaseReference.swift */,
 				4EA091CC27A3D374008866E9 /* NavigationManager.swift */,
 				4EA091CE27A455C8008866E9 /* AuthManager.swift */,
+				4EA091DA27A5D7AE008866E9 /* Service.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -180,6 +190,7 @@
 				4E01D75A279FCF2C00065787 /* View */,
 				4E01D759279FCF2600065787 /* Controller */,
 				4EA091B527A26377008866E9 /* Animations.swift */,
+				4EA091DC27A5E571008866E9 /* Constants.swift */,
 				4E7E177D279F4A4B00358EE1 /* Assets.xcassets */,
 				4E7E1782279F4A4B00358EE1 /* Info.plist */,
 				4E291A2E27A11B0700DBF09D /* GoogleService-Info.plist */,
@@ -191,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				4EA091BE27A35262008866E9 /* DateExtension.swift */,
+				4EA091DE27A5F58D008866E9 /* UIImageExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -320,10 +332,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E7E1775279F4A4200358EE1 /* AppDelegate.swift in Sources */,
+				4EA091DB27A5D7AE008866E9 /* Service.swift in Sources */,
 				4EA091CF27A455C8008866E9 /* AuthManager.swift in Sources */,
 				4EA091BF27A35262008866E9 /* DateExtension.swift in Sources */,
 				4E01D76127A0E7BD00065787 /* NewTaskViewController.swift in Sources */,
+				4EA091DD27A5E571008866E9 /* Constants.swift in Sources */,
 				4E291A3627A1274000DBF09D /* FirebaseReference.swift in Sources */,
+				4EA091D927A5D1EF008866E9 /* User.swift in Sources */,
 				4EA091C727A3CB44008866E9 /* LoginViewController.swift in Sources */,
 				4EA091D127A47368008866E9 /* ProfileViewController.swift in Sources */,
 				4EA091D327A48B07008866E9 /* LoadingViewController.swift in Sources */,
@@ -339,6 +354,7 @@
 				4E01D75F27A0D61B00065787 /* TasksHistoryViewController.swift in Sources */,
 				4E291A3827A19E7800DBF09D /* OnGoingTaskTableViewCell.swift in Sources */,
 				4EA091BC27A3435D008866E9 /* CalendarViewDelegate.swift in Sources */,
+				4EA091DF27A5F58D008866E9 /* UIImageExtension.swift in Sources */,
 				4EA091B627A26378008866E9 /* Animations.swift in Sources */,
 				4E291A3427A1234E00DBF09D /* DatabaseManager.swift in Sources */,
 				4EA091CB27A3CFA1008866E9 /* LoginDelegate.swift in Sources */,
