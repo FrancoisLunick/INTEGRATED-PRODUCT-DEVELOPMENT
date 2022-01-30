@@ -884,6 +884,9 @@
                                                 <rect key="frame" x="0.0" y="28.5" width="240" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="textFieldEditingDidChange:" destination="xj4-c2-3A1" eventType="editingChanged" id="l5i-aW-dfd"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -900,6 +903,9 @@
                                                 <rect key="frame" x="0.0" y="30.5" width="240" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="textFieldEditingDidChange:" destination="xj4-c2-3A1" eventType="editingChanged" id="CDw-Dr-9q7"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -916,6 +922,9 @@
                                                 <rect key="frame" x="0.0" y="28.5" width="240" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="textFieldEditingDidChange:" destination="xj4-c2-3A1" eventType="editingChanged" id="GLf-L3-cds"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -932,6 +941,9 @@
                                                 <rect key="frame" x="0.0" y="28.5" width="240" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="textFieldEditingDidChange:" destination="xj4-c2-3A1" eventType="editingChanged" id="xU3-Ms-2Wk"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -948,6 +960,9 @@
                                                 <rect key="frame" x="0.0" y="28.5" width="240" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                                <connections>
+                                                    <action selector="textFieldEditingDidChange:" destination="xj4-c2-3A1" eventType="editingChanged" id="ZMW-NG-XdR"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>

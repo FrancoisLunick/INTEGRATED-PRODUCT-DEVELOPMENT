@@ -34,6 +34,21 @@ class ProfileViewController: UIViewController, Animations {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let fields: [UITextField] = [firstNameTextField,
+                                     lastNameTextField,
+                                     ageTextField,
+                                     universityTextField,
+                                     emailTextField]
+        
+        for field in fields {
+            
+            field.delegate = self
+            //field.addTarget(self, action: #selector(textFieldDidChange()), for: .editingChanged)
+        }
+        
+        saveChangesButton.isHidden = true
+        profileImageButton.isEnabled = false
+        
         profileImageButton.imageView?.clipsToBounds = true
         profileImageButton.clipsToBounds = true
 
@@ -99,6 +114,10 @@ class ProfileViewController: UIViewController, Animations {
         
         present(imagePickerController, animated: true, completion: nil)
     }
+    
+//    @objc func textFieldDidChange() {
+//        //print(textfield.text)
+//    }
     /*
      // MARK: - Navigation
      
@@ -110,6 +129,8 @@ class ProfileViewController: UIViewController, Animations {
      */
     
     @IBAction func editUserTapped(_ sender: UIButton) {
+        
+        profileImageButton.isEnabled = true
         
         let fields: [UITextField] = [firstNameTextField, lastNameTextField, ageTextField, universityTextField, emailTextField]
         
@@ -178,11 +199,15 @@ class ProfileViewController: UIViewController, Animations {
             
         }
         
+        saveChangesButton.isHidden = true
+        
     }
     
     @IBAction func changeProfileImage(_ sender: Any) {
         
         handleProfileImage()
+        
+        saveChangesButton.isHidden = false
     }
     
     @IBAction func logOutPressed(_ sender: UIButton) {
@@ -191,6 +216,21 @@ class ProfileViewController: UIViewController, Animations {
         
     }
     
+    @IBAction func textFieldEditingDidChange(_ sender: UITextField) {
+        
+        saveChangesButton.isHidden = false
+    }
+    
+}
+
+extension ProfileViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        return true
+    }
 }
 
 extension ProfileViewController: UIImagePickerControllerDelegate {
