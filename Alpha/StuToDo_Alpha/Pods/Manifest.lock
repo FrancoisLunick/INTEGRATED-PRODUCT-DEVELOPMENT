@@ -493,6 +493,9 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
+  - SDWebImage (5.12.2):
+    - SDWebImage/Core (= 5.12.2)
+  - SDWebImage/Core (5.12.2)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -503,6 +506,7 @@ DEPENDENCIES:
   - FSCalendar
   - Loaf
   - MBProgressHUD
+  - SDWebImage
 
 SPEC REPOS:
   trunk:
@@ -529,6 +533,7 @@ SPEC REPOS:
     - MBProgressHUD
     - nanopb
     - PromisesObjC
+    - SDWebImage
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -554,7 +559,8 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
 
-PODFILE CHECKSUM: baf9c2fb5d5ec21a5ec7fbb7beb8f8f595213be8
+PODFILE CHECKSUM: 100f684d5b0b0779dd5de982d9db0147a26352d9
 
 COCOAPODS: 1.11.2
