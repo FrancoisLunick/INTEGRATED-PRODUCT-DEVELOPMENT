@@ -32,10 +32,22 @@ class DatabaseManager {
                 
                 do {
                     
-                    tasks = try snapshot?.documents.compactMap({
+                    tasks = try snapshot?.documents.compactMap({ doc in
+
+                        var dueDate = Date()
                         
-                        return try $0.data(as: Task.self)
+                        let firStamp = doc["dueDate"] as? Timestamp
                         
+                        print(firStamp?.seconds ?? 1)
+                        if let dDate = firStamp?.seconds {
+                            dueDate = Date(timeIntervalSince1970: TimeInterval(dDate))
+                            
+                            print(dueDate)
+                            
+                        }
+                        
+                        return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false, dueDate: dueDate, uid: doc["uid"] as? String ?? "")
+
                     }) ?? []
                     
                 } catch(let error) {

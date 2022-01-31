@@ -179,6 +179,11 @@ class SignUpViewController: UIViewController, Animations {
         
     }
     
+    @IBAction func backToLogin(_ sender: UIButton) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 //    private func configureNotificationObservers() {
 //
 //        firstNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)

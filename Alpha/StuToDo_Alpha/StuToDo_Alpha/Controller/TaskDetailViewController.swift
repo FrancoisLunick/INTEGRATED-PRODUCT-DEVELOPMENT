@@ -84,9 +84,9 @@ class TaskDetailViewController: UIViewController, Animations {
             
             if let destination = segue.destination as? EditTaskViewController {
                 
-                let taskToEdit = sender as? Task
                 
-                destination.taskToEdit = taskToEdit
+                
+                destination.taskToEdit = task
             }
             
         }

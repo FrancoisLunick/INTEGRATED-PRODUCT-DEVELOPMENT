@@ -747,6 +747,15 @@
                                     <constraint firstAttribute="width" constant="240" id="Ea3-zL-cV4"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPc-Td-gTP">
+                                <rect key="frame" x="18" y="44" width="56" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                <connections>
+                                    <action selector="backToLogin:" destination="cJK-Wl-XhP" eventType="touchUpInside" id="ZTJ-O8-LMw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pxb-88-T9g"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

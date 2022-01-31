@@ -44,13 +44,13 @@ class OnGoingTasksViewController: UIViewController, Animations {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //addTasksListener()
+        addTasksListener()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        loadTasks()
+        //loadTasks()
     }
     
     // MARK: - Helpers
