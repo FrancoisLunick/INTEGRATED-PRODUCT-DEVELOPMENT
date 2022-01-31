@@ -29,7 +29,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Notes" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GCz-fM-Vtg">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add notes here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GCz-fM-Vtg">
                                 <rect key="frame" x="20" y="558" width="374" height="116"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -78,19 +78,6 @@
                                     <constraint firstAttribute="height" constant="222" id="FSo-0x-ODE"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zr-pG-7JF">
-                                <rect key="frame" x="20" y="720" width="374" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="PSF-Je-yC5"/>
-                                    <constraint firstAttribute="height" constant="44" id="V9T-CP-psA"/>
-                                </constraints>
-                                <color key="tintColor" red="0.07475911873538485" green="0.72156862749999995" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="ADD TASK"/>
-                                <connections>
-                                    <action selector="addTask:" destination="oIA-B3-ppx" eventType="touchUpInside" id="70a-hT-wLg"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01/22/2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8y-Gr-rKF">
                                 <rect key="frame" x="70" y="294" width="157" height="20"/>
                                 <constraints>
@@ -100,13 +87,21 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zr-pG-7JF">
+                                <rect key="frame" x="289" y="148" width="104.5" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.07475911873538485" green="0.72156862749999995" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="ADD TASK"/>
+                                <connections>
+                                    <action selector="addTask:" destination="oIA-B3-ppx" eventType="touchUpInside" id="70a-hT-wLg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="26N-fO-62s"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JRc-UA-2Fq" firstAttribute="top" secondItem="hTT-UF-Fhs" secondAttribute="bottom" constant="16" id="5cU-q6-Qug"/>
-                            <constraint firstItem="26N-fO-62s" firstAttribute="trailing" secondItem="7Zr-pG-7JF" secondAttribute="trailing" constant="20" id="G9e-Fa-oln"/>
-                            <constraint firstItem="7Zr-pG-7JF" firstAttribute="leading" secondItem="26N-fO-62s" secondAttribute="leading" constant="20" id="Gef-bx-A1B"/>
                             <constraint firstItem="26N-fO-62s" firstAttribute="trailing" secondItem="hTT-UF-Fhs" secondAttribute="trailing" constant="20" id="L67-ht-vfR"/>
                             <constraint firstItem="26N-fO-62s" firstAttribute="trailing" secondItem="H6S-Im-sz1" secondAttribute="trailing" constant="20" id="Lrk-0M-3jS"/>
                             <constraint firstItem="GCz-fM-Vtg" firstAttribute="top" secondItem="H6S-Im-sz1" secondAttribute="bottom" constant="8" id="Mko-jm-VXi"/>
@@ -124,7 +119,6 @@
                             <constraint firstItem="26N-fO-62s" firstAttribute="trailing" secondItem="GCz-fM-Vtg" secondAttribute="trailing" constant="20" id="o2y-V8-Eoa"/>
                             <constraint firstItem="H6S-Im-sz1" firstAttribute="leading" secondItem="26N-fO-62s" secondAttribute="leading" constant="20" id="pQM-KS-pVm"/>
                             <constraint firstItem="E8y-Gr-rKF" firstAttribute="leading" secondItem="tWs-Qd-DIc" secondAttribute="trailing" constant="8" id="uxS-HT-d5k"/>
-                            <constraint firstItem="7Zr-pG-7JF" firstAttribute="bottom" secondItem="26N-fO-62s" secondAttribute="bottom" id="vI7-xG-1ej"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -350,6 +344,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="completedLabel" destination="kXJ-qg-cQD" id="3r9-Gx-dIP"/>
+                                            <outlet property="dueDateLabel" destination="Yzv-Qd-dVZ" id="87A-2d-WhY"/>
                                             <outlet property="taskNotesLabel" destination="thg-zl-M0Q" id="hnw-CB-GmG"/>
                                             <outlet property="taskTitleLabel" destination="wXv-8o-2E7" id="dFo-hA-ibf"/>
                                         </connections>
@@ -1294,7 +1290,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ICj-Za-QNR"/>
+        <segue reference="Abb-hN-W5n"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="StuToDoLogo" width="1970" height="1970"/>

@@ -13,6 +13,8 @@ class TasksHistoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskNotesLabel: UILabel!
+    @IBOutlet weak var completedLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
     
     var didTapCheck: (() -> Void)?
     
@@ -31,7 +33,14 @@ class TasksHistoryTableViewCell: UITableViewCell {
     func configure(with task: Task) {
         
         taskTitleLabel.text = task.title
-        taskNotesLabel.text = "01/26/20 Dummy task note"
+        taskNotesLabel.text = task.note
+        dueDateLabel.text = task.dueDate?.toString()
+        completedLabel.text = task.dueDate?.toRelativeString()
+        
+        if task.dueDate?.isOverDue() == true {
+            dueDateLabel.textColor = .red
+            dueDateLabel.font = UIFont(name: "AvenirNext-Medium", size: 12)
+        }
     }
     
     // MARK: - Actions

@@ -221,7 +221,14 @@ class ProfileViewController: UIViewController, Animations {
         saveChangesButton.isHidden = false
     }
     
+    func handleDeleteUser() async {
+        
+        
+    }
+    
     @IBAction func deleteProfile(_ sender: UIButton) {
+        
+        
         
         let alert = UIAlertController(title: "Delete Profile?", message: "This action can't be undone are you sure you want to continue?", preferredStyle: UIAlertController.Style.alert)
         
@@ -230,11 +237,34 @@ class ProfileViewController: UIViewController, Animations {
             alert.dismiss(animated: true, completion: nil)
             
         }))
-        
+       
         alert.addAction(UIAlertAction(title: "Delete profile",
                                       style: UIAlertAction.Style.destructive,
                                       handler: {(_: UIAlertAction!) in
             
+//            Task {
+//
+//                await handleDeleteUser()
+//            }
+            
+            let currentUser = Auth.auth().currentUser
+            
+            currentUser?.delete() { error in
+                
+                if let error = error {
+                    
+                    //self.toast(loafState: .error, message: error.localizedDescription)
+                    
+                    print(error.localizedDescription)
+                    
+                } else {
+                    
+                    do {
+                        COLLECTION_USERS.document(currentUser!.uid).delete()
+                        self.navigationManager.show(scene: .onboarding)
+                    }
+                }
+            }
         }))
         
         self.present(alert, animated: true, completion: nil)
