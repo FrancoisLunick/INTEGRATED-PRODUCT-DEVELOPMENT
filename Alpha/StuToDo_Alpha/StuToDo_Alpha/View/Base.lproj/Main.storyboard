@@ -842,8 +842,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="56w-mo-rqu">
-                                <rect key="frame" x="87" y="59.5" width="240" height="777.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="56w-mo-rqu">
+                                <rect key="frame" x="87" y="57.5" width="240" height="781.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gx5-Oh-rBZ">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="271"/>
@@ -872,7 +872,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="uMx-sl-Jhm">
-                                        <rect key="frame" x="0.0" y="287" width="240" height="62.5"/>
+                                        <rect key="frame" x="0.0" y="283" width="240" height="62.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9O-6G-ING">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="22.5"/>
@@ -891,7 +891,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4ob-ln-hEH">
-                                        <rect key="frame" x="0.0" y="365.5" width="240" height="64.5"/>
+                                        <rect key="frame" x="0.0" y="357.5" width="240" height="64.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHm-r5-jYa">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="22.5"/>
@@ -910,7 +910,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="DE3-iu-fpZ">
-                                        <rect key="frame" x="0.0" y="446" width="240" height="62.5"/>
+                                        <rect key="frame" x="0.0" y="434" width="240" height="62.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjb-I2-4fw">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="22.5"/>
@@ -929,7 +929,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0Ig-yD-gVf">
-                                        <rect key="frame" x="0.0" y="524.5" width="240" height="62.5"/>
+                                        <rect key="frame" x="0.0" y="508.5" width="240" height="62.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnL-ah-x61">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="22.5"/>
@@ -948,7 +948,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ra7-LR-owZ">
-                                        <rect key="frame" x="0.0" y="603" width="240" height="62.5"/>
+                                        <rect key="frame" x="0.0" y="583" width="240" height="62.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIc-6k-TCs">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="22.5"/>
@@ -967,7 +967,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pw6-cL-Ned">
-                                        <rect key="frame" x="0.0" y="681.5" width="240" height="40"/>
+                                        <rect key="frame" x="0.0" y="657.5" width="240" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="xLM-tX-nLo"/>
                                         </constraints>
@@ -979,7 +979,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjK-5Q-Uxg">
-                                        <rect key="frame" x="0.0" y="737.5" width="240" height="40"/>
+                                        <rect key="frame" x="0.0" y="709.5" width="240" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="5yF-tY-ZxM"/>
                                         </constraints>
@@ -988,6 +988,17 @@
                                         <buttonConfiguration key="configuration" style="tinted" title="Log Out"/>
                                         <connections>
                                             <action selector="logOutPressed:" destination="xj4-c2-3A1" eventType="touchUpInside" id="bTd-VS-4S9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zl2-vL-ha7">
+                                        <rect key="frame" x="0.0" y="761.5" width="240" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="BXD-C6-5Xp"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Delete Profile"/>
+                                        <connections>
+                                            <action selector="deleteProfile:" destination="xj4-c2-3A1" eventType="touchUpInside" id="SoZ-JW-yu0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1223,7 +1234,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="UPDATE"/>
                                 <connections>
-                                    <action selector="addTask:" destination="2hJ-BZ-v0M" eventType="touchUpInside" id="rCl-u8-lBJ"/>
+                                    <action selector="updateTask:" destination="2hJ-BZ-v0M" eventType="touchUpInside" id="KIM-nF-nzr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01/22/2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbz-rl-TOO">

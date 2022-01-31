@@ -56,7 +56,6 @@ class CalendarView: UIView {
         super.init(coder: coder)
         
         self.setup()
-        fatalError("init(coder:) has not been implemented")
         
     }
     

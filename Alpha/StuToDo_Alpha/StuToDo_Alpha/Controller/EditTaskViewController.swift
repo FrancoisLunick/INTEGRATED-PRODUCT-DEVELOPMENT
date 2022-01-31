@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import FSCalendar
 
-class EditTaskViewController: UIViewController {
+class EditTaskViewController: UIViewController, Animations {
 
     // MARK: - Properties
     
@@ -22,6 +22,10 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     
     private var subscribers = Set<AnyCancellable>()
+    
+    private let authManager = AuthManager()
+    
+    private var user: User?
     
     var taskToEdit: Task?
     
@@ -45,6 +49,8 @@ class EditTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         setupViews()
         
         validateNewTaskForm()
@@ -66,6 +72,8 @@ class EditTaskViewController: UIViewController {
         if let taskToEdit = self.taskToEdit {
             
             addTitleTextField.text = taskToEdit.title
+            taskNote.text = taskToEdit.note
+            dateLabel.text = taskToEdit.dueDate?.toString()
             dueDate = taskToEdit.dueDate
             calendarView.selectDate(date: taskToEdit.dueDate)
         }
@@ -142,27 +150,71 @@ class EditTaskViewController: UIViewController {
         
     }
     
-    @IBAction func addTask(_ sender: UIButton) {
+    @IBAction func updateTask(_ sender: UIButton) {
         
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
+//        addTitleTextField.text = taskToEdit.title
+//        taskNote.text = taskToEdit.note
+//        dateLabel.text = taskToEdit.dueDate?.toString()
+//        dueDate = taskToEdit.dueDate
         
-        let task = Task()
+        guard let taskToEdit = taskToEdit else {
+            return
+        }
+
+    
         
-        task.id = UUID().uuidString
-        task.createdAt = Date()
-        task.title = addTitleTextField.text!
-        task.note = taskNote.text
-        task.isDone = false
-        task.dueDate = dueDate
+
         
-        saveTaskToFirestore(task)
+        guard let title = self.addTitleTextField.text,
+              let taskNote = self.taskNote.text,
+              let date = self.dateLabel.text,
+              let taskId = taskToEdit.id,
+              let isDone = taskToEdit.isDone,
+              let uid = taskToEdit.uid else { return }
         
-        addTitleTextField.text = ""
+//        task.id = UUID().uuidString
+//        task.createdAt = Date()
+//        task.title = addTitleTextField.text!
+//        task.note = taskNote.text
+//        task.isDone = false
+//        task.dueDate = dueDate
+//        task.uid = uid
+        
+        let data = ["taskID": taskId,
+                    "createdAt": Date(),
+                    "title": title,
+                    "note": taskNote,
+                    "isDone": isDone,
+                    "dueDate": date,
+                    "uid": uid] as [String : Any]
+        
+//        let data = ["taskID": taskToEdit.id,
+//                    "createdAt": Date(),
+//                    "title": title,
+//                    "note": taskNote,
+//                    "isDone": taskToEdit.isDone
+//                    "dueDate": date,
+//                    "uid": user.uid] as [String : Any]
+        
+        COLLECTION_TASKS.document(taskToEdit.id).setData(data) { error in
+            
+            if let error = error {
+                
+                self.toast(loafState: .error, message: error.localizedDescription, duration: 3.0)
+                //print("Failed to upload image with error \(error.localizedDescription)")
+                return
+            }
+            
+        }
+        
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
+//
+        //addTitleTextField.text = ""
         
         self.navigationController?.dismiss(animated: true)
     
-        self.navigationController?.pushViewController(onGoingViewController, animated: true)
+        //self.navigationController?.pushViewController(onGoingViewController, animated: true)
 
     }
 }

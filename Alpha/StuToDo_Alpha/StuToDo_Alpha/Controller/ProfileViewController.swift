@@ -221,6 +221,26 @@ class ProfileViewController: UIViewController, Animations {
         saveChangesButton.isHidden = false
     }
     
+    @IBAction func deleteProfile(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "Delete Profile?", message: "This action can't be undone are you sure you want to continue?", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+            
+            alert.dismiss(animated: true, completion: nil)
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Delete profile",
+                                      style: UIAlertAction.Style.destructive,
+                                      handler: {(_: UIAlertAction!) in
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
 }
 
 extension ProfileViewController: UITextFieldDelegate {

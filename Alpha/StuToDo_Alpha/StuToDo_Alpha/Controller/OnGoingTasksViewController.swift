@@ -14,7 +14,7 @@ protocol OnGoingDelegate {
 }
 
 class OnGoingTasksViewController: UIViewController, Animations {
-
+    
     // MARK: - Properties
     
     @IBOutlet weak var tableView: UITableView!
@@ -26,7 +26,10 @@ class OnGoingTasksViewController: UIViewController, Animations {
     
     private var tasks: [Task] = [] {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+            
         }
     }
     // MARK: - View Lifecycles
@@ -35,7 +38,13 @@ class OnGoingTasksViewController: UIViewController, Animations {
         super.viewDidLoad()
         
         self.tabBarController?.tabBar.isHidden = false
-        addTasksListener()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //addTasksListener()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,34 +67,51 @@ class OnGoingTasksViewController: UIViewController, Animations {
                 self?.tasks = tasks
                 
             case .failure(let error):
-                self?.toast(loafState: .error, message: error.localizedDescription)
+                self?.toast(loafState: .error, message: error.localizedDescription, duration: 3.0)
             }
         }
     }
     
     private func loadTasks() {
         
+        guard let uid = authManager.getUserId() else { return }
+        
         let db = Firestore.firestore()
         
-        db.collection("Tasks").getDocuments { snapshot, error in
-            
-            if error == nil {
+        db.collection("Tasks")
+            .whereField("uid", isEqualTo: uid)
+            .whereField("isDone", isEqualTo: false)
+            .order(by: "createdAt", descending: true)
+            .getDocuments { snapshot, error in
                 
-                if let snapshot = snapshot {
+                if error == nil {
                     
-                    DispatchQueue.main.async { [self] in
+                    if let snapshot = snapshot {
                         
-                        self.tasks = snapshot.documents.map { doc in
+                        DispatchQueue.main.async { [self] in
                             
-                            return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false, dueDate: doc["dueDate"] as? Date ?? Date(), uid: doc["uid"] as? String ?? "")
+                            self.tasks = snapshot.documents.map { doc in
+                                var dueDate = Date()
+                                
+                                let firStamp = doc["dueDate"] as? Timestamp
+                                
+                                print(firStamp?.seconds ?? 1)
+                                if let dDate = firStamp?.seconds {
+                                    dueDate = Date(timeIntervalSince1970: TimeInterval(dDate))
+                                    
+                                    print(dueDate)
+                                    
+                                }
+                                
+                                return Task(id: doc.documentID, createdAt: doc["createdAt"] as? Date ?? nil, title: doc["title"] as? String ?? "", note: doc["note"] as? String ?? "", isDone: doc["isDone"] as? Bool ?? false, dueDate: dueDate, uid: doc["uid"] as? String ?? "")
+                            }
                         }
                     }
+                    
+                } else {
+                    
                 }
-                
-            } else {
-                
             }
-        }
     }
     
     private func handleTaskCircle(for task: Task) {
@@ -95,13 +121,14 @@ class OnGoingTasksViewController: UIViewController, Animations {
         databaseManager.updateStatus(id: id, isDone: true) { [weak self] result in
             
             switch result {
-            
+                
             case .success:
                 self?.toast(loafState: .info, message: "Task Completed", duration: 1.5)
             case .failure(let error):
                 self?.toast(loafState: .error, message: error.localizedDescription)
             }
         }
+        
     }
     
     private func handleEditTask(indexPath: IndexPath) {
@@ -109,9 +136,11 @@ class OnGoingTasksViewController: UIViewController, Animations {
         editTaskDelegate?.sendTask(task: tasks[indexPath.row])
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newTaskViewController = storyBoard.instantiateViewController(withIdentifier: "NewTask") as! NewTaskViewController
+        let editTaskViewController = storyBoard.instantiateViewController(withIdentifier: "EditTask") as! EditTaskViewController
         
-        self.navigationController?.pushViewController(newTaskViewController, animated: true)
+        editTaskViewController.taskToEdit = tasks[indexPath.row]
+        
+        self.navigationController?.pushViewController(editTaskViewController, animated: true)
     }
     
     private func handleDeleteTask(indexPath: IndexPath) {
@@ -125,15 +154,11 @@ class OnGoingTasksViewController: UIViewController, Animations {
             case .success:
                 self?.toast(loafState: .error, message: "Task successfully deleted")
                 
-                
-                
             case .failure(let error):
                 self?.toast(loafState: .error, message: error.localizedDescription)
                 
             }
-            
         }
-        
     }
 }
 

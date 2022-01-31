@@ -47,7 +47,7 @@ class NewTaskViewController: UIViewController {
         validateNewTaskForm()
 
         addTitleTextField.delegate = self
-        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -159,7 +159,7 @@ class NewTaskViewController: UIViewController {
         
         self.navigationController?.dismiss(animated: true)
         
-        self.navigationController?.pushViewController(onGoingViewController, animated: true)
+        //self.navigationController?.pushViewController(onGoingViewController, animated: true)
     }
 }
 

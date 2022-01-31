@@ -63,6 +63,38 @@ class TasksHistoryViewController: UIViewController, Animations {
             }
         }
     }
+    
+    private func handleEditTask(indexPath: IndexPath) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let editTaskViewController = storyBoard.instantiateViewController(withIdentifier: "EditTask") as! EditTaskViewController
+        
+        editTaskViewController.taskToEdit = tasks[indexPath.row]
+        
+        self.navigationController?.pushViewController(editTaskViewController, animated: true)
+    }
+    
+    private func handleDeleteTask(indexPath: IndexPath) {
+        
+        guard let id = tasks[indexPath.row].id else { return }
+        
+        databaseManager.deleteTask(id: id) { [weak self] result in
+            
+            switch result {
+                
+            case .success:
+                self?.toast(loafState: .error, message: "Task successfully deleted")
+                
+                
+                
+            case .failure(let error):
+                self?.toast(loafState: .error, message: error.localizedDescription)
+                
+            }
+            
+        }
+        
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -109,5 +141,40 @@ extension TasksHistoryViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension TasksHistoryViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] action, view, handler in
+            
+            self?.handleEditTask(indexPath: indexPath)
+            handler(true)
+            
+        }
+        
+        action.backgroundColor = .blue
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = UIContextualAction(style: .destructive,
+                                        title: "Delete") { [weak self] action, view, handler in
+            
+            self?.handleDeleteTask(indexPath: indexPath)
+            handler(true)
+        }
+        
+        delete.backgroundColor = .systemRed
+        
+        let configuration = UISwipeActionsConfiguration(actions: [delete])
+        
+        return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        
+        return .none
+    }
     
 }
