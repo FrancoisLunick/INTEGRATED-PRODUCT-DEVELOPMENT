@@ -21,5 +21,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Please allow access to add task to calander</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Please allow access to add task to calander</string>
 </dict>
 </plist>

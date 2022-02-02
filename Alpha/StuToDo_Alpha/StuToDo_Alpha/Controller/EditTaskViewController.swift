@@ -126,16 +126,11 @@ class EditTaskViewController: UIViewController, Animations {
     }
     
     // MARK: - Actions
-    @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
-        
-        self.navigationController?.dismiss(animated: true)
-        
-        self.navigationController?.pushViewController(onGoingViewController, animated: true)
-        
-    }
+//    @IBAction func cancelButtonTapped(_ sender: UIButton) {
+//        
+//        self.navigationController?.popToRootViewController(animated: true)
+//        
+//    }
     
     @IBAction func calendarButtonTapped(_ sender: UIButton) {
         
@@ -212,7 +207,10 @@ class EditTaskViewController: UIViewController, Animations {
 //
         //addTitleTextField.text = ""
         
-        self.navigationController?.dismiss(animated: true)
+        //self.navigationController?.dismiss(animated: true)
+        //self.navigationController?.popViewController(animated: true)
+        
+        self.navigationController?.popToRootViewController(animated: true)
     
         //self.navigationController?.pushViewController(onGoingViewController, animated: true)
 

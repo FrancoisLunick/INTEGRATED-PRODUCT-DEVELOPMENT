@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import EventKit
+import EventKitUI
 
 class TasksHistoryViewController: UIViewController, Animations {
     
@@ -21,6 +23,8 @@ class TasksHistoryViewController: UIViewController, Animations {
             tableView.reloadData()
         }
     }
+    
+    let store = EKEventStore()
     
     // MARK: - View Lifecycles
     
@@ -95,6 +99,54 @@ class TasksHistoryViewController: UIViewController, Animations {
         }
         
     }
+    
+    private func handleAddToCalendar(indexPath: IndexPath) {
+        
+//        let calendarVC = EKCalendarChooser()
+//
+//        calendarVC.showsDoneButton = true
+//        calendarVC.showsCancelButton = true
+//
+//        present(UINavigationController(rootViewController: calendarVC), animated: true, completion: nil)
+        
+        store.requestAccess(to: .event) { [weak self] success, error in
+            
+            if success, error == nil {
+                
+                DispatchQueue.main.async {
+                    
+                    guard let store = self?.store else {
+                        return
+                    }
+                    
+                    let newEvent = EKEvent(eventStore: store)
+                    
+                    newEvent.title = self?.tasks[indexPath.row].title
+                    newEvent.startDate = Date()
+                    newEvent.endDate = self?.tasks[indexPath.row].dueDate
+                    newEvent.notes = self?.tasks[indexPath.row].note
+                    
+                    let eventEditVC = EKEventEditViewController()
+                    eventEditVC.editViewDelegate = self
+                    eventEditVC.eventStore = store
+                    eventEditVC.event = newEvent
+                    
+                    self?.present(eventEditVC, animated: true, completion: nil)
+                    
+//                    let vc = EKEventViewController()
+//                    vc.delegate = self
+//                    vc.event = newEvent
+//
+//                    let rootVC = UINavigationController(rootViewController: vc)
+//
+//                    self?.present(rootVC, animated: true, completion: nil)
+                }
+            }
+        }
+        
+        
+        
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -144,20 +196,6 @@ extension TasksHistoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] action, view, handler in
-            
-            self?.handleEditTask(indexPath: indexPath)
-            handler(true)
-            
-        }
-        
-        action.backgroundColor = .blue
-        
-        return UISwipeActionsConfiguration(actions: [action])
-    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
         let delete = UIContextualAction(style: .destructive,
                                         title: "Delete") { [weak self] action, view, handler in
             
@@ -167,7 +205,30 @@ extension TasksHistoryViewController: UITableViewDelegate {
         
         delete.backgroundColor = .systemRed
         
-        let configuration = UISwipeActionsConfiguration(actions: [delete])
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let edit = UIContextualAction(style: .normal, title: "Edit") { [weak self] action, view, handler in
+            
+            self?.handleEditTask(indexPath: indexPath)
+            handler(true)
+            
+        }
+        
+        edit.backgroundColor = .blue
+        
+        let addToCalendar = UIContextualAction(style: .normal,
+                                        title: "Add to Calendar") { [weak self] action, view, handler in
+            
+            self?.handleAddToCalendar(indexPath: indexPath)
+            handler(true)
+        }
+        
+        addToCalendar.backgroundColor = .systemGreen
+        
+        let configuration = UISwipeActionsConfiguration(actions: [edit, addToCalendar])
         
         return configuration
     }
@@ -176,5 +237,28 @@ extension TasksHistoryViewController: UITableViewDelegate {
         
         return .none
     }
+    
+}
+
+extension TasksHistoryViewController: EKEventViewDelegate {
+    
+    func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
+        
+        controller.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+}
+
+extension TasksHistoryViewController: EKEventEditViewDelegate {
+    
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        
+        controller.dismiss(animated: true, completion: nil)
+        
+        
+    }
+    
     
 }
