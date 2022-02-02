@@ -43,7 +43,6 @@ class OnGoingTasksViewController: UIViewController, Animations {
         
         self.tabBarController?.tabBar.isHidden = false
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

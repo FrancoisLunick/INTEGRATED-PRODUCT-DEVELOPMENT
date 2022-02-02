@@ -54,6 +54,10 @@ class ProfileViewController: UIViewController, Animations {
 
         self.tabBarController?.tabBar.isHidden = true
         
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
+        //self.navigationController?.navigationItem.hidesBackButton = true
+        
         fetchUser()
         populateUserData()
     }
@@ -223,6 +227,16 @@ class ProfileViewController: UIViewController, Animations {
     
     func handleDeleteUser() async {
         
+        
+    }
+    @IBAction func goBackHome(_ sender: UIButton) {
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func goBack(_ sender: UIBarButtonItem) {
+        
+        self.navigationController?.popViewController(animated: true)
         
     }
     
