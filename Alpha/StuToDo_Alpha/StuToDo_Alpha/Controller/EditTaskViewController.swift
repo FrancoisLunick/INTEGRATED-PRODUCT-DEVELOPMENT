@@ -127,9 +127,9 @@ class EditTaskViewController: UIViewController, Animations {
     
     // MARK: - Actions
 //    @IBAction func cancelButtonTapped(_ sender: UIButton) {
-//        
+//
 //        self.navigationController?.popToRootViewController(animated: true)
-//        
+//
 //    }
     
     @IBAction func calendarButtonTapped(_ sender: UIButton) {
@@ -156,13 +156,9 @@ class EditTaskViewController: UIViewController, Animations {
             return
         }
 
-    
-        
-
-        
         guard let title = self.addTitleTextField.text,
               let taskNote = self.taskNote.text,
-              let date = self.dateLabel.text,
+              let date = dueDate,
               let taskId = taskToEdit.id,
               let isDone = taskToEdit.isDone,
               let uid = taskToEdit.uid else { return }
