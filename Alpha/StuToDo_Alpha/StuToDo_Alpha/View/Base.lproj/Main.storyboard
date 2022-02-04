@@ -1096,9 +1096,6 @@
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system" title="Back">
                                     <fontDescription key="titleFontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="goBackHome:" destination="xj4-c2-3A1" eventType="touchUpInside" id="Gc5-r4-Oa9"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bca-ue-PmA"/>
@@ -1108,7 +1105,13 @@
                             <constraint firstItem="56w-mo-rqu" firstAttribute="centerY" secondItem="Qob-qW-Ttz" secondAttribute="centerY" id="wib-z6-LhX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="yh5-Tc-FkE"/>
+                    <navigationItem key="navigationItem" id="yh5-Tc-FkE">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="close" id="RyZ-f5-vNe">
+                            <connections>
+                                <action selector="goBack:" destination="xj4-c2-3A1" id="WhM-Hm-GIn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="ageTextField" destination="FaY-9i-Ro6" id="P8z-Up-caM"/>
                         <outlet property="emailTextField" destination="6je-wD-lfq" id="kCp-yd-cSh"/>
