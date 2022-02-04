@@ -158,7 +158,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor Doe Assignment Due" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knI-Ag-evm">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor Doe Assignment Due" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="knI-Ag-evm">
                                                     <rect key="frame" x="43" y="11" width="304" height="28"/>
                                                     <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="20"/>
                                                     <nil key="textColor"/>
@@ -273,7 +273,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor Doe Assignment Due" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXv-8o-2E7">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor Doe Assignment Due" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="wXv-8o-2E7">
                                                     <rect key="frame" x="43" y="11" width="304" height="28"/>
                                                     <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="20"/>
                                                     <nil key="textColor"/>
@@ -1090,12 +1090,14 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="494-jy-pU7">
-                                <rect key="frame" x="8" y="140" width="76" height="31"/>
+                                <rect key="frame" x="3" y="140" width="76" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system" title="Back"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system" title="Back">
+                                    <fontDescription key="titleFontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                </buttonConfiguration>
                                 <connections>
-                                    <action selector="goBackHome:" destination="xj4-c2-3A1" eventType="touchUpInside" id="SDa-OD-J4u"/>
+                                    <action selector="goBackHome:" destination="xj4-c2-3A1" eventType="touchUpInside" id="Gc5-r4-Oa9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1289,7 +1291,7 @@
                                 </constraints>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDi-Hd-hq9">
-                                <rect key="frame" x="20" y="52" width="374" height="44"/>
+                                <rect key="frame" x="50" y="52" width="344" height="44"/>
                                 <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="31"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1338,6 +1340,17 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zS5-2C-kcU">
+                                <rect key="frame" x="20" y="52" width="30" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="3yH-C3-JCd"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="close"/>
+                                <connections>
+                                    <action selector="closeView:" destination="2hJ-BZ-v0M" eventType="touchUpInside" id="PHS-L1-GzB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kyg-yR-Hqo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1350,17 +1363,19 @@
                             <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="bDi-Hd-hq9" secondAttribute="trailing" constant="20" id="8gd-LP-hNM"/>
                             <constraint firstItem="xTY-6Z-fSs" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="Bcr-8m-Tlg"/>
                             <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="qqA-oN-oNz" secondAttribute="trailing" constant="20" id="BiN-Fe-Qps"/>
+                            <constraint firstItem="bDi-Hd-hq9" firstAttribute="leading" secondItem="zS5-2C-kcU" secondAttribute="trailing" id="DBa-AB-ukP"/>
                             <constraint firstItem="C9a-mZ-VCS" firstAttribute="top" secondItem="qqA-oN-oNz" secondAttribute="bottom" constant="8" id="KbF-k6-uvA"/>
                             <constraint firstItem="xTY-6Z-fSs" firstAttribute="top" secondItem="Ef6-eB-EhG" secondAttribute="bottom" constant="25" id="LrK-QY-gBh"/>
                             <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="uol-Ed-bcD" secondAttribute="trailing" constant="20" id="Pke-41-Ykg"/>
                             <constraint firstItem="bDi-Hd-hq9" firstAttribute="top" secondItem="kyg-yR-Hqo" secondAttribute="top" constant="8" id="S1m-vL-mjc"/>
                             <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="ajP-y1-yAY" secondAttribute="trailing" constant="20" id="SHq-aQ-zK6"/>
+                            <constraint firstItem="zS5-2C-kcU" firstAttribute="top" secondItem="kyg-yR-Hqo" secondAttribute="top" constant="8" id="SpS-yY-eLE"/>
                             <constraint firstItem="uol-Ed-bcD" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="ZxL-Kv-Svu"/>
                             <constraint firstItem="qqA-oN-oNz" firstAttribute="top" secondItem="ajP-y1-yAY" secondAttribute="bottom" id="aZh-9j-MrZ"/>
                             <constraint firstItem="kyg-yR-Hqo" firstAttribute="trailing" secondItem="C9a-mZ-VCS" secondAttribute="trailing" constant="20" id="b1b-ca-emI"/>
                             <constraint firstItem="qqA-oN-oNz" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="edq-Yk-tAH"/>
+                            <constraint firstItem="zS5-2C-kcU" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="hSE-Dt-SeR"/>
                             <constraint firstItem="rbz-rl-TOO" firstAttribute="top" secondItem="Ef6-eB-EhG" secondAttribute="bottom" constant="30" id="ibP-28-EuS"/>
-                            <constraint firstItem="bDi-Hd-hq9" firstAttribute="leading" secondItem="kyg-yR-Hqo" secondAttribute="leading" constant="20" id="jPK-ay-GBL"/>
                             <constraint firstItem="rbz-rl-TOO" firstAttribute="leading" secondItem="xTY-6Z-fSs" secondAttribute="trailing" constant="8" id="maj-Et-Xnj"/>
                             <constraint firstItem="ajP-y1-yAY" firstAttribute="top" secondItem="Ef6-eB-EhG" secondAttribute="bottom" constant="16" id="xnF-w8-4RE"/>
                         </constraints>
@@ -1382,11 +1397,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hoM-Gx-fEE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2104" y="714"/>
+            <point key="canvasLocation" x="-2104.3478260869565" y="713.83928571428567"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ICj-Za-QNR"/>
+        <segue reference="Abb-hN-W5n"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="StuToDoLogo" width="1970" height="1970"/>
