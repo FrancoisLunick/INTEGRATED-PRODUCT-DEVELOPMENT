@@ -231,12 +231,16 @@ class ProfileViewController: UIViewController, Animations {
     }
     @IBAction func goBackHome(_ sender: UIButton) {
         
-        self.navigationController?.popViewController(animated: true)
+        navigationManager.show(scene: .tasks)
     }
     
     @IBAction func goBack(_ sender: UIBarButtonItem) {
         
         self.navigationController?.popViewController(animated: true)
+        
+    }
+    
+    @IBAction func unwindToVC(sender: UIStoryboardSegue) {
         
     }
     
