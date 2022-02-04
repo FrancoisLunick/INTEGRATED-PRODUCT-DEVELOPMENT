@@ -54,8 +54,8 @@ class ProfileViewController: UIViewController, Animations {
 
         self.tabBarController?.tabBar.isHidden = true
         
-        self.navigationItem.leftBarButtonItem = nil
-        self.navigationItem.hidesBackButton = true
+        //self.navigationItem.leftBarButtonItem = nil
+        //self.navigationItem.hidesBackButton = true
         //self.navigationController?.navigationItem.hidesBackButton = true
         
         fetchUser()
@@ -236,7 +236,7 @@ class ProfileViewController: UIViewController, Animations {
     
     @IBAction func goBack(_ sender: UIBarButtonItem) {
         
-        self.navigationController?.popViewController(animated: true)
+        navigationManager.show(scene: .tasks)
         
     }
     
