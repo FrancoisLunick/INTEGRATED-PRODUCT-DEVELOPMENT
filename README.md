@@ -14,8 +14,8 @@ This repository will be used to submit my work every week in class.
 - [X] Repo Created: Completed!
 - [X] Week 1 work:
 - [X] Week 2 work:
-- [ ] Week 3 work:
-- [ ] Week 4 work:
+- [X] Week 3 work:
+- [X] Week 4 work:
 - [ ] Week 5 work:
 - [ ] Week 6 work:
 - [ ] Week 7 work:
