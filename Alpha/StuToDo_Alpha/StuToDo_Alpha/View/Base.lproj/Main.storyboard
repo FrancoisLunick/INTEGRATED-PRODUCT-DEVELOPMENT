@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--New Task-->
+        <!--New Task View Controller-->
         <scene sceneID="kg5-HQ-6tg">
             <objects>
                 <viewController storyboardIdentifier="NewTask" id="oIA-B3-ppx" customClass="NewTaskViewController" customModule="StuToDo_Alpha" customModuleProvider="target" sceneMemberID="viewController">
@@ -122,7 +122,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="New Task" id="N4c-yf-Kd8"/>
+                    <navigationItem key="navigationItem" id="N4c-yf-Kd8"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="CalendarUIView" destination="H6S-Im-sz1" id="gCy-an-Cfo"/>
