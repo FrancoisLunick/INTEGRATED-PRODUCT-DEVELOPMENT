@@ -24,6 +24,7 @@ class EditTaskViewController: UIViewController, Animations {
     private var subscribers = Set<AnyCancellable>()
     
     private let authManager = AuthManager()
+    private let navigationManager = NavigationManager.shared
     
     private var user: User?
     
@@ -206,11 +207,18 @@ class EditTaskViewController: UIViewController, Animations {
         //self.navigationController?.dismiss(animated: true)
         //self.navigationController?.popViewController(animated: true)
         
-        self.navigationController?.popToRootViewController(animated: true)
+        navigationManager.show(scene: .tasks)
     
         //self.navigationController?.pushViewController(onGoingViewController, animated: true)
 
     }
+    
+    @IBAction func closeView(_ sender: UIButton) {
+        
+        navigationManager.show(scene: .tasks)
+        
+    }
+    
 }
 
 // MARK: - UITextFieldDelegate
