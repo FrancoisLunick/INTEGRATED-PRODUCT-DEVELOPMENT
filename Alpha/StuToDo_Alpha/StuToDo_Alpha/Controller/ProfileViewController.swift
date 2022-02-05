@@ -122,15 +122,21 @@ class ProfileViewController: UIViewController, Animations {
 //    @objc func textFieldDidChange() {
 //        //print(textfield.text)
 //    }
-    /*
-     // MARK: - Navigation
+    
+     // MARK: Navigation
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+         
+         if segue.identifier == "toChangeCredentials" {
+             
+             if let destination = segue.destination as? ChangeEmailAndPasswordViewController {
+                 
+                 destination.user = user
+                 
+             }
+         }
      }
-     */
+     
     
     @IBAction func editUserTapped(_ sender: UIButton) {
         
@@ -229,18 +235,10 @@ class ProfileViewController: UIViewController, Animations {
         
         
     }
-    @IBAction func goBackHome(_ sender: UIButton) {
-        
-        navigationManager.show(scene: .tasks)
-    }
     
     @IBAction func goBack(_ sender: UIBarButtonItem) {
         
         navigationManager.show(scene: .tasks)
-        
-    }
-    
-    @IBAction func unwindToVC(sender: UIStoryboardSegue) {
         
     }
     
