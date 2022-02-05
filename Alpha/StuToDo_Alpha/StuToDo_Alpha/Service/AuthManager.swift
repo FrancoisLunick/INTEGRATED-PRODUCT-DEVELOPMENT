@@ -78,4 +78,39 @@ class AuthManager {
         }
         
     }
+    
+    func changePassword(with email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+
+        
+        auth.currentUser?.reauthenticate(with: credential, completion: { Result, error in
+            
+            if let error = error {
+                
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+            
+        })
+        
+    }
+    
+    func changeEmail(with email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+
+        
+        auth.currentUser?.reauthenticate(with: credential, completion: { Result, error in
+            
+            if let error = error {
+                
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+            
+        })
+    }
 }
