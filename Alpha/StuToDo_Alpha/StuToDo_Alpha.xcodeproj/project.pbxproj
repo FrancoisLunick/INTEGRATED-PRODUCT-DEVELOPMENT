@@ -20,6 +20,9 @@
 		4E7E177C279F4A4200358EE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7E177A279F4A4200358EE1 /* Main.storyboard */; };
 		4E7E177E279F4A4B00358EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E7E177D279F4A4B00358EE1 /* Assets.xcassets */; };
 		4E7E1781279F4A4B00358EE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7E177F279F4A4B00358EE1 /* LaunchScreen.storyboard */; };
+		4E93BF6627ADB04200C51D56 /* ChangeEmailAndPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93BF6527ADB04200C51D56 /* ChangeEmailAndPasswordViewController.swift */; };
+		4E93BF6827ADB05A00C51D56 /* ChangeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93BF6727ADB05A00C51D56 /* ChangeEmailViewController.swift */; };
+		4E93BF6A27ADB06E00C51D56 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93BF6927ADB06E00C51D56 /* ChangePasswordViewController.swift */; };
 		4EA091B427A2507C008866E9 /* TasksHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091B327A2507C008866E9 /* TasksHistoryTableViewCell.swift */; };
 		4EA091B627A26378008866E9 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091B527A26377008866E9 /* Animations.swift */; };
 		4EA091B827A27FC8008866E9 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA091B727A27FC8008866E9 /* TaskDetailViewController.swift */; };
@@ -63,6 +66,9 @@
 		4E7E177D279F4A4B00358EE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E7E1780279F4A4B00358EE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E7E1782279F4A4B00358EE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E93BF6527ADB04200C51D56 /* ChangeEmailAndPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailAndPasswordViewController.swift; sourceTree = "<group>"; };
+		4E93BF6727ADB05A00C51D56 /* ChangeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailViewController.swift; sourceTree = "<group>"; };
+		4E93BF6927ADB06E00C51D56 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		4EA091B327A2507C008866E9 /* TasksHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		4EA091B527A26377008866E9 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		4EA091B727A27FC8008866E9 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +129,9 @@
 				4EA091D227A48B07008866E9 /* LoadingViewController.swift */,
 				4EA091D427A4EFE9008866E9 /* SignUpViewController.swift */,
 				4EA091E027AA17CB008866E9 /* ForgotPasswordViewController.swift */,
+				4E93BF6527ADB04200C51D56 /* ChangeEmailAndPasswordViewController.swift */,
+				4E93BF6727ADB05A00C51D56 /* ChangeEmailViewController.swift */,
+				4E93BF6927ADB06E00C51D56 /* ChangePasswordViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -358,9 +367,12 @@
 				4E01D75F27A0D61B00065787 /* TasksHistoryViewController.swift in Sources */,
 				4E291A3827A19E7800DBF09D /* OnGoingTaskTableViewCell.swift in Sources */,
 				4EA091BC27A3435D008866E9 /* CalendarViewDelegate.swift in Sources */,
+				4E93BF6627ADB04200C51D56 /* ChangeEmailAndPasswordViewController.swift in Sources */,
 				4EA091DF27A5F58D008866E9 /* UIImageExtension.swift in Sources */,
+				4E93BF6827ADB05A00C51D56 /* ChangeEmailViewController.swift in Sources */,
 				4EA091B627A26378008866E9 /* Animations.swift in Sources */,
 				4E291A3427A1234E00DBF09D /* DatabaseManager.swift in Sources */,
+				4E93BF6A27ADB06E00C51D56 /* ChangePasswordViewController.swift in Sources */,
 				4EA091CB27A3CFA1008866E9 /* LoginDelegate.swift in Sources */,
 				4EA091D527A4EFE9008866E9 /* SignUpViewController.swift in Sources */,
 				4EA091C127A38990008866E9 /* EditTaskViewController.swift in Sources */,
