@@ -23,6 +23,7 @@ class NewTaskViewController: UIViewController {
     
     private var subscribers = Set<AnyCancellable>()
     private let authManager = AuthManager()
+    private let navigationManager = NavigationManager.shared
     
     @Published private var titleString: String?
     @Published private var dueDate: Date?
@@ -164,10 +165,6 @@ class NewTaskViewController: UIViewController {
         
         guard let uid = authManager.getUserId() else { return }
         
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        //let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
-        let onGoingViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabScreen")
-        
         let task = Task()
         
         task.id = UUID().uuidString
@@ -182,9 +179,7 @@ class NewTaskViewController: UIViewController {
         
         addTitleTextField.text = ""
         
-        //self.navigationController?.dismiss(animated: true)
-        
-        //self.navigationController?.pushViewController(onGoingViewController, animated: true)
+        navigationManager.show(scene: .tasks)
     }
 }
 
@@ -198,6 +193,40 @@ extension NewTaskViewController: UITextFieldDelegate {
         
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let currentText = textField.text ?? ""
+        
+        guard let StringRange = Range(range, in: currentText) else {
+            return false
+        }
+        
+        let updatedText = currentText.replacingCharacters(in: StringRange, with: string)
+        
+        
+        return updatedText.count <= 25
+        
+    }
+}
+
+extension NewTaskViewController: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        let currentText = textView.text ?? ""
+        
+        guard let StringRange = Range(range, in: currentText) else {
+            return false
+        }
+        
+        let updatedText = currentText.replacingCharacters(in: StringRange, with: text)
+        
+        
+        return updatedText.count <= 20
+        
+    }
+    
 }
 
 // MARK: - CalendarViewDelegate
