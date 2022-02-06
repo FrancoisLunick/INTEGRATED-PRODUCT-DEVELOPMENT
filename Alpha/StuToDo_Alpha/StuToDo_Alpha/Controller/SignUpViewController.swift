@@ -108,7 +108,7 @@ class SignUpViewController: UIViewController, Animations {
                   errorString = "Sign Up Form Incomplete"
                   return }
         
-        guard let profileImage = profileImage else {
+        guard let profileImage = profileImage ?? profileImageButton.currentImage else {
             return
         }
         
