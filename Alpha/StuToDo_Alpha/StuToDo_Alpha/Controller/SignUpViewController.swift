@@ -213,6 +213,27 @@ extension SignUpViewController: UITextFieldDelegate {
         
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let currentText = textField.text ?? ""
+        
+        guard let StringRange = Range(range, in: currentText) else {
+            return false
+        }
+        
+        let updatedText = currentText.replacingCharacters(in: StringRange, with: string)
+        
+        if textField == ageTextField {
+            
+            return updatedText.count <= 2
+            
+        } else {
+            
+            return updatedText.count <= 40
+        }
+        
+    }
 }
 
 extension SignUpViewController: UIImagePickerControllerDelegate {
