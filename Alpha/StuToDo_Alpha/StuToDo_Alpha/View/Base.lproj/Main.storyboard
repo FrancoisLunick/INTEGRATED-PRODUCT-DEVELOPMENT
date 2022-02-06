@@ -199,6 +199,7 @@
                                                 <constraint firstItem="knI-Ag-evm" firstAttribute="leading" secondItem="uls-QE-xOp" secondAttribute="trailing" constant="8" id="veX-UH-AVi"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="dueDateLabel" destination="bAY-L4-Ig5" id="gJ0-Rk-VlW"/>
                                             <outlet property="dueReminderLabel" destination="P3E-fV-uIR" id="f3a-gq-0mu"/>
@@ -1644,7 +1645,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Abb-hN-W5n"/>
+        <segue reference="ICj-Za-QNR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="StuToDoLogo" width="1970" height="1970"/>
