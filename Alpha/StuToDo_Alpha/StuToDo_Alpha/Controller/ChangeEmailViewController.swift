@@ -63,7 +63,7 @@ class ChangeEmailViewController: UIViewController, Animations {
                 
                 //self?.emailTextField.text = ""
                 
-                self?.toast(loafState: .info, message: "Your email has been changed")
+                
                 
                 currentUser?.updateEmail(to: newEmail, completion: { error in
                     
@@ -101,7 +101,10 @@ class ChangeEmailViewController: UIViewController, Animations {
                         return
                     }
                     
+                    
                 }
+                
+                self?.toast(loafState: .info, message: "Your email has been changed")
                 
                 self?.logoutUser()
                 
