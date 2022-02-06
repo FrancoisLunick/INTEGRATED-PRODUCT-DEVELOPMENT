@@ -10,18 +10,20 @@ import Firebase
 import SDWebImage
 
 class ProfileViewController: UIViewController, Animations {
-
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var universityTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var profileImageButton: UIButton!
-    //@IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var saveChangesButton: UIButton!
     
     private let authManager = AuthManager()
     private let navigationManager = NavigationManager.shared
+    
+    private var profileImageUrl = ""
     
     private var user: User? {
         didSet {
@@ -43,7 +45,7 @@ class ProfileViewController: UIViewController, Animations {
         for field in fields {
             
             field.delegate = self
-            //field.addTarget(self, action: #selector(textFieldDidChange()), for: .editingChanged)
+            
         }
         
         saveChangesButton.isHidden = true
@@ -51,12 +53,8 @@ class ProfileViewController: UIViewController, Animations {
         
         profileImageButton.imageView?.clipsToBounds = true
         profileImageButton.clipsToBounds = true
-
-        self.tabBarController?.tabBar.isHidden = true
         
-        //self.navigationItem.leftBarButtonItem = nil
-        //self.navigationItem.hidesBackButton = true
-        //self.navigationController?.navigationItem.hidesBackButton = true
+        self.tabBarController?.tabBar.isHidden = true
         
         fetchUser()
         populateUserData()
@@ -119,30 +117,30 @@ class ProfileViewController: UIViewController, Animations {
         present(imagePickerController, animated: true, completion: nil)
     }
     
-//    @objc func textFieldDidChange() {
-//        //print(textfield.text)
-//    }
     
-     // MARK: Navigation
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         
-         if segue.identifier == "toChangeCredentials" {
-             
-             if let destination = segue.destination as? ChangeEmailAndPasswordViewController {
-                 
-                 destination.user = user
-                 
-             }
-         }
-     }
-     
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toChangeCredentials" {
+            
+            if let destination = segue.destination as? ChangeEmailAndPasswordViewController {
+                
+                destination.user = user
+                
+            }
+        }
+    }
+    
+    // MARK: Actions
     
     @IBAction func editUserTapped(_ sender: UIButton) {
         
+        editButton.isHidden = true
+        
         profileImageButton.isEnabled = true
         
-        let fields: [UITextField] = [firstNameTextField, lastNameTextField, ageTextField, universityTextField, emailTextField]
+        let fields: [UITextField] = [firstNameTextField, lastNameTextField, ageTextField, universityTextField]
         
         for field in fields {
             
@@ -152,7 +150,9 @@ class ProfileViewController: UIViewController, Animations {
     
     @IBAction func saveChangesTapped(_ sender: UIButton) {
         
-        guard let profileImage = profileImage else {
+        editButton.isHidden = false
+        
+        guard let profileImage = profileImage ?? profileImageButton.currentImage else {
             return
         }
         
@@ -173,12 +173,15 @@ class ProfileViewController: UIViewController, Animations {
             ref.downloadURL { url, error in
                 
                 guard let profileImageUrl = url?.absoluteString else {
+                    
                     return
                 }
                 
                 guard let user = self.user else {
                     return
                 }
+                
+               
                 
                 guard let email = self.emailTextField.text,
                       let firstName = self.firstNameTextField.text,
@@ -207,6 +210,16 @@ class ProfileViewController: UIViewController, Animations {
                 
             }
             
+        }
+        
+        let fields: [UITextField] = [firstNameTextField,
+                                     lastNameTextField,
+                                     ageTextField,
+                                     universityTextField]
+        
+        for field in fields {
+            
+            field.isUserInteractionEnabled = false
         }
         
         saveChangesButton.isHidden = true
@@ -253,15 +266,10 @@ class ProfileViewController: UIViewController, Animations {
             alert.dismiss(animated: true, completion: nil)
             
         }))
-       
+        
         alert.addAction(UIAlertAction(title: "Delete profile",
                                       style: UIAlertAction.Style.destructive,
                                       handler: {(_: UIAlertAction!) in
-            
-//            Task {
-//
-//                await handleDeleteUser()
-//            }
             
             let currentUser = Auth.auth().currentUser
             
@@ -296,6 +304,27 @@ extension ProfileViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let currentText = textField.text ?? ""
+        
+        guard let StringRange = Range(range, in: currentText) else {
+            return false
+        }
+        
+        let updatedText = currentText.replacingCharacters(in: StringRange, with: string)
+        
+        if textField == ageTextField {
+            
+            return updatedText.count <= 2
+            
+        } else {
+            
+            return updatedText.count <= 40
+        }
+        
     }
 }
 
