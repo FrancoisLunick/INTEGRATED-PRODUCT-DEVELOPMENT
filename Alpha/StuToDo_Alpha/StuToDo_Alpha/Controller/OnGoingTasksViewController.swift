@@ -43,6 +43,9 @@ class OnGoingTasksViewController: UIViewController, Animations {
         
         self.tabBarController?.tabBar.isHidden = false
         
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
+        tableView.addGestureRecognizer(longPress)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +77,35 @@ class OnGoingTasksViewController: UIViewController, Animations {
                 self?.toast(loafState: .error, message: error.localizedDescription, duration: 3.0)
             }
         }
+    }
+    
+    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
+        
+        if sender.state == .began {
+            
+            print("show share sheets")
+            
+            let location = sender.location(in: tableView)
+            
+            if let indexPath = tableView.indexPathForRow(at: location) {
+                
+                let taskTitle = tasks[indexPath.row].title
+                //let taskNote = tasks[indexPath.row].note
+                let taskDueDate = tasks[indexPath.row].dueDate?.toString()
+                let shareMessage = taskTitle! + " is due on " + taskDueDate!
+                
+                let taskTitleToShare = [ shareMessage ]
+                let activityViewController = UIActivityViewController(activityItems: taskTitleToShare, applicationActivities: nil)
+                
+                activityViewController.excludedActivityTypes = [.message]
+                
+                self.present(activityViewController, animated: true, completion: nil)
+                
+            }
+            
+            
+        }
+        
     }
     
     private func loadTasks() {
@@ -147,6 +179,15 @@ class OnGoingTasksViewController: UIViewController, Animations {
         self.navigationController?.pushViewController(editTaskViewController, animated: true)
     }
     
+//    private func handleShareTask() {
+//
+//        let indexPath = IndexPath()
+//
+//        let taskTitle = tasks[indexPath.row].title
+//
+//        print(taskTitle)
+//    }
+    
     private func handleDeleteTask(indexPath: IndexPath) {
         
         guard let id = tasks[indexPath.row].id else { return }
@@ -212,6 +253,20 @@ class OnGoingTasksViewController: UIViewController, Animations {
         
         
     }
+    
+//    @IBAction func showShareSheet(_ sender: UILongPressGestureRecognizer) {
+//
+//        if sender.state == .began {
+//
+//            handleShareTask()
+//
+//        }
+//
+//
+//
+//    }
+    
+    
 }
 
 // MARK: - UITableViewDataSource
