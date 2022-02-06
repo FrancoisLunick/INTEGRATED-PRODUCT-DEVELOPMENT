@@ -13,11 +13,11 @@ class TaskDetailViewController: UIViewController, Animations {
     
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var notesLabel: UILabel!
     
     var task: Task!
     private var databaseManager = DatabaseManager()
+    private let navigationManager = NavigationManager.shared
     
     // MARK: - View Lifecycles
     
@@ -35,7 +35,6 @@ class TaskDetailViewController: UIViewController, Animations {
             
             taskTitleLabel.text = task.title
             dateLabel.text = task.dueDate?.toString()
-            timeLabel.text = "10:32 PM"
             notesLabel.text = task.note
         }
     }
@@ -49,7 +48,7 @@ class TaskDetailViewController: UIViewController, Animations {
             case .success:
                 self?.toast(loafState: .error, message: "Task successfully deleted")
                 
-                self?.navigationController?.popViewController(animated: true)
+                self?.navigationManager.show(scene: .tasks)
                 
             case .failure(let error):
                 self?.toast(loafState: .error, message: error.localizedDescription)
@@ -83,8 +82,6 @@ class TaskDetailViewController: UIViewController, Animations {
         if segue.identifier == "showEditTask" {
             
             if let destination = segue.destination as? EditTaskViewController {
-                
-                
                 
                 destination.taskToEdit = task
             }
