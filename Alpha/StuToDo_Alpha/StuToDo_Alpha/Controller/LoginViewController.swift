@@ -13,6 +13,8 @@ class LoginViewController: UIViewController, Animations {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var requirementsLabel: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
     
     private let navigationManager = NavigationManager.shared
     
@@ -32,6 +34,28 @@ class LoginViewController: UIViewController, Animations {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        emailTextField.layer.masksToBounds = false
+        emailTextField.layer.shadowRadius = 3.0
+        emailTextField.layer.shadowColor = UIColor.black.cgColor
+        emailTextField.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        emailTextField.layer.shadowOpacity = 1.0
+        
+        passwordTextField.layer.masksToBounds = false
+        passwordTextField.layer.shadowRadius = 3.0
+        passwordTextField.layer.shadowColor = UIColor.black.cgColor
+        passwordTextField.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        passwordTextField.layer.shadowOpacity = 1.0
+        
+        loginButton.layer.shadowColor = UIColor.black.cgColor
+        loginButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+        loginButton.layer.shadowRadius = 5
+        loginButton.layer.shadowOpacity = 1.0
+        
+        signUpButton.layer.shadowColor = UIColor.black.cgColor
+        signUpButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+        signUpButton.layer.shadowRadius = 5
+        signUpButton.layer.shadowOpacity = 1.0
     }
     
     override func viewDidAppear(_ animated: Bool) {
