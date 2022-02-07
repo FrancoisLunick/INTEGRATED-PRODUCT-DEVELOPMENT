@@ -24,6 +24,9 @@ class TaskDetailViewController: UIViewController, Animations {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.navigationItem.leftBarButtonItem = nil
+//        self.navigationItem.hidesBackButton = true
+
         setupUI()
     }
     
