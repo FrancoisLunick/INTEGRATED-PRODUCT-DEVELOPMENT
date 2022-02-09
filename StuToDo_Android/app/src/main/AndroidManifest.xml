@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StuToDo_App">
         <activity
+            android:name=".signup.SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
