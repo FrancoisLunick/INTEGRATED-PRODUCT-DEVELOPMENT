@@ -14,4 +14,8 @@
     <string name="password_hint">Password</string>
     <string name="login_buttonText">Login</string>
     <string name="signup_buttonText">Sign Up</string>
+    <string name="name_hint">First Name</string>
+    <string name="lastName_hint">Last Name</string>
+    <string name="age_hint">Age</string>
+    <string name="university_hint">University</string>
 </resources>
