@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "796638736061",
+    "project_id": "stutodo",
+    "storage_bucket": "stutodo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796638736061:android:f2d2fb8d9c58de42c251d4",
+        "android_client_info": {
+          "package_name": "com.exercise.stutodo_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796638736061-qucd51gr0mdgj4t76utnojddiprkt5h1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhHWT020YuMiVygKvepzAVRm6RnLTnlYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796638736061-qucd51gr0mdgj4t76utnojddiprkt5h1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "796638736061-ng1afru6a4e30hbc2ar1putvg9tu8ohm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.FrancoisLu.StuToDo-Alpha"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
