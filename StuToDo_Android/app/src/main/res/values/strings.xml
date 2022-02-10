@@ -18,4 +18,6 @@
     <string name="lastName_hint">Last Name</string>
     <string name="age_hint">Age</string>
     <string name="university_hint">University</string>
+    <string name="addTitle_hint">Add title</string>
+    <string name="addNotes_hint">Add notes here...</string>
 </resources>
