@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.login.LoginActivity;
+import com.exercise.stutodo_app.task.OnGoingTaskActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -209,7 +210,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                                         Toast.makeText(SignUpActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
 
-                                                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                                        Intent intent = new Intent(SignUpActivity.this, OnGoingTaskActivity.class);
                                                         startActivity(intent);
                                                     }
                                                 })
