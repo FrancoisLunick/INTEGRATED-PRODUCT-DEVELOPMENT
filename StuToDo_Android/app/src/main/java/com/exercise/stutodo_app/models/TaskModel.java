@@ -9,11 +9,14 @@ public class TaskModel {
     private String note;
     private Date createdAt;
     private String taskID;
-    private String isDone;
+    private boolean isDone;
     private String uid;
     private String completedAt;
 
-    public TaskModel(String title, String dueDate, String note, Date createdAt, String taskID, String isDone, String uid, String completedAt) {
+    public TaskModel() {
+    }
+
+    public TaskModel(String title, String dueDate, String note, Date createdAt, String taskID, boolean isDone, String uid, String completedAt) {
         this.title = title;
         this.dueDate = dueDate;
         this.note = note;
@@ -44,7 +47,7 @@ public class TaskModel {
         return taskID;
     }
 
-    public String getIsDone() {
+    public boolean getIsDone() {
         return isDone;
     }
 
@@ -54,5 +57,37 @@ public class TaskModel {
 
     public String getCompletedAt() {
         return completedAt;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
+
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public void setCompletedAt(String completedAt) {
+        this.completedAt = completedAt;
     }
 }
