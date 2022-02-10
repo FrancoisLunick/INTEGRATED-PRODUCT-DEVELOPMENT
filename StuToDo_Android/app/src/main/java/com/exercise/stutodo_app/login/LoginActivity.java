@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.exercise.stutodo_app.MainActivity;
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.signup.SignUpActivity;
+import com.exercise.stutodo_app.task.OnGoingTaskActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -81,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(task.isSuccessful()) {
 
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, OnGoingTaskActivity.class);
                                 startActivity(intent);
                                 finish();
 
