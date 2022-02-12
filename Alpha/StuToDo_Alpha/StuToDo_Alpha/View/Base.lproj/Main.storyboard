@@ -641,7 +641,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="847-hG-iiB">
-                                <rect key="frame" x="128" y="825.5" width="159" height="36.5"/>
+                                <rect key="frame" x="128" y="785.5" width="159" height="36.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Forgot Password?">
                                     <fontDescription key="titleFontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
@@ -658,8 +658,8 @@
                             <constraint firstItem="847-hG-iiB" firstAttribute="leading" secondItem="2bq-Q8-CUG" secondAttribute="leading" constant="128" id="3rT-j1-3F9"/>
                             <constraint firstItem="odA-8D-X8w" firstAttribute="centerX" secondItem="OeX-v1-iCZ" secondAttribute="centerX" id="Gz2-mP-yQ5"/>
                             <constraint firstItem="odA-8D-X8w" firstAttribute="centerY" secondItem="OeX-v1-iCZ" secondAttribute="centerY" multiplier="0.75" id="K5g-1a-4sb"/>
-                            <constraint firstItem="847-hG-iiB" firstAttribute="bottom" secondItem="2bq-Q8-CUG" secondAttribute="bottom" id="WeS-r8-bip"/>
                             <constraint firstItem="2bq-Q8-CUG" firstAttribute="trailing" secondItem="847-hG-iiB" secondAttribute="trailing" constant="127" id="Yk8-Bm-bNG"/>
+                            <constraint firstItem="847-hG-iiB" firstAttribute="bottom" secondItem="2bq-Q8-CUG" secondAttribute="bottom" constant="-40" id="zI3-57-CXA"/>
                         </constraints>
                     </view>
                     <connections>
