@@ -22,7 +22,12 @@ class ChangeEmailViewController: UIViewController, Animations {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        newEmailTextField.delegate = self
+        currentEmailTextField.delegate = self
+        currentPasswordTextField.delegate = self
+        
+//        let tap = UIGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
+//        view.addGestureRecognizer(tap)
     }
     
     private func getData() {
@@ -132,5 +137,17 @@ class ChangeEmailViewController: UIViewController, Animations {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+extension ChangeEmailViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        textField.resignFirstResponder()
+
+        return true
+
+    }
 
 }
