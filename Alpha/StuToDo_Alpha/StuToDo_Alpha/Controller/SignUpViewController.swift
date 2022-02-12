@@ -36,6 +36,7 @@ class SignUpViewController: UIViewController, Animations {
         profileImageButton.imageView?.clipsToBounds = true
         profileImageButton.clipsToBounds = true
 
+        setupTextFields()
         validateForm()
         
         let signUpTextFields: [UITextField] = [firstNameTextField,
@@ -50,6 +51,51 @@ class SignUpViewController: UIViewController, Animations {
             signUpTextField.delegate = self
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        
+        if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+        
+    }
+    
+    private func setupTextFields() {
+        
+        let toolBar = UIToolbar()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped))
+        
+        toolBar.setItems([flexibleSpace, doneButton], animated: true)
+        toolBar.sizeToFit()
+        
+        ageTextField.inputAccessoryView = toolBar
+        passwordTextField.inputAccessoryView = toolBar
+        emailTextField.inputAccessoryView = toolBar
+        
+    }
+    
+    @objc private func doneTapped() {
+        
+        view.endEditing(true)
     }
     
 //    @objc private func textDidChange(_ sender: UITextField) {
