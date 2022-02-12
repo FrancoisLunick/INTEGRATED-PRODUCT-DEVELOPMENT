@@ -13,7 +13,7 @@ class TaskDetailViewController: UIViewController, Animations {
     
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var notesLabel: UILabel!
+    @IBOutlet weak var notesLabel: UITextView!
     
     var task: Task!
     private var databaseManager = DatabaseManager()
@@ -24,10 +24,16 @@ class TaskDetailViewController: UIViewController, Animations {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.navigationItem.leftBarButtonItem = nil
-//        self.navigationItem.hidesBackButton = true
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
 
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     // MARK: - Helpers
@@ -91,5 +97,11 @@ class TaskDetailViewController: UIViewController, Animations {
             
         }
     }
+    
+    @IBAction func cancelTapped(_ sender: UIButton) {
+        
+        navigationManager.show(scene: .tasks)
+    }
+    
     
 }
