@@ -17,6 +17,8 @@ class ForgotPasswordViewController: UIViewController, Animations {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
     }
     
     @IBAction func resetPassword(_ sender: UIButton) {
