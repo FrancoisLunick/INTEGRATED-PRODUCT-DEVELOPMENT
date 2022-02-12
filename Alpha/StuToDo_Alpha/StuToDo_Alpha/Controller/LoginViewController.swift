@@ -10,6 +10,8 @@ import Combine
 
 class LoginViewController: UIViewController, Animations {
     
+    // MARK: - Properties
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var requirementsLabel: UILabel!
@@ -25,8 +27,8 @@ class LoginViewController: UIViewController, Animations {
     @Published var errorString: String = ""
     @Published var isLoginSuccessful = false
     
+    // MARK: - View Life Cycle
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +37,27 @@ class LoginViewController: UIViewController, Animations {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    // MARK: - Helpers
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        
+        if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,6 +79,8 @@ class LoginViewController: UIViewController, Animations {
             }
         }.store(in: &subscribers)
     }
+    
+    // MARK: - Actions
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         
@@ -100,6 +125,8 @@ class LoginViewController: UIViewController, Animations {
 
 }
 
+// MARK: - UITextFieldDelegate
+
 extension LoginViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -109,6 +136,8 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
+
+// MARK: - SignupDelegate
 
 extension LoginViewController: SignupDelegate {
     
