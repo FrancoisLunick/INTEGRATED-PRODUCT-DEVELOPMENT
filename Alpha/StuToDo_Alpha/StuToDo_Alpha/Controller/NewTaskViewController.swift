@@ -45,14 +45,30 @@ class NewTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         validateNewTaskForm()
 
         addTitleTextField.delegate = self
         self.tabBarController?.tabBar.isHidden = false
+        
+        let margins = view.layoutMarginsGuide
+        
+        view.addSubview(calendarView)
+        
+        NSLayoutConstraint.activate([
+            calendarView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 2),
+            calendarView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 2),
+            calendarView.bottomAnchor.constraint(equalTo: taskNote.topAnchor, constant: 2),
+            calendarView.topAnchor.constraint(equalTo: showCalendarButton.bottomAnchor),
+            //calendarView.heightAnchor.constraint(equalToConstant: 222),
+            CalendarUIView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
         
         addTitleTextField.becomeFirstResponder()
     }
@@ -181,6 +197,12 @@ class NewTaskViewController: UIViewController {
         
         navigationManager.show(scene: .tasks)
     }
+    
+    @IBAction func CloseScreen(_ sender: UIButton) {
+        
+        navigationManager.show(scene: .tasks)
+    }
+    
 }
 
 // MARK: - UITextFieldDelegate
