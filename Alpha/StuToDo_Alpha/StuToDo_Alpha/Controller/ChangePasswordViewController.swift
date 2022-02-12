@@ -21,7 +21,8 @@ class ChangePasswordViewController: UIViewController, Animations {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        currentPasswordTextField.delegate = self
+        newPasswordTextField.delegate = self
     }
     
     private func logoutUser() {
@@ -87,4 +88,15 @@ class ChangePasswordViewController: UIViewController, Animations {
     }
     */
 
+}
+
+extension ChangePasswordViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
 }
