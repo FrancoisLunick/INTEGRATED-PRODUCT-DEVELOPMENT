@@ -19,7 +19,6 @@ class EditTaskViewController: UIViewController, Animations {
     @IBOutlet weak var CalendarUIView: CalendarView!
     @IBOutlet weak var showCalendarButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timePicker: UIDatePicker!
     
     private var subscribers = Set<AnyCancellable>()
     
@@ -50,14 +49,14 @@ class EditTaskViewController: UIViewController, Animations {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         setupViews()
         
         validateNewTaskForm()
 
         addTitleTextField.delegate = self
         self.tabBarController?.tabBar.isHidden = true
+        
+        displayCalendar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -138,11 +137,6 @@ class EditTaskViewController: UIViewController, Animations {
         addTitleTextField.resignFirstResponder()
         
         displayCalendar()
-        
-    }
-    
-    @IBAction func timeChanged(_ sender: UIDatePicker) {
-        
         
     }
     
