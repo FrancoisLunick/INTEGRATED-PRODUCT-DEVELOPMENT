@@ -29,17 +29,17 @@ class CalendarView: UIView {
         return label
     }()
     
-    private lazy var removeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Remove", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemRed
-        button.addTarget(self, action: #selector(removeCalendar(_:)), for: .touchUpInside)
-        return button
-    }()
+//    private lazy var removeButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("Remove", for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        button.backgroundColor = .systemRed
+//        button.addTarget(self, action: #selector(removeCalendar(_:)), for: .touchUpInside)
+//        return button
+//    }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, fsCalendar, removeButton])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, fsCalendar])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 16
@@ -75,7 +75,7 @@ class CalendarView: UIView {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14),
             fsCalendar.heightAnchor.constraint(equalToConstant: 230),
             titleLabel.heightAnchor.constraint(equalToConstant: 12),
-            removeButton.heightAnchor.constraint(equalToConstant: 12)
+            //removeButton.heightAnchor.constraint(equalToConstant: 12)
         ])
         
     }
