@@ -228,9 +228,10 @@ class OnGoingTasksViewController: UIViewController, Animations {
                     let newEvent = EKEvent(eventStore: store)
                     
                     newEvent.title = self?.tasks[indexPath.row].title
-                    newEvent.startDate = Date()
+                    newEvent.startDate = self?.tasks[indexPath.row].dueDate
                     newEvent.endDate = self?.tasks[indexPath.row].dueDate
                     newEvent.notes = self?.tasks[indexPath.row].note
+                    newEvent.isAllDay = true
                     
                     let eventEditVC = EKEventEditViewController()
                     eventEditVC.editViewDelegate = self
