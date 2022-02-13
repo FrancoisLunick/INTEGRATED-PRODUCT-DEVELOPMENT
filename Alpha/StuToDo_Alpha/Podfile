@@ -15,5 +15,6 @@ target 'StuToDo_Alpha' do
   pod 'FSCalendar'
   pod 'MBProgressHUD'
   pod 'SDWebImage'
+  pod 'ReachabilitySwift'
 
 end
