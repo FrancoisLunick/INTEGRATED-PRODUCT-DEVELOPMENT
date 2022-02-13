@@ -36,6 +36,8 @@ class ProfileViewController: UIViewController, Animations {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTextFields()
+        
         let fields: [UITextField] = [firstNameTextField,
                                      lastNameTextField,
                                      ageTextField,
@@ -58,6 +60,46 @@ class ProfileViewController: UIViewController, Animations {
         
         fetchUser()
         populateUserData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        
+        if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+        
+    }
+    
+    private func setupTextFields() {
+        
+        let toolBar = UIToolbar()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped))
+        
+        toolBar.setItems([flexibleSpace, doneButton], animated: true)
+        toolBar.sizeToFit()
+        
+        ageTextField.inputAccessoryView = toolBar
+        
+    }
+    
+    @objc private func doneTapped() {
+        
+        view.endEditing(true)
     }
     
     private func logoutUser() {
