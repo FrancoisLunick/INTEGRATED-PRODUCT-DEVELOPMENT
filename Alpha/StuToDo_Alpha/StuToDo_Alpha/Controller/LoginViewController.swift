@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Reachability
 
 class LoginViewController: UIViewController, Animations {
     
@@ -27,6 +28,8 @@ class LoginViewController: UIViewController, Animations {
     @Published var errorString: String = ""
     @Published var isLoginSuccessful = false
     
+    let reachability = try! Reachability()
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -40,6 +43,33 @@ class LoginViewController: UIViewController, Animations {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        emailTextField.becomeFirstResponder()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        
+        do {
+            
+            try reachability.startNotifier()
+            
+        } catch {
+            
+            print("Unable to start notifier")
+            
+        }
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        reachability.stopNotifier()
+        
+        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
     
     // MARK: - Helpers
@@ -60,10 +90,21 @@ class LoginViewController: UIViewController, Animations {
             }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    @objc private func reachabilityChanged(note: Notification) {
         
-        emailTextField.becomeFirstResponder()
+        let reachability = note.object as! Reachability
+        
+        switch reachability.connection {
+            
+        case .wifi:
+            print("Wifi connection")
+        case .cellular:
+            print("Cellular connection")
+        case .unavailable:
+            toast(loafState: .error, message: "No connection. Please connect to the internet to continue", duration: 5.0)
+        default:
+            print("No connection")
+        }
         
     }
     
