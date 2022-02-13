@@ -78,9 +78,27 @@ class TaskDetailViewController: UIViewController, Animations {
     
     @IBAction func deleteTask(_ sender: UIButton) {
         
-        guard let id = task.id else { return }
+        let alert = UIAlertController(title: "Delete Task?", message: "This action can't be undone are you sure you want to continue?", preferredStyle: UIAlertController.Style.alert)
         
-        deleteTaskHelper(id)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+            
+            alert.dismiss(animated: true, completion: nil)
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Delete Task",
+                                      style: UIAlertAction.Style.destructive,
+                                      handler: {(_: UIAlertAction!) in
+            
+            guard let id = self.task.id else { return }
+            
+            self.deleteTaskHelper(id)
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        
     }
     
     @IBAction func editTask(_ sender: UIButton) {
