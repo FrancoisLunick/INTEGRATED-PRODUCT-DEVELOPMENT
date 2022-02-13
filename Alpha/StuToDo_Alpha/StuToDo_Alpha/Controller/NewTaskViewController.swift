@@ -19,7 +19,6 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var CalendarUIView: CalendarView!
     @IBOutlet weak var showCalendarButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timePicker: UIDatePicker!
     
     private var subscribers = Set<AnyCancellable>()
     private let authManager = AuthManager()
@@ -27,6 +26,8 @@ class NewTaskViewController: UIViewController {
     
     @Published private var titleString: String?
     @Published private var dueDate: Date?
+    
+    private var didBeginEditing = false
     
     private lazy var calendarView: CalendarView = {
         
@@ -45,11 +46,10 @@ class NewTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         validateNewTaskForm()
 
         addTitleTextField.delegate = self
+        taskNote.delegate = self
         self.tabBarController?.tabBar.isHidden = false
         
         let margins = view.layoutMarginsGuide
@@ -64,6 +64,12 @@ class NewTaskViewController: UIViewController {
             //calendarView.heightAnchor.constraint(equalToConstant: 222),
             CalendarUIView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+        
+        setupTextFields()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -118,6 +124,44 @@ class NewTaskViewController: UIViewController {
     private func dismissCalendarView(completion: () -> Void) {
         calendarView.removeFromSuperview()
         completion()
+    }
+    
+    private func setupTextFields() {
+        
+        let toolBar = UIToolbar()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped))
+        
+        toolBar.setItems([flexibleSpace, doneButton], animated: true)
+        toolBar.sizeToFit()
+        
+        taskNote.inputAccessoryView = toolBar
+        
+    }
+    
+    @objc private func doneTapped() {
+        
+        view.endEditing(true)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+
+        if didBeginEditing {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+
+        if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+
     }
     
     // MARK: - Actions
@@ -247,6 +291,22 @@ extension NewTaskViewController: UITextViewDelegate {
         
         return updatedText.count <= 20
         
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        didBeginEditing = true
+        
+        textView.text = ""
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+        didBeginEditing = false
+        
+        if textView.text == "" {
+            textView.text = "Add notes here..."
+        }
     }
     
 }
