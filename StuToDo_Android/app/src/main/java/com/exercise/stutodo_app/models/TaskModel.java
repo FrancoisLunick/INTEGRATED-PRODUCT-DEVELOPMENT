@@ -1,10 +1,13 @@
 package com.exercise.stutodo_app.models;
 
+import com.google.firebase.Timestamp;
+
 import java.util.Date;
 
 public class TaskModel {
 
     private String title;
+//    private String dueDate;
     private String dueDate;
     private String note;
     private Date createdAt;
@@ -17,6 +20,7 @@ public class TaskModel {
     }
 
     public TaskModel(String title, String dueDate, String note, Date createdAt, String taskID, boolean isDone, String uid, String completedAt) {
+
         this.title = title;
         this.dueDate = dueDate;
         this.note = note;
