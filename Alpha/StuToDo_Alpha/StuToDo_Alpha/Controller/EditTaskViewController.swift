@@ -281,6 +281,21 @@ extension EditTaskViewController: UITextFieldDelegate {
 
 extension EditTaskViewController: UITextViewDelegate {
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        let currentText = textView.text ?? ""
+        
+        guard let StringRange = Range(range, in: currentText) else {
+            return false
+        }
+        
+        let updatedText = currentText.replacingCharacters(in: StringRange, with: text)
+        
+        
+        return updatedText.count <= 60
+        
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         
         didBeginEditing = true
