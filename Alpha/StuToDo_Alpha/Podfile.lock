@@ -493,6 +493,7 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
+  - ReachabilitySwift (5.0.0)
   - SDWebImage (5.12.2):
     - SDWebImage/Core (= 5.12.2)
   - SDWebImage/Core (5.12.2)
@@ -506,6 +507,7 @@ DEPENDENCIES:
   - FSCalendar
   - Loaf
   - MBProgressHUD
+  - ReachabilitySwift
   - SDWebImage
 
 SPEC REPOS:
@@ -533,6 +535,7 @@ SPEC REPOS:
     - MBProgressHUD
     - nanopb
     - PromisesObjC
+    - ReachabilitySwift
     - SDWebImage
 
 SPEC CHECKSUMS:
@@ -559,8 +562,9 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
 
-PODFILE CHECKSUM: 100f684d5b0b0779dd5de982d9db0147a26352d9
+PODFILE CHECKSUM: ea78c00756798be137b6e6ebb2ebdceadadd8ca0
 
 COCOAPODS: 1.11.2
