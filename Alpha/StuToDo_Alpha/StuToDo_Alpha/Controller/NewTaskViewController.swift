@@ -185,41 +185,6 @@ class NewTaskViewController: UIViewController {
         
     }
     
-    @IBAction func timeChanged(_ sender: UIDatePicker) {
-        
-        
-    }
-    
-    @IBAction func Cancel(_ sender: UIBarButtonItem) {
-        //performSegue(withIdentifier: "unwindToHome", sender: self)
-    }
-    
-//    @IBAction func addTaskPressed(_ sender: UIBarButtonItem) {
-//
-//        guard let uid = authManager.getUserId() else { return }
-//
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        //let onGoingViewController = storyBoard.instantiateViewController(withIdentifier: "TaskScreen") as! OnGoingTasksViewController
-//        let onGoingViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabScreen")
-//
-//        let task = Task()
-//
-//        task.id = UUID().uuidString
-//        task.createdAt = Date()
-//        task.title = addTitleTextField.text!
-//        task.note = taskNote.text
-//        task.isDone = false
-//        task.dueDate = dueDate
-//        task.uid = uid
-//
-//        saveTaskToFirestore(task)
-//
-//        addTitleTextField.text = ""
-//        taskNote.text = ""
-//
-//       // self.navigationController?.dismiss(animated: true)
-//    }
-    
     @IBAction func addTask(_ sender: UIButton) {
         
         
@@ -289,7 +254,7 @@ extension NewTaskViewController: UITextViewDelegate {
         let updatedText = currentText.replacingCharacters(in: StringRange, with: text)
         
         
-        return updatedText.count <= 20
+        return updatedText.count <= 60
         
     }
     
