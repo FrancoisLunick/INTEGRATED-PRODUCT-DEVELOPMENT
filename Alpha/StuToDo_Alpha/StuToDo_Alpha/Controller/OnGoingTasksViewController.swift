@@ -190,30 +190,41 @@ class OnGoingTasksViewController: UIViewController, Animations {
     
     private func handleDeleteTask(indexPath: IndexPath) {
         
-        guard let id = tasks[indexPath.row].id else { return }
+        let alert = UIAlertController(title: "Delete Task?", message: "This action can't be undone are you sure you want to continue?", preferredStyle: UIAlertController.Style.alert)
         
-        databaseManager.deleteTask(id: id) { [weak self] result in
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
             
-            switch result {
+            alert.dismiss(animated: true, completion: nil)
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Delete Task",
+                                      style: UIAlertAction.Style.destructive,
+                                      handler: {(_: UIAlertAction!) in
+            
+            guard let id = self.tasks[indexPath.row].id else { return }
+            
+            self.databaseManager.deleteTask(id: id) { [weak self] result in
                 
-            case .success:
-                self?.toast(loafState: .error, message: "Task successfully deleted")
-                
-            case .failure(let error):
-                self?.toast(loafState: .error, message: error.localizedDescription)
-                
+                switch result {
+                    
+                case .success:
+                    self?.toast(loafState: .error, message: "Task successfully deleted")
+                    
+                case .failure(let error):
+                    self?.toast(loafState: .error, message: error.localizedDescription)
+                    
+                }
             }
-        }
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        
     }
     
     private func handleAddToCalendar(indexPath: IndexPath) {
-        
-//        let calendarVC = EKCalendarChooser()
-//
-//        calendarVC.showsDoneButton = true
-//        calendarVC.showsCancelButton = true
-//
-//        present(UINavigationController(rootViewController: calendarVC), animated: true, completion: nil)
         
         store.requestAccess(to: .event) { [weak self] success, error in
             
@@ -240,34 +251,10 @@ class OnGoingTasksViewController: UIViewController, Animations {
                     
                     self?.present(eventEditVC, animated: true, completion: nil)
                     
-//                    let vc = EKEventViewController()
-//                    vc.delegate = self
-//                    vc.event = newEvent
-//
-//                    let rootVC = UINavigationController(rootViewController: vc)
-//
-//                    self?.present(rootVC, animated: true, completion: nil)
                 }
             }
         }
-        
-        
-        
     }
-    
-//    @IBAction func showShareSheet(_ sender: UILongPressGestureRecognizer) {
-//
-//        if sender.state == .began {
-//
-//            handleShareTask()
-//
-//        }
-//
-//
-//
-//    }
-    
-    
 }
 
 // MARK: - UITableViewDataSource
@@ -368,8 +355,6 @@ extension OnGoingTasksViewController: EKEventViewDelegate {
         controller.dismiss(animated: true, completion: nil)
         
     }
-    
-    
 }
 
 extension OnGoingTasksViewController: EKEventEditViewDelegate {
@@ -377,10 +362,6 @@ extension OnGoingTasksViewController: EKEventEditViewDelegate {
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
         
         controller.dismiss(animated: true, completion: nil)
-        
-        
     }
-    
-    
 }
 
