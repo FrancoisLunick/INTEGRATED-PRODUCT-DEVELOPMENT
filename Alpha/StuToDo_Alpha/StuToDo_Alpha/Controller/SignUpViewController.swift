@@ -155,6 +155,8 @@ class SignUpViewController: UIViewController, Animations {
                   return }
         
         guard let profileImage = profileImage ?? profileImageButton.currentImage else {
+            
+            self.toast(loafState: .error, message: "Profile picture is required", duration: 4.0)
             return
         }
         
@@ -168,7 +170,7 @@ class SignUpViewController: UIViewController, Animations {
             if let error = error {
                 
                 self.toast(loafState: .error, message: error.localizedDescription, duration: 3.0)
-                //print("Failed to upload image with error \(error.localizedDescription)")
+                
                 return
             }
             
