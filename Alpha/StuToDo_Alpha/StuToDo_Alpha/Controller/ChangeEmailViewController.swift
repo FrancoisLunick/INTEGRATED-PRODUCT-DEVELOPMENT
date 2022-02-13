@@ -26,9 +26,14 @@ class ChangeEmailViewController: UIViewController, Animations {
         currentEmailTextField.delegate = self
         currentPasswordTextField.delegate = self
         
+    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
 //        let tap = UIGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
 //        view.addGestureRecognizer(tap)
-    }
+//    }
     
     private func getData() {
         
