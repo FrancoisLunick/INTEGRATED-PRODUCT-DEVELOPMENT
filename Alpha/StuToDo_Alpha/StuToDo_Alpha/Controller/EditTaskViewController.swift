@@ -29,6 +29,8 @@ class EditTaskViewController: UIViewController, Animations {
     
     var taskToEdit: Task?
     
+    private var didBeginEditing = false
+    
     @Published private var titleString: String?
     @Published private var dueDate: Date?
     
@@ -54,9 +56,19 @@ class EditTaskViewController: UIViewController, Animations {
         validateNewTaskForm()
 
         addTitleTextField.delegate = self
+        taskNote.delegate = self
         self.tabBarController?.tabBar.isHidden = true
         
         displayCalendar()
+        
+        setupTextFields()
+        
+        if taskNote.isFocused {
+            print("tasknote")
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,6 +78,20 @@ class EditTaskViewController: UIViewController, Animations {
     }
     
     // MARK: - Helpers
+    
+    private func setupTextFields() {
+        
+        let toolBar = UIToolbar()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped))
+        
+        toolBar.setItems([flexibleSpace, doneButton], animated: true)
+        toolBar.sizeToFit()
+        
+        taskNote.inputAccessoryView = toolBar
+        
+    }
     
     private func setupViews() {
         
@@ -123,6 +149,30 @@ class EditTaskViewController: UIViewController, Animations {
     private func dismissCalendarView(completion: () -> Void) {
         calendarView.removeFromSuperview()
         completion()
+    }
+    
+    @objc private func doneTapped() {
+        
+        view.endEditing(true)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+
+        if didBeginEditing {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+
+        if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+
     }
     
     // MARK: - Actions
@@ -229,6 +279,26 @@ extension EditTaskViewController: UITextFieldDelegate {
     
 }
 
+extension EditTaskViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        didBeginEditing = true
+        
+        textView.text = ""
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+        didBeginEditing = false
+        
+        if textView.text == "" {
+            textView.text = "Add notes here..."
+        }
+    }
+    
+}
+
 // MARK: - CalendarViewDelegate
 
 extension EditTaskViewController: CalendarViewDelegate {
@@ -236,6 +306,8 @@ extension EditTaskViewController: CalendarViewDelegate {
     func didSelectDate(date: Date) {
         
         self.dueDate = date
+        
+        
         
     }
     
