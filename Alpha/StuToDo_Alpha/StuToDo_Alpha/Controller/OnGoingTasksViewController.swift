@@ -10,6 +10,7 @@ import FirebaseFirestore
 import Loaf
 import EventKit
 import EventKitUI
+import Reachability
 
 protocol OnGoingDelegate {
     
@@ -27,6 +28,8 @@ class OnGoingTasksViewController: UIViewController, Animations {
     private let authManager = AuthManager()
     
     let store = EKEventStore()
+    
+    let reachability = try! Reachability()
     
     private var tasks: [Task] = [] {
         didSet {
@@ -52,12 +55,32 @@ class OnGoingTasksViewController: UIViewController, Animations {
         super.viewWillAppear(animated)
         
         addTasksListener()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        
+        do {
+            
+            try reachability.startNotifier()
+            
+        } catch {
+            
+            print("Unable to start notifier")
+            
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        reachability.stopNotifier()
+        
+        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
     
     // MARK: - Helpers
@@ -254,6 +277,24 @@ class OnGoingTasksViewController: UIViewController, Animations {
                 }
             }
         }
+    }
+    
+    @objc private func reachabilityChanged(note: Notification) {
+        
+        let reachability = note.object as! Reachability
+        
+        switch reachability.connection {
+            
+        case .wifi:
+            print("Wifi connection")
+        case .cellular:
+            print("Cellular connection")
+        case .unavailable:
+            toast(loafState: .error, message: "No connection. Please connect to the internet to continue", duration: 5.0)
+        default:
+            print("No connection")
+        }
+        
     }
 }
 
