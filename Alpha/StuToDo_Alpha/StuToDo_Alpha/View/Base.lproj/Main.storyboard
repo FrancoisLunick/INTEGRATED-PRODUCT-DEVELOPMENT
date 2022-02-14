@@ -1600,7 +1600,7 @@
                                     <constraint firstAttribute="width" constant="183" id="1Gm-So-lCp"/>
                                     <constraint firstAttribute="height" constant="45" id="crF-d5-EPV"/>
                                 </constraints>
-                                <color key="tintColor" red="0.58324164150000002" green="0.12246673550000001" blue="0.29804837699999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.58431372549019611" green="0.12156862745098039" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="DELETE"/>
                                 <connections>
@@ -1619,7 +1619,7 @@
                                     <constraint firstAttribute="height" constant="45" id="WEN-1P-3h2"/>
                                     <constraint firstAttribute="width" constant="183" id="tw9-Ty-jn6"/>
                                 </constraints>
-                                <color key="tintColor" red="0.34887331719999998" green="0.66542118790000004" blue="0.74903327230000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.34901960784313724" green="0.66666666666666663" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="EDIT"/>
                                 <connections>
@@ -1642,7 +1642,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="DLk-XW-XJV"/>
                                 </constraints>
-                                <color key="tintColor" red="0.9241800308" green="0.3406933546" blue="0.61178654430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.92549019607843142" green="0.3411764705882353" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="CANCEL"/>
                                 <connections>
