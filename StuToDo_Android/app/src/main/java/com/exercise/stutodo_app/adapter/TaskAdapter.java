@@ -29,6 +29,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     private String key = "";
     private String taskTitleString;
     private String taskNoteString;
+    private String taskDateString;
+    private String taskID;
 
     public TaskAdapter(Context context, ArrayList<TaskModel> tasks) {
         this.context = context;
@@ -54,7 +56,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.taskTitle.setText(task.getTitle());
         holder.taskNote.setText(task.getNote());
         holder.taskDue.setText("Task Due Soon");
-        holder.taskDate.setText(task.getDueDate().toDate().toString());
+        //holder.taskDate.setText(task.getDueDate().toDate().toString());
+        holder.taskDate.setText(task.getDueDate().toString());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,12 +65,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
                 taskTitleString = tasks.get(holder.getAdapterPosition()).getTitle();
                 taskNoteString = tasks.get(holder.getAdapterPosition()).getNote();
+                //taskDateString = tasks.get(holder.getAdapterPosition()).getDueDate().toDate().toString();
+                taskDateString = tasks.get(holder.getAdapterPosition()).getDueDate().toString();
+                taskID = tasks.get(holder.getAdapterPosition()).getTaskID();
 
                 Log.v("Task", "title" + taskTitleString);
 
                 Intent intent = new Intent(context.getApplicationContext(), TaskDetailActivity.class);
                 intent.putExtra("taskTitle", taskTitleString);
                 intent.putExtra("taskNote", taskNoteString);
+                intent.putExtra("taskDate", taskDateString);
+                intent.putExtra("taskID", taskID);
 
                 context.startActivity(intent);
 
