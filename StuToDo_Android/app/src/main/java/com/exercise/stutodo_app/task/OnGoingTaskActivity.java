@@ -1,5 +1,6 @@
 package com.exercise.stutodo_app.task;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,21 +11,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.adapter.TaskAdapter;
 import com.exercise.stutodo_app.login.LoginActivity;
 import com.exercise.stutodo_app.models.TaskModel;
+import com.exercise.stutodo_app.profile.ProfileActivity;
 import com.exercise.stutodo_app.signup.SignUpActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
 
@@ -35,6 +42,7 @@ public class OnGoingTaskActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
     private FloatingActionButton mAddTaskButton;
+    private ImageButton profileImageButton;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -55,6 +63,7 @@ public class OnGoingTaskActivity extends AppCompatActivity {
 
         mRecyclerView = findViewById(R.id.onGoingRecyclerview);
         mAddTaskButton = findViewById(R.id.onGoingFloatingButton);
+        profileImageButton = findViewById(R.id.profileButton);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -86,35 +95,73 @@ public class OnGoingTaskActivity extends AppCompatActivity {
             }
         });
 
+        profileImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent toProfileIntent = new Intent(OnGoingTaskActivity.this, ProfileActivity.class);
+
+                startActivity(toProfileIntent);
+
+            }
+        });
+
     }
 
     private void EventChangeListener() {
 
-        mDatabaseReference.collection(FirebaseConstants.tasks).orderBy(FirebaseConstants.TITLE, Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+        CollectionReference taskCollectionRef = mDatabaseReference.collection(FirebaseConstants.tasks);
 
-                        if (error != null) {
+        Query taskQuery = taskCollectionRef
+                .whereEqualTo(FirebaseConstants.UID, mFirebaseUser.getUid())
+                .orderBy(FirebaseConstants.DUEDATE, Query.Direction.ASCENDING);
 
-                            Log.e("error", error.getMessage());
+        taskQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                            return;
-                        }
+                if (task.isSuccessful()) {
 
-                        for (DocumentChange dc: value.getDocumentChanges()) {
+                    for(QueryDocumentSnapshot documentSnapshot: task.getResult()) {
 
-                            if (dc.getType() == DocumentChange.Type.ADDED) {
-
-                                tasks.add(dc.getDocument().toObject(TaskModel.class));
-
-                            }
-
-                            taskAdapter.notifyDataSetChanged();
-
-                        }
+                        tasks.add(documentSnapshot.toObject(TaskModel.class));
                     }
-                });
+
+                    taskAdapter.notifyDataSetChanged();
+
+                } else {
+
+                    Log.e("TASK", "Failed to query data");
+
+                }
+            }
+        });
+
+//        mDatabaseReference.collection(FirebaseConstants.tasks).orderBy(FirebaseConstants.TITLE, Query.Direction.ASCENDING)
+//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+//
+//                        if (error != null) {
+//
+//                            Log.e("error", error.getMessage());
+//
+//                            return;
+//                        }
+//
+//                        for (DocumentChange dc: value.getDocumentChanges()) {
+//
+//                            if (dc.getType() == DocumentChange.Type.ADDED) {
+//
+//                                tasks.add(dc.getDocument().toObject(TaskModel.class));
+//
+//                            }
+//
+//                            taskAdapter.notifyDataSetChanged();
+//
+//                        }
+//                    }
+//                });
     }
 
     @Override
