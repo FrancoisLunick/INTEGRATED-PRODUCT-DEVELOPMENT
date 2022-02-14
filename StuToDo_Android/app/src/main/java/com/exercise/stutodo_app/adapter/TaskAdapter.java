@@ -1,6 +1,8 @@
 package com.exercise.stutodo_app.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.models.TaskModel;
+import com.exercise.stutodo_app.task.TaskDetailActivity;
 import com.google.android.gms.tasks.Task;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
@@ -21,6 +25,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     Context context;
     ArrayList<TaskModel> tasks;
+
+    private String key = "";
+    private String taskTitleString;
+    private String taskNoteString;
 
     public TaskAdapter(Context context, ArrayList<TaskModel> tasks) {
         this.context = context;
@@ -41,10 +49,30 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
         TaskModel task = tasks.get(position);
 
+        //String date = DateFormat.getDateInstance().format(task.getDueDate());
+
         holder.taskTitle.setText(task.getTitle());
         holder.taskNote.setText(task.getNote());
         holder.taskDue.setText("Task Due Soon");
-        holder.taskDate.setText(task.getDueDate());
+        holder.taskDate.setText(task.getDueDate().toDate().toString());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                taskTitleString = tasks.get(holder.getAdapterPosition()).getTitle();
+                taskNoteString = tasks.get(holder.getAdapterPosition()).getNote();
+
+                Log.v("Task", "title" + taskTitleString);
+
+                Intent intent = new Intent(context.getApplicationContext(), TaskDetailActivity.class);
+                intent.putExtra("taskTitle", taskTitleString);
+                intent.putExtra("taskNote", taskNoteString);
+
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
