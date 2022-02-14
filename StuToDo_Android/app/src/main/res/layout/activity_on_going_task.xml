@@ -7,14 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".task.OnGoingTaskActivity">
 
+    <ImageButton
+        android:id="@+id/profileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_baseline_person_24"
+        android:backgroundTint="@color/white"/>
+
     <TextView
         android:id="@+id/taskTitle_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/recyclerViewCoorLayout"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Tasks"
         android:textSize="32sp"
         android:textStyle="bold"
