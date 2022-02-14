@@ -1,25 +1,26 @@
 package com.exercise.stutodo_app.models;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.Date;
 
 public class TaskModel {
 
     private String title;
-    //private String dueDate;
-    private Timestamp dueDate;
+    private Date dueDate;
+    //private Timestamp dueDate;
     private String note;
-    private Date createdAt;
+    private @ServerTimestamp Date createdAt;
     private String taskID;
     private boolean isDone;
     private String uid;
-    private String completedAt;
+    private Date completedAt;
 
     public TaskModel() {
     }
 
-    public TaskModel(String title, Timestamp dueDate, String note, Date createdAt, String taskID, boolean isDone, String uid) {
+    public TaskModel(String title, Date dueDate, String note, Date createdAt, String taskID, boolean isDone, String uid, Date completedAt) {
 
         this.title = title;
         this.dueDate = dueDate;
@@ -28,15 +29,14 @@ public class TaskModel {
         this.taskID = taskID;
         this.isDone = isDone;
         this.uid = uid;
-        //this.completedAt = completedAt;
-        //String completedAt
+        this.completedAt = completedAt;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public Timestamp getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 
@@ -60,15 +60,15 @@ public class TaskModel {
         return uid;
     }
 
-//    public String getCompletedAt() {
-//        return completedAt;
-//    }
+    public Date getCompletedAt() {
+        return completedAt;
+    }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setDueDate(Timestamp dueDate) {
+    public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -92,7 +92,7 @@ public class TaskModel {
         this.uid = uid;
     }
 
-//    public void setCompletedAt(String completedAt) {
-//        this.completedAt = completedAt;
-//    }
+    public void setCompletedAt(Date completedAt) {
+        this.completedAt = completedAt;
+    }
 }
