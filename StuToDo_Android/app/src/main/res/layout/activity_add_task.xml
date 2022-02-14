@@ -47,12 +47,13 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:hint="@string/addTitle_hint"/>
+            android:hint="@string/addTitle_hint"
+            android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <CalendarView
+    <DatePicker
         android:id="@+id/taskCalendarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
