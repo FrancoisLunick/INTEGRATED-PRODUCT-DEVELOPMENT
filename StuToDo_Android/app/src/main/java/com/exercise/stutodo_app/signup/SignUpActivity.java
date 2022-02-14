@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.login.LoginActivity;
+import com.exercise.stutodo_app.task.AddTaskActivity;
 import com.exercise.stutodo_app.task.OnGoingTaskActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -57,6 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
     private String mUniversity;
     private String mEmail;
     private String mPassword;
+    private String mUserID;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -74,10 +76,10 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseReference = FirebaseFirestore.getInstance();
         mStorageReference = FirebaseStorage.getInstance().getReference();
 
+        mFirebaseAuth = FirebaseAuth.getInstance();
 
         mFirstNameEditText = findViewById(R.id.firstName_editText);
         mLastNameEditText = findViewById(R.id.lastName_editText);
@@ -142,6 +144,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
+                        mUserID = mFirebaseUser.getUid();
+
                         //if(mLocalURI != null) {
                             createProfile();
                         //}
@@ -166,6 +170,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         StorageReference fileReference = mStorageReference.child("profile_images/" + filename);
 
+        DocumentReference userRef = mDatabaseReference.collection(FirebaseConstants.users)
+                .document(mUserID);
+
         fileReference.putFile(mLocalURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -188,7 +195,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                     if (task.isSuccessful()) {
 
-                                        String userID = mFirebaseUser.getUid();
+                                        //String userID = mFirebaseUser.getUid();
 
                                         //mDatabaseReference = FirebaseFirestore.getInstance().get
 
@@ -200,26 +207,46 @@ public class SignUpActivity extends AppCompatActivity {
                                         userHashMap.put(FirebaseConstants.AGE, mAgeEditText.getText().toString().trim());
                                         userHashMap.put(FirebaseConstants.UNIVERSITY, mUniversityEditText.getText().toString().trim());
                                         userHashMap.put(FirebaseConstants.EMAIL, mEmailEditText.getText().toString().trim());
-                                        userHashMap.put(FirebaseConstants.UID, userID);
+                                        userHashMap.put(FirebaseConstants.UID, mUserID);
 
-                                        mDatabaseReference.collection(FirebaseConstants.users)
-                                                .add(userHashMap)
-                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        userRef.set(userHashMap)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
-                                                    public void onSuccess(DocumentReference documentReference) {
+                                                    public void onComplete(@NonNull Task<Void> task) {
 
-                                                        Toast.makeText(SignUpActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                                                        if (task.isSuccessful()) {
 
-                                                        Intent intent = new Intent(SignUpActivity.this, OnGoingTaskActivity.class);
-                                                        startActivity(intent);
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(SignUpActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+
+                                                            Intent intent = new Intent(SignUpActivity.this, OnGoingTaskActivity.class);
+                                                            startActivity(intent);
+
+                                                        }  else {
+
+                                                            Log.e("TASK", "Failed to create user");
+                                                        }
 
                                                     }
                                                 });
+
+//                                        mDatabaseReference.collection(FirebaseConstants.users)
+//                                                .add(userHashMap)
+//                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                                                    @Override
+//                                                    public void onSuccess(DocumentReference documentReference) {
+//
+//                                                        Toast.makeText(SignUpActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+//
+//                                                        Intent intent = new Intent(SignUpActivity.this, OnGoingTaskActivity.class);
+//                                                        startActivity(intent);
+//                                                    }
+//                                                })
+//                                                .addOnFailureListener(new OnFailureListener() {
+//                                                    @Override
+//                                                    public void onFailure(@NonNull Exception e) {
+//
+//                                                    }
+//                                                });
                                     }
 
                                 }
