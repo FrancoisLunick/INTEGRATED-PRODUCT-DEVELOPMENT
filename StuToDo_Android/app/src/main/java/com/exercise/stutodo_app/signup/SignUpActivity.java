@@ -236,30 +236,11 @@ public class SignUpActivity extends AppCompatActivity {
 
                                                         }  else {
 
-                                                            Log.e("TASK", "Failed to create user");
+                                                            Toast.makeText(SignUpActivity.this, "Account Failed to Create", Toast.LENGTH_SHORT).show();
                                                         }
 
                                                     }
                                                 });
-
-//                                        mDatabaseReference.collection(FirebaseConstants.users)
-//                                                .add(userHashMap)
-//                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                                                    @Override
-//                                                    public void onSuccess(DocumentReference documentReference) {
-//
-//                                                        Toast.makeText(SignUpActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
-//
-//                                                        Intent intent = new Intent(SignUpActivity.this, OnGoingTaskActivity.class);
-//                                                        startActivity(intent);
-//                                                    }
-//                                                })
-//                                                .addOnFailureListener(new OnFailureListener() {
-//                                                    @Override
-//                                                    public void onFailure(@NonNull Exception e) {
-//
-//                                                    }
-//                                                });
                                     }
 
                                 }
