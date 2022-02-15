@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
-        android:text="Edit Task"
+        android:text="@string/editTaskTitle"
         android:fontFamily="@font/pingfangsc_semibold"
         android:textColor="@color/black"
         android:textSize="18sp"/>
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@id/editTaskTitle_textView"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
-        android:text="Update"/>
+        android:text="@string/updateButtonTitle"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edit_addTitle_textInputLayout"
@@ -58,7 +58,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:hint="@string/addTitle_hint"/>
+            android:hint="@string/addTitle_hint"
+            android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
