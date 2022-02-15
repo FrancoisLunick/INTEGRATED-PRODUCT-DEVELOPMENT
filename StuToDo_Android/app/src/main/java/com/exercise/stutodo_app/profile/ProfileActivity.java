@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import com.exercise.stutodo_app.login.LoginActivity;
 import com.exercise.stutodo_app.models.TaskModel;
 import com.exercise.stutodo_app.models.User;
 import com.exercise.stutodo_app.signup.SignUpActivity;
+import com.exercise.stutodo_app.task.AddTaskActivity;
 import com.exercise.stutodo_app.task.OnGoingTaskActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -64,6 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextInputEditText emailET;
     private MaterialButton saveChangesButton;
     private MaterialButton logoutButton;
+    private ImageButton backButton;
 
     private final int mRequestCode = 101;
 
@@ -111,8 +114,6 @@ public class ProfileActivity extends AppCompatActivity {
         emailET = findViewById(R.id.email_editText_profilePage);
         saveChangesButton = findViewById(R.id.saveChangesButton);
         logoutButton = findViewById(R.id.profile_logoutButton);
-
-        //saveChangesButton.setVisibility(View.VISIBLE);
 
         userID = firebaseUser.getUid();
 
@@ -219,6 +220,18 @@ public class ProfileActivity extends AppCompatActivity {
                 lastNameET.setEnabled(false);
                 ageET.setEnabled(false);
                 universityET.setEnabled(false);
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent backIntent = new Intent(ProfileActivity.this, OnGoingTaskActivity.class);
+
+                startActivity(backIntent);
+                finish();
+
             }
         });
 
