@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,6 +19,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 
@@ -73,12 +75,36 @@ public class DeleteProfileActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
 
-                                                        Toast.makeText(DeleteProfileActivity.this, "Account Deleted", Toast.LENGTH_LONG).show();
+                                                        if (task.isSuccessful()) {
 
-                                                        Intent backToLoginIntent = new Intent(DeleteProfileActivity.this, LoginActivity.class);
+                                                            DocumentReference userRef = mFirebaseFirestore.collection(FirebaseConstants.users)
+                                                                    .document(mFirebaseUser.getUid());
 
-                                                        startActivity(backToLoginIntent);
-                                                        finish();
+                                                            userRef.delete()
+                                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                        @Override
+                                                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                                                            if (task.isSuccessful()) {
+
+                                                                                Toast.makeText(DeleteProfileActivity.this, "Account Deleted", Toast.LENGTH_LONG).show();
+
+                                                                                Intent backToLoginIntent = new Intent(DeleteProfileActivity.this, LoginActivity.class);
+
+                                                                                startActivity(backToLoginIntent);
+                                                                                finish();
+
+                                                                            } else {
+
+                                                                                Toast.makeText(DeleteProfileActivity.this, "Failed to delete account", Toast.LENGTH_LONG).show();
+
+                                                                            }
+
+                                                                        }
+                                                                    });
+                                                        }
+
+
                                                     }
                                                 });
 
