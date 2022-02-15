@@ -72,7 +72,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:enabled="false"
-            android:hint="@string/name_hint"/>
+            android:hint="@string/name_hint"
+            android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +96,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:enabled="false"
-            android:hint="@string/lastName_hint"/>
+            android:hint="@string/lastName_hint"
+            android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,7 +120,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:enabled="false"
-            android:hint="@string/age_hint"/>
+            android:hint="@string/age_hint"
+            android:singleLine="true"
+            android:inputType="number"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,7 +145,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:enabled="false"
-            android:hint="@string/university_hint"/>
+            android:hint="@string/university_hint"
+            android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -164,7 +169,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:enabled="false"
-            android:hint="@string/email_hint"/>
+            android:hint="@string/email_hint"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
