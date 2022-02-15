@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StuToDo_App">
         <activity
+            android:name=".profile.DeleteProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".profile.ChangePasswordActivity"
             android:exported="false" />
         <activity
