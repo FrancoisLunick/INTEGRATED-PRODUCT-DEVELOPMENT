@@ -400,11 +400,19 @@ public class ProfileActivity extends AppCompatActivity {
 
          Intent toChangePassOrEmailIntent = new Intent(ProfileActivity.this, ChangeEmailAndPasswordActivity.class);
 
+         toChangePassOrEmailIntent.putExtra("firstname", user.getFirstName());
+         toChangePassOrEmailIntent.putExtra("lastname", user.getLastName());
+         toChangePassOrEmailIntent.putExtra("age", user.getAge());
+         toChangePassOrEmailIntent.putExtra("university", user.getUniversity());
          toChangePassOrEmailIntent.putExtra("email", user.getEmail());
          toChangePassOrEmailIntent.putExtra("uid", user.getUid());
-         toChangePassOrEmailIntent.putExtra("user", user);
+         toChangePassOrEmailIntent.putExtra("profileURL", user.getProfileImageUrl());
 
          startActivity(toChangePassOrEmailIntent);
+    }
+
+    public void deleteProfileClicked(View v) {
+
     }
 
     @Override
