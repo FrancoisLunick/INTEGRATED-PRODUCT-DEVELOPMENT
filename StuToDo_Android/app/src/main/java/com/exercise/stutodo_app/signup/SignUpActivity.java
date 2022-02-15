@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
     private TextInputEditText mPasswordEditText;
     private ImageView mProfileImageView;
     private MaterialButton mSignUpButton;
+    private ImageButton backButton;
 
     private String mFirstName;
     private String mLastName;
@@ -89,6 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
         mPasswordEditText = findViewById(R.id.register_password_editText);
         mProfileImageView = findViewById(R.id.profileImageView);
         mSignUpButton = findViewById(R.id.register_SignupButton);
+        backButton = findViewById(R.id.backButton);
 
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +101,17 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        //createProfile();
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent backIntent = new Intent(SignUpActivity.this, LoginActivity.class);
+
+                startActivity(backIntent);
+                finish();
+
+            }
+        });
     }
 
     public void registerUser(View v) {
