@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.login.LoginActivity;
+import com.exercise.stutodo_app.task.AddTaskActivity;
+import com.exercise.stutodo_app.task.OnGoingTaskActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -26,6 +29,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private TextInputEditText currentPasswordET;
     private TextInputEditText newPasswordET;
     private MaterialButton changePasswordButton;
+    private ImageButton backButton;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -47,6 +51,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         currentPasswordET = findViewById(R.id.currentPass_editText);
         newPasswordET = findViewById(R.id.newPass_editText);
         changePasswordButton = findViewById(R.id.changePass_buttonCE);
+        backButton = findViewById(R.id.changePassword_backButton);
 
         changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +104,18 @@ public class ChangePasswordActivity extends AppCompatActivity {
                                 }
                             });
                 }
+
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent backIntent = new Intent(ChangePasswordActivity.this, ChangeEmailAndPasswordActivity.class);
+
+                startActivity(backIntent);
+                finish();
 
             }
         });
