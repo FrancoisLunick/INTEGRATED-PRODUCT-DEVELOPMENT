@@ -70,7 +70,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:hint="Current Email"/>
+                android:hint="@string/currentEmailHint"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +90,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:hint="Current Password"/>
+                android:hint="@string/currentPasswordHint"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,7 +108,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:hint="New Email"/>
+                android:hint="@string/newEmailHint"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +125,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/tealish"
-        android:text="Change Email"/>
+        android:text="@string/changeEmailButtonText"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
