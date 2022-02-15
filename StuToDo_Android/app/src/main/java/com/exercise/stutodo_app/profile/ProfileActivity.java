@@ -1,27 +1,38 @@
 package com.exercise.stutodo_app.profile;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.login.LoginActivity;
 import com.exercise.stutodo_app.models.TaskModel;
 import com.exercise.stutodo_app.models.User;
+import com.exercise.stutodo_app.signup.SignUpActivity;
+import com.exercise.stutodo_app.task.OnGoingTaskActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,8 +40,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -63,6 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+    private StorageReference mStorageReference;
 
     private FirebaseFirestore mDatabaseReference;
 
@@ -75,6 +93,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+        mStorageReference = FirebaseStorage.getInstance().getReference();
 
         mDatabaseReference = FirebaseFirestore.getInstance();
 
@@ -89,6 +109,8 @@ public class ProfileActivity extends AppCompatActivity {
         emailET = findViewById(R.id.email_editText_profilePage);
         saveChangesButton = findViewById(R.id.saveChangesButton);
         logoutButton = findViewById(R.id.profile_logoutButton);
+
+        //saveChangesButton.setVisibility(View.VISIBLE);
 
         userID = firebaseUser.getUid();
 
@@ -120,6 +142,16 @@ public class ProfileActivity extends AppCompatActivity {
 
                     }
                 });
+
+        if(mRemoteURI != null) {
+
+            Glide.with(this)
+                    .load(mRemoteURI)
+                    .placeholder(R.drawable.ic_baseline_person_24)
+                    .error(R.drawable.ic_baseline_person_24)
+                    .into(profileImageView);
+
+        }
 
 //        CollectionReference userCollectionRef = mDatabaseReference.collection(FirebaseConstants.users);
 //
@@ -157,5 +189,230 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        saveChangesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (mLocalURI != null) {
+
+                    updateProfile();
+
+                } else {
+
+                    updateProfileWOPicture();
+                }
+
+                saveChangesButton.setVisibility(View.INVISIBLE);
+                editProfileTV.setVisibility(View.VISIBLE);
+
+                firstNameET.setEnabled(false);
+                lastNameET.setEnabled(false);
+                ageET.setEnabled(false);
+                universityET.setEnabled(false);
+            }
+        });
+
+    }
+
+    private void updateProfile() {
+
+        String filename = UUID.randomUUID().toString();
+
+        StorageReference fileReference = mStorageReference.child("profile_images/" + filename);
+
+        DocumentReference userRef = mDatabaseReference.collection(FirebaseConstants.users)
+                .document(userID);
+
+        fileReference.putFile(mLocalURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                if(task.isSuccessful()) {
+
+                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            mRemoteURI = uri;
+
+                            UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                                    .setPhotoUri(mRemoteURI)
+                                    .build();
+
+                            firebaseUser.updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if(task.isSuccessful()) {
+
+                                        //String userID = mFirebaseUser.getUid();
+
+                                        //DatabaseReference = FirebaseDatabase.getInstance().getReference().child(FirebaseNames.USERS);
+
+                                        HashMap<String, String> userHashMap = new HashMap<>();
+
+                                        userHashMap.put(FirebaseConstants.PROFILEIMAGEURL, mRemoteURI.getPath());
+                                        userHashMap.put(FirebaseConstants.FIRSTNAME, firstNameET.getText().toString().trim());
+                                        userHashMap.put(FirebaseConstants.LASTNAME, lastNameET.getText().toString().trim());
+                                        userHashMap.put(FirebaseConstants.AGE, ageET.getText().toString().trim());
+                                        userHashMap.put(FirebaseConstants.UNIVERSITY, universityET.getText().toString().trim());
+                                        userHashMap.put(FirebaseConstants.EMAIL, emailET.getText().toString().trim());
+                                        userHashMap.put(FirebaseConstants.UID, userID);
+
+                                        userRef.set(userHashMap)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                                        if (task.isSuccessful()) {
+
+                                                            Toast.makeText(ProfileActivity.this, "Changes Saved", Toast.LENGTH_LONG).show();
+
+                                                        }  else {
+
+                                                            Log.e("TASK", "Failed to save changes");
+                                                        }
+
+                                                    }
+                                                });
+
+
+                                    } else {
+
+                                        Toast.makeText(ProfileActivity.this, "Failed to save changes", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+
+    }
+
+    private void updateProfileWOPicture() {
+
+        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                .build();
+
+        DocumentReference userRef = mDatabaseReference.collection(FirebaseConstants.users)
+                .document(userID);
+
+        firebaseUser.updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful()) {
+
+                    HashMap<String, String> userHashMap = new HashMap<>();
+
+                    userHashMap.put(FirebaseConstants.PROFILEIMAGEURL, mRemoteURI.getPath());
+                    userHashMap.put(FirebaseConstants.FIRSTNAME, firstNameET.getText().toString().trim());
+                    userHashMap.put(FirebaseConstants.LASTNAME, lastNameET.getText().toString().trim());
+                    userHashMap.put(FirebaseConstants.AGE, ageET.getText().toString().trim());
+                    userHashMap.put(FirebaseConstants.UNIVERSITY, universityET.getText().toString().trim());
+                    userHashMap.put(FirebaseConstants.EMAIL, emailET.getText().toString().trim());
+                    userHashMap.put(FirebaseConstants.UID, userID);
+
+                    userRef.set(userHashMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if (task.isSuccessful()) {
+
+                                        Toast.makeText(ProfileActivity.this, "Changes Saved", Toast.LENGTH_LONG).show();
+
+                                    }  else {
+
+                                        Log.e("TASK", "Failed to save changes");
+                                    }
+
+                                }
+                            });
+                } else {
+
+                    Toast.makeText(ProfileActivity.this, "Failed to save changes", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+    }
+
+    public void profileImageClicked(View v) {
+
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+            Uri mediaURI = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+
+            Intent pictureIntent = new Intent(Intent.ACTION_PICK, mediaURI);
+            startActivityForResult(pictureIntent, mRequestCode);
+
+        } else {
+
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 102);
+        }
+
+
+
+    }
+
+    public void editProfileTVClicked(View v) {
+
+        editProfileTV.setVisibility(View.INVISIBLE);
+        saveChangesButton.setVisibility(View.VISIBLE);
+
+        firstNameET.setEnabled(true);
+        lastNameET.setEnabled(true);
+        ageET.setEnabled(true);
+        universityET.setEnabled(true);
+
+
+    }
+
+    public void changePassOrEmailClicked(View v) {
+
+         Intent toChangePassOrEmailIntent = new Intent(ProfileActivity.this, ChangeEmailAndPasswordActivity.class);
+
+         startActivity(toChangePassOrEmailIntent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == mRequestCode) {
+
+            if(resultCode == RESULT_OK) {
+
+                mLocalURI = data.getData();
+
+                profileImageView.setImageURI(mLocalURI);
+
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == 102) {
+
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                Uri mediaURI = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+
+                Intent pictureIntent = new Intent(Intent.ACTION_PICK, mediaURI);
+                startActivityForResult(pictureIntent, mRequestCode);
+
+            } else {
+
+                Toast.makeText(this, "Permission is Required", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
