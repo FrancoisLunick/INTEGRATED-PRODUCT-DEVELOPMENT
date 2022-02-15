@@ -42,4 +42,12 @@
     <string name="editButtonText">Edit</string>
     <string name="deleteButtonText">Delete</string>
     <string name="cancelButtonText">Cancel</string>
+    <string name="addTaskTitle">Add Task</string>
+    <string name="addTaskButtonText">Add Task</string>
+    <string name="changeEmailLabel">Change Email</string>
+    <string name="changeEmailMessage">You are attemping to change your email. To do so please enter your current email and password.</string>
+    <string name="welcomeToStutodoLabel">Welcome to StuToDo</string>
+    <string name="stutodo_welcomeMessage">where we let college students be great again.</string>
+    <string name="getStartedButtonText">Get Started</string>
+    <string name="ongoingTasksTitle">Tasks</string>
 </resources>
