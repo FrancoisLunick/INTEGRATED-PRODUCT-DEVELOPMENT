@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 
 import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
@@ -26,15 +27,16 @@ import java.util.Date;
 
 public class EditTaskActivity extends AppCompatActivity {
 
-    TextInputEditText taskTitleEditText;
-    TextInputEditText taskNotesEditText;
-    DatePicker taskDateCalendarView;
-    MaterialButton updateButton;
+    private TextInputEditText taskTitleEditText;
+    private TextInputEditText taskNotesEditText;
+    private DatePicker taskDateCalendarView;
+    private MaterialButton updateButton;
+    private ImageButton backButton;
 
-    String taskTitle;
-    String taskNote;
-    Date taskDate;
-    String taskID;
+    private String taskTitle;
+    private String taskNote;
+    private Date taskDate;
+    private String taskID;
 
     private FirebaseFirestore mDB;
 
@@ -49,6 +51,7 @@ public class EditTaskActivity extends AppCompatActivity {
         taskNotesEditText = findViewById(R.id.edit_addNotes_editText);
         taskDateCalendarView = findViewById(R.id.edit_taskCalendarView);
         updateButton = findViewById(R.id.updateTaskButton);
+        backButton = findViewById(R.id.editTask_backButton);
 
         Intent intent = getIntent();
         taskTitle = intent.getStringExtra("taskTitle");
@@ -112,6 +115,18 @@ public class EditTaskActivity extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent backIntent = new Intent(EditTaskActivity.this, TaskDetailActivity.class);
+
+                startActivity(backIntent);
+                finish();
+
             }
         });
     }
