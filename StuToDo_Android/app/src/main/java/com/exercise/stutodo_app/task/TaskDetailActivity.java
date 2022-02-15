@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.exercise.stutodo_app.FirebaseConstants;
@@ -19,17 +20,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class TaskDetailActivity extends AppCompatActivity {
 
-    TextView titleTextView;
-    TextView dateTextView;
-    TextView notesTextView;
-    MaterialButton editButton;
-    MaterialButton deleteButton;
-    MaterialButton cancelButton;
+    private TextView titleTextView;
+    private TextView dateTextView;
+    private TextView notesTextView;
+    private MaterialButton editButton;
+    private MaterialButton deleteButton;
+    private MaterialButton cancelButton;
+    private ImageButton backButton;
 
-    String taskTitle;
-    String taskNote;
-    String taskDate;
-    String taskID;
+    private String taskTitle;
+    private String taskNote;
+    private String taskDate;
+    private String taskID;
 
     private FirebaseFirestore mDB;
 
@@ -46,6 +48,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         editButton = findViewById(R.id.editTaskButton);
         deleteButton = findViewById(R.id.deleteTaskButton);
         cancelButton = findViewById(R.id.cancelTaskDetailButton);
+        backButton = findViewById(R.id.taskDetail_backButton);
 
         Intent intent = getIntent();
 
@@ -112,6 +115,18 @@ public class TaskDetailActivity extends AppCompatActivity {
                 startActivity(toOngoingIntent);
 
                 finish();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent backIntent = new Intent(TaskDetailActivity.this, OnGoingTaskActivity.class);
+
+                startActivity(backIntent);
+                finish();
+
             }
         });
     }
