@@ -5,15 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.models.User;
+import com.exercise.stutodo_app.task.AddTaskActivity;
+import com.exercise.stutodo_app.task.OnGoingTaskActivity;
 import com.google.android.material.button.MaterialButton;
 
 public class ChangeEmailAndPasswordActivity extends AppCompatActivity {
 
-    MaterialButton changeEmailButton;
-    MaterialButton changePasswordButton;
+    private MaterialButton changeEmailButton;
+    private MaterialButton changePasswordButton;
+    private ImageButton backButton;
 
     private User user;
     private String firstname;
@@ -33,6 +37,7 @@ public class ChangeEmailAndPasswordActivity extends AppCompatActivity {
 
         changeEmailButton = findViewById(R.id.changeEmailButton);
         changePasswordButton = findViewById(R.id.changePasswordButton);
+        backButton = findViewById(R.id.changePAndE_backButton);
 
         Intent intent = getIntent();
         //user = intent.getParcelableExtra("user");
@@ -79,6 +84,18 @@ public class ChangeEmailAndPasswordActivity extends AppCompatActivity {
                 toChangePasswordIntent.putExtra("profileURL", profileURL);
 
                 startActivity(toChangePasswordIntent);
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent backIntent = new Intent(ChangeEmailAndPasswordActivity.this, ProfileActivity.class);
+
+                startActivity(backIntent);
+                finish();
+
             }
         });
     }
