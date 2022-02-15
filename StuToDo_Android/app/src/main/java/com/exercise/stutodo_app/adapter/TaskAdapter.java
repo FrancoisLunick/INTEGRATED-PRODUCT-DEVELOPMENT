@@ -86,29 +86,28 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             }
         });
 
-        holder.addToCalendarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("Task", "Add to calendar");
-
-                Intent intent = new Intent(Intent.ACTION_INSERT);
-                intent.setData(CalendarContract.CONTENT_URI);
-                intent.putExtra(CalendarContract.Events.TITLE, tasks.get(holder.getAdapterPosition()).getTitle());
-                intent.putExtra(CalendarContract.Events.DESCRIPTION, tasks.get(holder.getAdapterPosition()).getNote());
-                intent.putExtra(CalendarContract.Events.ALL_DAY, true);
-
-                if(intent.resolveActivity(context.getPackageManager()) != null) {
-
-                    context.startActivity(intent);
-
-                } else {
-
-                    Toast.makeText(context, "App does not support this action", Toast.LENGTH_LONG).show();
-
-                }
-
-            }
-        });
+//        holder.addToCalendarButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.i("Task", "Add to calendar");
+//
+//                Intent intent = new Intent(Intent.ACTION_INSERT);
+//                intent.setData(CalendarContract.Events.CONTENT_URI);
+//                intent.putExtra(CalendarContract.Events.TITLE, tasks.get(holder.getAdapterPosition()).getTitle());
+//                intent.putExtra(CalendarContract.Events.DESCRIPTION, tasks.get(holder.getAdapterPosition()).getNote());
+//                intent.putExtra(CalendarContract.Events.ALL_DAY, true);
+//
+//                if(intent.resolveActivity(context.getPackageManager()) != null) {
+//
+//                    context.startActivity(intent);
+//
+//                } else {
+//
+//                    Toast.makeText(context, "App does not support this action", Toast.LENGTH_LONG).show();
+//
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -122,7 +121,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         TextView taskNote;
         TextView taskDue;
         TextView taskDate;
-        ImageButton addToCalendarButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -131,8 +129,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             taskNote = itemView.findViewById(R.id.custom_item_note);
             taskDue = itemView.findViewById(R.id.custom_item_due);
             taskDate = itemView.findViewById(R.id.custom_item_date);
-            addToCalendarButton = itemView.findViewById(R.id.addToCalendarButton);
-
+            
         }
 
     }
