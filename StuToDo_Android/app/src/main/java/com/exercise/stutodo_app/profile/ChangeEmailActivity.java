@@ -129,11 +129,19 @@ public class ChangeEmailActivity extends AppCompatActivity {
 
                                                                                     if (task.isSuccessful()) {
 
-                                                                                        Log.e("TASK", "Saved changes");
+                                                                                        Toast.makeText(ChangeEmailActivity.this, "Email Changed", Toast.LENGTH_LONG).show();
+
+                                                                                        mFirebaseAuth.signOut();
+
+                                                                                        Intent backToLoginIntent = new Intent(ChangeEmailActivity.this, LoginActivity.class);
+
+                                                                                        startActivity(backToLoginIntent);
+                                                                                        finish();
 
                                                                                     }  else {
 
-                                                                                        Log.e("TASK", "Failed to save changes");
+                                                                                        Toast.makeText(ChangeEmailActivity.this, "Email Failed to Change", Toast.LENGTH_LONG).show();
+
                                                                                     }
 
                                                                                 }
@@ -143,14 +151,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
                                                         });
 
 
-                                                        Toast.makeText(ChangeEmailActivity.this, "Email Changed", Toast.LENGTH_LONG).show();
 
-                                                        mFirebaseAuth.signOut();
-
-                                                        Intent backToLoginIntent = new Intent(ChangeEmailActivity.this, LoginActivity.class);
-
-                                                        startActivity(backToLoginIntent);
-                                                        finish();
 
                                                     } else {
 
