@@ -1,6 +1,8 @@
 package com.exercise.stutodo_app.models;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String uid;
     private String profileImageUrl;
