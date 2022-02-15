@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.login.LoginActivity;
+import com.exercise.stutodo_app.task.AddTaskActivity;
+import com.exercise.stutodo_app.task.OnGoingTaskActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -32,6 +35,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
     private TextInputEditText currentPasswordEditText;
     private TextInputEditText newEmailEditText;
     private MaterialButton changeEmailButton;
+    private ImageButton backButton;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -60,6 +64,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
         currentPasswordEditText = findViewById(R.id.currentPassword_editText);
         newEmailEditText = findViewById(R.id.newEmail_editText);
         changeEmailButton = findViewById(R.id.changeEmail_buttonCE);
+        backButton = findViewById(R.id.changeEmail_backButton);
 
         Intent intent = getIntent();
 
@@ -158,6 +163,18 @@ public class ChangeEmailActivity extends AppCompatActivity {
 
 
                 }
+
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent backIntent = new Intent(ChangeEmailActivity.this, ChangeEmailAndPasswordActivity.class);
+
+                startActivity(backIntent);
+                finish();
 
             }
         });
