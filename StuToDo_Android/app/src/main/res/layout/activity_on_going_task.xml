@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toTopOf="@id/recyclerViewCoorLayout"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Tasks"
+        android:text="@string/ongoingTasksTitle"
         android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
@@ -56,9 +56,5 @@
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-<!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
