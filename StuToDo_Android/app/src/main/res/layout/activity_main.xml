@@ -27,7 +27,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
-        android:text="Welcome to StuToDo"
+        android:text="@string/welcomeToStutodoLabel"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -44,7 +44,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
-        android:text="where we let college students be great again."
+        android:text="@string/stutodo_welcomeMessage"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="normal"
@@ -61,6 +61,6 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/dark_grey"
         android:textColor="@color/white"
-        android:text="Get Started"/>
+        android:text="@string/getStartedButtonText"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
