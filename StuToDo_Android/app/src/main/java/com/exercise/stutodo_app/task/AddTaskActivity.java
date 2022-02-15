@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.exercise.stutodo_app.FirebaseConstants;
@@ -44,6 +45,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private DatePicker taskCalendarView;
     private TextInputEditText notesEditText;
     private MaterialButton addTaskButton;
+    private ImageButton backButton;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -73,6 +75,7 @@ public class AddTaskActivity extends AppCompatActivity {
         taskCalendarView = findViewById(R.id.taskCalendarView);
         notesEditText = findViewById(R.id.addNotes_editText);
         addTaskButton = findViewById(R.id.addTaskButton);
+        backButton = findViewById(R.id.addTask_backButton);
 
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,6 +181,17 @@ public class AddTaskActivity extends AppCompatActivity {
 //                                }
 //                            });
                 }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent backIntent = new Intent(AddTaskActivity.this, OnGoingTaskActivity.class);
+
+                startActivity(backIntent);
+                finish();
             }
         });
     }
