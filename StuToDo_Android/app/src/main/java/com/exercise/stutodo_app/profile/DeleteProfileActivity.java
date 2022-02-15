@@ -6,11 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.login.LoginActivity;
+import com.exercise.stutodo_app.task.AddTaskActivity;
+import com.exercise.stutodo_app.task.OnGoingTaskActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -28,6 +31,7 @@ public class DeleteProfileActivity extends AppCompatActivity {
     private TextInputEditText emailET;
     private TextInputEditText passwordET;
     private MaterialButton deleteButton;
+    private ImageButton backButton;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -50,6 +54,7 @@ public class DeleteProfileActivity extends AppCompatActivity {
         emailET = findViewById(R.id.deleteProfile_emailET);
         passwordET = findViewById(R.id.deleteProfile_passwordET);
         deleteButton = findViewById(R.id.deleteProfileButton);
+        backButton = findViewById(R.id.deleteProfile_backButton);
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +117,18 @@ public class DeleteProfileActivity extends AppCompatActivity {
                                 }
                             });
                 }
+
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent backIntent = new Intent(DeleteProfileActivity.this, ProfileActivity.class);
+
+                startActivity(backIntent);
+                finish();
 
             }
         });
