@@ -114,6 +114,7 @@ public class ProfileActivity extends AppCompatActivity {
         emailET = findViewById(R.id.email_editText_profilePage);
         saveChangesButton = findViewById(R.id.saveChangesButton);
         logoutButton = findViewById(R.id.profile_logoutButton);
+        backButton = findViewById(R.id.profilePage_backButton);
 
         userID = firebaseUser.getUid();
 
