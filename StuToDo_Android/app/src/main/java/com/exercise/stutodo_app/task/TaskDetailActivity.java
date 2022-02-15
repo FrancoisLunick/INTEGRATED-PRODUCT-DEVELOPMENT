@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
@@ -27,6 +29,7 @@ public class TaskDetailActivity extends AppCompatActivity {
     private MaterialButton deleteButton;
     private MaterialButton cancelButton;
     private ImageButton backButton;
+    //private ImageButton addToCalendarButton;
 
     private String taskTitle;
     private String taskNote;
