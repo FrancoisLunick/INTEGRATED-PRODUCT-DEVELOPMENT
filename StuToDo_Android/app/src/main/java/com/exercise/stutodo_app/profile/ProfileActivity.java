@@ -133,6 +133,14 @@ public class ProfileActivity extends AppCompatActivity {
                             email = task.getResult().getString("email");
                             profileImageUrl = task.getResult().getString("profileImageUrl");
 
+                            user.setFirstName(firstname);
+                            user.setLastName(lastname);
+                            user.setAge(age);
+                            user.setUniversity(university);
+                            user.setEmail(email);
+                            user.setProfileImageUrl(profileImageUrl);
+                            user.setUid(userID);
+
                             firstNameET.setText(firstname);
                             lastNameET.setText(lastname);
                             ageET.setText(age);
@@ -268,6 +276,14 @@ public class ProfileActivity extends AppCompatActivity {
 
                                                             Toast.makeText(ProfileActivity.this, "Changes Saved", Toast.LENGTH_LONG).show();
 
+                                                            user.setFirstName(firstNameET.getText().toString().trim());
+                                                            user.setLastName(lastNameET.getText().toString().trim());
+                                                            user.setAge(ageET.getText().toString().trim());
+                                                            user.setUniversity(universityET.getText().toString().trim());
+                                                            user.setEmail(emailET.getText().toString().trim());
+                                                            user.setProfileImageUrl(mRemoteURI.getPath());
+                                                            user.setUid(userID);
+
                                                         }  else {
 
                                                             Log.e("TASK", "Failed to save changes");
@@ -325,6 +341,14 @@ public class ProfileActivity extends AppCompatActivity {
 
                                         Toast.makeText(ProfileActivity.this, "Changes Saved", Toast.LENGTH_LONG).show();
 
+                                        user.setFirstName(firstNameET.getText().toString().trim());
+                                        user.setLastName(lastNameET.getText().toString().trim());
+                                        user.setAge(ageET.getText().toString().trim());
+                                        user.setUniversity(universityET.getText().toString().trim());
+                                        user.setEmail(emailET.getText().toString().trim());
+                                        user.setProfileImageUrl(mRemoteURI.getPath());
+                                        user.setUid(userID);
+
                                     }  else {
 
                                         Log.e("TASK", "Failed to save changes");
@@ -370,12 +394,15 @@ public class ProfileActivity extends AppCompatActivity {
         ageET.setEnabled(true);
         universityET.setEnabled(true);
 
-
     }
 
     public void changePassOrEmailClicked(View v) {
 
          Intent toChangePassOrEmailIntent = new Intent(ProfileActivity.this, ChangeEmailAndPasswordActivity.class);
+
+         toChangePassOrEmailIntent.putExtra("email", user.getEmail());
+         toChangePassOrEmailIntent.putExtra("uid", user.getUid());
+         toChangePassOrEmailIntent.putExtra("user", user);
 
          startActivity(toChangePassOrEmailIntent);
     }
