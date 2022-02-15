@@ -35,7 +35,7 @@
                                     <constraint firstAttribute="width" constant="42" id="3Jo-Eq-hMV"/>
                                     <constraint firstAttribute="height" constant="31" id="aVP-Gq-1HL"/>
                                 </constraints>
-                                <color key="tintColor" red="0.074759118740000005" green="0.72156862749999995" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.074509803921568626" green="0.72156862745098038" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="">
                                     <imageReference key="image" image="calendar.badge.plus" catalog="system" symbolScale="large"/>
