@@ -415,6 +415,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void deleteProfileClicked(View v) {
 
+        Intent toDeleteProfile = new Intent(ProfileActivity.this, DeleteProfileActivity.class);
+
+        startActivity(toDeleteProfile);
+
     }
 
     @Override
