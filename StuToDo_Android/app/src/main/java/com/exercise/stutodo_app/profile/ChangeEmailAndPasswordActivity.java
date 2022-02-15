@@ -16,7 +16,13 @@ public class ChangeEmailAndPasswordActivity extends AppCompatActivity {
     MaterialButton changePasswordButton;
 
     private User user;
+    private String firstname;
+    private String lastname;
+    private String age;
+    private String university;
     private String email;
+    private String uid;
+    private String profileURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +38,27 @@ public class ChangeEmailAndPasswordActivity extends AppCompatActivity {
         //user = intent.getParcelableExtra("user");
         email = intent.getStringExtra("email");
 
+        firstname = intent.getStringExtra("firstname");
+        lastname = intent.getStringExtra("lastname");
+        age = intent.getStringExtra("age");
+        university = intent.getStringExtra("university");
+        uid = intent.getStringExtra("uid");
+        profileURL = intent.getStringExtra("profileURL");
+
 
         changeEmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent toChangeEmailIntent = new Intent(ChangeEmailAndPasswordActivity.this, ChangeEmailActivity.class);
+
+                toChangeEmailIntent.putExtra("email", email);
+                toChangeEmailIntent.putExtra("firstname", firstname);
+                toChangeEmailIntent.putExtra("lastname", lastname);
+                toChangeEmailIntent.putExtra("age", age);
+                toChangeEmailIntent.putExtra("university", university);
+                toChangeEmailIntent.putExtra("uid", uid);
+                toChangeEmailIntent.putExtra("profileURL", profileURL);
 
                 startActivity(toChangeEmailIntent);
             }
@@ -50,6 +71,13 @@ public class ChangeEmailAndPasswordActivity extends AppCompatActivity {
                 Intent toChangePasswordIntent = new Intent(ChangeEmailAndPasswordActivity.this, ChangePasswordActivity.class);
 
                 toChangePasswordIntent.putExtra("email", email);
+                toChangePasswordIntent.putExtra("firstname", firstname);
+                toChangePasswordIntent.putExtra("lastname", lastname);
+                toChangePasswordIntent.putExtra("age", age);
+                toChangePasswordIntent.putExtra("university", university);
+                toChangePasswordIntent.putExtra("uid", uid);
+                toChangePasswordIntent.putExtra("profileURL", profileURL);
+
                 startActivity(toChangePasswordIntent);
             }
         });
