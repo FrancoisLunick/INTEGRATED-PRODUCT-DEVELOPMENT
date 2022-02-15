@@ -50,7 +50,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:hint="@string/name_hint"/>
+                android:hint="@string/name_hint"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,7 +68,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:hint="@string/lastName_hint"/>
+                android:hint="@string/lastName_hint"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,7 +86,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:hint="@string/age_hint"/>
+                android:hint="@string/age_hint"
+                android:inputType="number"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +105,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:hint="@string/university_hint"/>
+                android:hint="@string/university_hint"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,7 +123,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:hint="@string/email_hint"/>
+                android:hint="@string/email_hint"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,7 +143,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:hint="@string/password_hint"/>
+                android:hint="@string/password_hint"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
