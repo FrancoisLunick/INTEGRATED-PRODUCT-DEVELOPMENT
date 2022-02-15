@@ -29,7 +29,7 @@
         android:fontFamily="@font/pingfangsc_semibold"
         android:textSize="30sp"
         android:textColor="@color/black"
-        android:text="Delete Profile"/>
+        android:text="@string/deleteProfileTitle"/>
 
     <TextView
         android:id="@+id/deleteProfileMessage"
@@ -43,8 +43,8 @@
         android:layout_marginEnd="47dp"
         android:textColor="@color/black"
         android:fontFamily="@font/pingfangscregular"
-        android:textSize="18dp"
-        android:text="You are attempting to delete your profile. This action can not be undone. Please enter your email and password to continue."/>
+        android:textSize="18sp"
+        android:text="@string/deleteProfileMessage"/>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:hint="Current Email"/>
+            android:hint="@string/currentEmailHint"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:hint="Current Password"/>
+            android:hint="@string/currentPasswordHint"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,6 +101,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/tealish"
-        android:text="Delete Profile"/>
+        android:text="@string/deleteProfileButtonText"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
