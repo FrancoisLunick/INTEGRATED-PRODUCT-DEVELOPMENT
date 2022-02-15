@@ -35,4 +35,11 @@
     <string name="deleteProfileButtonText">Delete Profile</string>
     <string name="editTaskTitle">Edit Task</string>
     <string name="updateButtonTitle">Update</string>
+    <string name="taskDetailTitle">Task Detail</string>
+    <string name="taskTitleLabel">Title:</string>
+    <string name="taskDateLabel">Date:</string>
+    <string name="taskNotesLabel">Notes:</string>
+    <string name="editButtonText">Edit</string>
+    <string name="deleteButtonText">Delete</string>
+    <string name="cancelButtonText">Cancel</string>
 </resources>
