@@ -20,4 +20,19 @@
     <string name="university_hint">University</string>
     <string name="addTitle_hint">Add title</string>
     <string name="addNotes_hint">Add notes here...</string>
+    <string name="currentEmailHint">Current Email</string>
+    <string name="currentPasswordHint">Current Password</string>
+    <string name="newEmailHint">New Email</string>
+    <string name="changeEmailButtonText">Change Email</string>
+    <string name="changePasswordButtonText">Change Password</string>
+    <string name="change_password_or_email_title">Change Password or Email</string>
+    <string name="changePasswordOrEmailMessage">You are attemping to change either your email or password. Doing so will log you out of your acount and you will have to log back in using new email or password.</string>
+    <string name="changePasswordTitle">Change Password</string>
+    <string name="newPasswordHint">New Password</string>
+    <string name="changePasswordMessage">You are attemping to change your password. To do so please enter your current password.</string>
+    <string name="deleteProfileTitle">Delete Profile</string>
+    <string name="deleteProfileMessage">You are attempting to delete your profile. This action can not be undone. Please enter your email and password to continue.</string>
+    <string name="deleteProfileButtonText">Delete Profile</string>
+    <string name="editTaskTitle">Edit Task</string>
+    <string name="updateButtonTitle">Update</string>
 </resources>
