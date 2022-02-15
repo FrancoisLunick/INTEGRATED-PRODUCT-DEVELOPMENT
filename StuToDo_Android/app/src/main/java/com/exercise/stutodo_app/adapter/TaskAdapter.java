@@ -20,6 +20,7 @@ import com.exercise.stutodo_app.task.TaskDetailActivity;
 import com.google.android.gms.tasks.Task;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -57,11 +58,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
         //String date = DateFormat.getDateInstance().format(task.getDueDate());
 
+        SimpleDateFormat spf = new SimpleDateFormat("MMM dd, yyyy");
+        String date = spf.format(task.getDueDate());
+        holder.taskDate.setText(date);
+
         holder.taskTitle.setText(task.getTitle());
         holder.taskNote.setText(task.getNote());
         holder.taskDue.setText("Task Due Soon");
         //holder.taskDate.setText(task.getDueDate().toDate().toString());
-        holder.taskDate.setText(task.getDueDate().toString());
+        //holder.taskDate.setText(task.getDueDate().toString());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,38 +134,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             taskNote = itemView.findViewById(R.id.custom_item_note);
             taskDue = itemView.findViewById(R.id.custom_item_due);
             taskDate = itemView.findViewById(R.id.custom_item_date);
-            
+
         }
 
-    }
-
-    public void setTaskTitle(String title) {
-
-        TextView taskTitle = mView.findViewById(R.id.custom_item_title);
-
-        taskTitle.setText(title);
-
-    }
-
-    public void setTaskNote(String note) {
-
-        TextView taskNote = mView.findViewById(R.id.custom_item_note);
-
-        taskNote.setText(note);
-    }
-
-    public void setTaskDueMessage(String dueMessage) {
-
-        TextView taskDue = mView.findViewById(R.id.custom_item_due);
-
-        taskDue.setText(dueMessage);
-
-    }
-
-    public void setTaskDate(String date) {
-
-        TextView taskDate = mView.findViewById(R.id.custom_item_date);
-
-        taskDate.setText(date);
     }
 }
