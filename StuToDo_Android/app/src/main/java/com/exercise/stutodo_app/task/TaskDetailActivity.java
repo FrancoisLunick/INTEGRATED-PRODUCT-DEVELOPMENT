@@ -20,6 +20,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+
 public class TaskDetailActivity extends AppCompatActivity {
 
     private TextView titleTextView;
@@ -59,6 +61,9 @@ public class TaskDetailActivity extends AppCompatActivity {
         taskNote = intent.getStringExtra("taskNote");
         taskDate = intent.getStringExtra("taskDate");
         taskID = intent.getStringExtra("taskID");
+
+//        SimpleDateFormat spf = new SimpleDateFormat("MMM dd, yyyy");
+//        String date = spf.format(taskDate);
 
         titleTextView.setText(taskTitle);
         notesTextView.setText(taskNote);
