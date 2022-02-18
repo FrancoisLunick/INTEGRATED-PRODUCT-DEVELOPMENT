@@ -145,6 +145,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     taskHashMap.put(FirebaseConstants.NOTE, task.getNote());
                     taskHashMap.put(FirebaseConstants.ISDONE, task.getIsDone());
                     taskHashMap.put(FirebaseConstants.UID, task.getUid());
+                    taskHashMap.put(FirebaseConstants.COMPLETEDAT, null);
 
                     taskRef.set(taskHashMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
