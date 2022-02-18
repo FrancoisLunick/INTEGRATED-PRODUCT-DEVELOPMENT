@@ -114,6 +114,7 @@ public class OnGoingTaskActivity extends AppCompatActivity {
 
         Query taskQuery = taskCollectionRef
                 .whereEqualTo(FirebaseConstants.UID, mFirebaseUser.getUid())
+                .whereEqualTo(FirebaseConstants.ISDONE, false)
                 .orderBy(FirebaseConstants.DUEDATE, Query.Direction.ASCENDING);
 
         taskQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
