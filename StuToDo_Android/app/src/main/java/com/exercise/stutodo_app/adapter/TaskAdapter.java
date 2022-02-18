@@ -8,21 +8,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.models.TaskModel;
+import com.exercise.stutodo_app.task.EditTaskActivity;
+import com.exercise.stutodo_app.task.OnGoingTaskActivity;
 import com.exercise.stutodo_app.task.TaskDetailActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
@@ -36,6 +45,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     private String taskNoteString;
     private String taskDateString;
     private String taskID;
+
+    private FirebaseFirestore mDB;
 
     public TaskAdapter(Context context, ArrayList<TaskModel> tasks) {
         this.context = context;
@@ -91,6 +102,66 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             }
         });
 
+        holder.taskCircle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.v("Task", "Task Complete");
+
+//                int year = taskDateCalendarView.getYear();
+//                int month = taskDateCalendarView.getMonth();
+//                int day = taskDateCalendarView.getDayOfMonth();
+//
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.set(year, month, day);
+//
+//                SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+//                String strDate = format.format(calendar.getTime());
+//
+//                try {
+//                    taskDate = format.parse(strDate);
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+
+                //taskDate = StringToDate(taskDateCalendarView.getDayOfMonth());
+
+
+
+//                taskTitle = taskTitleEditText.getText().toString();
+//                taskNote = taskNotesEditText.getText().toString();
+
+                Date currentTime = Calendar.getInstance().getTime();
+
+                taskID = tasks.get(holder.getAdapterPosition()).getTaskID();
+
+                mDB = FirebaseFirestore.getInstance();
+
+                DocumentReference taskRef = mDB.collection(FirebaseConstants.tasks)
+                        .document(taskID);
+
+                taskRef.update(
+                        FirebaseConstants.ISDONE, true,
+                        FirebaseConstants.COMPLETEDAT, currentTime
+                ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if (task.isSuccessful()) {
+
+                            Log.i("TASK", "Updated Task");
+
+                        } else {
+
+                            Log.e("TASK", "Updated Task Failed");
+
+                        }
+                    }
+                });
+
+            }
+        });
+
 //        holder.addToCalendarButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -126,6 +197,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         TextView taskNote;
         TextView taskDue;
         TextView taskDate;
+        ImageView taskCircle;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -134,6 +206,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             taskNote = itemView.findViewById(R.id.custom_item_note);
             taskDue = itemView.findViewById(R.id.custom_item_due);
             taskDate = itemView.findViewById(R.id.custom_item_date);
+            taskCircle = itemView.findViewById(R.id.task_circle);
 
         }
 
