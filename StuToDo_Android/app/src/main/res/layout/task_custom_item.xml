@@ -8,13 +8,14 @@
 
     <ImageView
         android:id="@+id/task_circle"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="14dp"
         android:layout_marginStart="8dp"
-        android:src="@drawable/ic_baseline_radio_button_unchecked_24"/>
+        android:src="@drawable/ic_baseline_radio_button_unchecked_24"
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/custom_item_title"
