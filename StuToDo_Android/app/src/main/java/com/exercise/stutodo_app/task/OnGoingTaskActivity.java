@@ -42,6 +42,8 @@ public class OnGoingTaskActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
     private FloatingActionButton mAddTaskButton;
+    private FloatingActionButton mHistoryTaskButton;
+    private FloatingActionButton mHomeTaskButton;
     private ImageButton profileImageButton;
 
     private FirebaseAuth mFirebaseAuth;
@@ -63,6 +65,8 @@ public class OnGoingTaskActivity extends AppCompatActivity {
 
         mRecyclerView = findViewById(R.id.onGoingRecyclerview);
         mAddTaskButton = findViewById(R.id.onGoingFloatingButton);
+        mHistoryTaskButton = findViewById(R.id.historyPageFloatingButton);
+        mHomeTaskButton = findViewById(R.id.homePageFloatingButton);
         profileImageButton = findViewById(R.id.profileButton);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -92,6 +96,28 @@ public class OnGoingTaskActivity extends AppCompatActivity {
                 Intent intent = new Intent(OnGoingTaskActivity.this, AddTaskActivity.class);
 
                 startActivity(intent);
+            }
+        });
+
+        mHistoryTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(OnGoingTaskActivity.this, TaskHistoryActivity.class);
+
+                startActivity(intent);
+
+            }
+        });
+
+        mHomeTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(OnGoingTaskActivity.this, OnGoingTaskActivity.class);
+
+                startActivity(intent);
+
             }
         });
 
