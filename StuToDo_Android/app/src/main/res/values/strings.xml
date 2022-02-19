@@ -50,4 +50,5 @@
     <string name="stutodo_welcomeMessage">where we let college students be great again.</string>
     <string name="getStartedButtonText">Get Started</string>
     <string name="ongoingTasksTitle">Tasks</string>
+    <string name="historyTasksTitle">History</string>
 </resources>
