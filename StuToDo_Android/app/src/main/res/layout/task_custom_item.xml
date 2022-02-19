@@ -71,6 +71,4 @@
         tools:text="01/20/2022"
         android:textAlignment="textEnd"/>
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
