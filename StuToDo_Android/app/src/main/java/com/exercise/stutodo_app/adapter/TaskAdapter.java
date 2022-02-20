@@ -60,6 +60,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         View v = LayoutInflater.from(context).inflate(R.layout.task_custom_item, parent, false);
 
         return new ViewHolder(v);
+
+//        if (viewType == 1) {
+//            View v = LayoutInflater.from(context).inflate(R.layout.task_custom_item, parent, false);
+//
+//            return new ViewHolder(v);
+//        } else {
+//
+//            View v = LayoutInflater.from(context).inflate(R.layout.history_task_custom_item, parent, false);
+//
+//            return new ViewHolder(v);
+//        }
+
     }
 
     @Override
@@ -158,7 +170,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                         }
                     }
                 });
-
             }
         });
 
