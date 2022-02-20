@@ -12,19 +12,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.exercise.stutodo_app.FirebaseConstants;
 import com.exercise.stutodo_app.R;
 import com.exercise.stutodo_app.models.TaskModel;
 import com.exercise.stutodo_app.task.TaskDetailActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HistoryTaskAdapter extends RecyclerView.Adapter<HistoryTaskAdapter.ViewHolder> {
 
-    private Context context;
-    private ArrayList<TaskModel> tasks;
+    View mView;
 
+    Context context;
+    ArrayList<TaskModel> tasks;
+
+    private String key = "";
     private String taskTitleString;
     private String taskNoteString;
     private String taskDateString;
@@ -43,7 +52,7 @@ public class HistoryTaskAdapter extends RecyclerView.Adapter<HistoryTaskAdapter.
 
         View v = LayoutInflater.from(context).inflate(R.layout.history_task_custom_item, parent, false);
 
-        return new HistoryTaskAdapter.ViewHolder(v);
+        return new ViewHolder(v);
     }
 
     @Override
@@ -55,11 +64,20 @@ public class HistoryTaskAdapter extends RecyclerView.Adapter<HistoryTaskAdapter.
 
         SimpleDateFormat spf = new SimpleDateFormat("MMM dd, yyyy");
         String date = spf.format(task.getDueDate());
-        holder.histryTaskDate.setText(date);
+        holder.historyTaskDate.setText(date);
 
         holder.historyTaskTitle.setText(task.getTitle());
         holder.historyTaskNote.setText(task.getNote());
-        holder.historyTaskDue.setText("Task Completed");
+        holder.historyTaskDue.setText("Task Due Soon");
+
+//        if (holder.historyTaskDue.getId() == R.id.custom_item_due) {
+//
+//
+//        } else if (holder.historyTaskDue.getId() == R.id.custom_item_historyDue) {
+//
+//            holder.historyTaskDue.setText("Completed");
+//        }
+
         //holder.taskDate.setText(task.getDueDate().toDate().toString());
         //holder.taskDate.setText(task.getDueDate().toString());
 
@@ -85,6 +103,88 @@ public class HistoryTaskAdapter extends RecyclerView.Adapter<HistoryTaskAdapter.
 
             }
         });
+
+        holder.historyTaskCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.v("Task", "Task Complete");
+
+//                int year = taskDateCalendarView.getYear();
+//                int month = taskDateCalendarView.getMonth();
+//                int day = taskDateCalendarView.getDayOfMonth();
+//
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.set(year, month, day);
+//
+//                SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+//                String strDate = format.format(calendar.getTime());
+//
+//                try {
+//                    taskDate = format.parse(strDate);
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+
+                //taskDate = StringToDate(taskDateCalendarView.getDayOfMonth());
+
+
+
+//                taskTitle = taskTitleEditText.getText().toString();
+//                taskNote = taskNotesEditText.getText().toString();
+
+                Date currentTime = Calendar.getInstance().getTime();
+
+                taskID = tasks.get(holder.getAdapterPosition()).getTaskID();
+
+                mDB = FirebaseFirestore.getInstance();
+
+                DocumentReference taskRef = mDB.collection(FirebaseConstants.tasks)
+                        .document(taskID);
+
+                taskRef.update(
+                        FirebaseConstants.ISDONE, true,
+                        FirebaseConstants.COMPLETEDAT, currentTime
+                ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if (task.isSuccessful()) {
+
+                            Log.i("TASK", "Updated Task");
+
+                        } else {
+
+                            Log.e("TASK", "Updated Task Failed");
+
+                        }
+                    }
+                });
+            }
+        });
+
+//        holder.addToCalendarButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.i("Task", "Add to calendar");
+//
+//                Intent intent = new Intent(Intent.ACTION_INSERT);
+//                intent.setData(CalendarContract.Events.CONTENT_URI);
+//                intent.putExtra(CalendarContract.Events.TITLE, tasks.get(holder.getAdapterPosition()).getTitle());
+//                intent.putExtra(CalendarContract.Events.DESCRIPTION, tasks.get(holder.getAdapterPosition()).getNote());
+//                intent.putExtra(CalendarContract.Events.ALL_DAY, true);
+//
+//                if(intent.resolveActivity(context.getPackageManager()) != null) {
+//
+//                    context.startActivity(intent);
+//
+//                } else {
+//
+//                    Toast.makeText(context, "App does not support this action", Toast.LENGTH_LONG).show();
+//
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -97,7 +197,7 @@ public class HistoryTaskAdapter extends RecyclerView.Adapter<HistoryTaskAdapter.
         TextView historyTaskTitle;
         TextView historyTaskNote;
         TextView historyTaskDue;
-        TextView histryTaskDate;
+        TextView historyTaskDate;
         ImageView historyTaskCheck;
 
         public ViewHolder(@NonNull View itemView) {
@@ -106,7 +206,7 @@ public class HistoryTaskAdapter extends RecyclerView.Adapter<HistoryTaskAdapter.
             historyTaskTitle = itemView.findViewById(R.id.custom_item_historyTitle);
             historyTaskNote = itemView.findViewById(R.id.custom_item_historyNote);
             historyTaskDue = itemView.findViewById(R.id.custom_item_historyDue);
-            histryTaskDate = itemView.findViewById(R.id.custom_item_historyDate);
+            historyTaskDate = itemView.findViewById(R.id.custom_item_historyDate);
             historyTaskCheck = itemView.findViewById(R.id.historyTask_circle);
 
         }
