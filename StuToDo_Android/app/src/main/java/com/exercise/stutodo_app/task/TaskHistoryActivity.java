@@ -47,7 +47,9 @@ public class TaskHistoryActivity extends AppCompatActivity {
 
     private ArrayList<TaskModel> tasks;
 
-    private HistoryTaskAdapter historyTaskAdapter;
+    //private HistoryTaskAdapter historyTaskAdapter;
+
+    private TaskAdapter historyTaskAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,8 @@ public class TaskHistoryActivity extends AppCompatActivity {
         mDatabaseReference = FirebaseFirestore.getInstance();
 
         tasks = new ArrayList<TaskModel>();
-        historyTaskAdapter = new HistoryTaskAdapter(TaskHistoryActivity.this, tasks);
+        //historyTaskAdapter = new HistoryTaskAdapter(TaskHistoryActivity.this, tasks);
+        historyTaskAdapter = new TaskAdapter(TaskHistoryActivity.this, tasks);
 
         mRecyclerView.setAdapter(historyTaskAdapter);
 
@@ -127,7 +130,7 @@ public class TaskHistoryActivity extends AppCompatActivity {
         CollectionReference taskCollectionRef = mDatabaseReference.collection(FirebaseConstants.tasks);
 
         Query taskHistoryQuery = taskCollectionRef
-                .whereEqualTo(FirebaseConstants.UID, mFirebaseUser.getUid())
+                .whereEqualTo(FirebaseConstants.UID, userID)
                 .whereEqualTo(FirebaseConstants.ISDONE, true)
                 .orderBy(FirebaseConstants.DUEDATE, Query.Direction.ASCENDING);
 
@@ -151,5 +154,10 @@ public class TaskHistoryActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }
