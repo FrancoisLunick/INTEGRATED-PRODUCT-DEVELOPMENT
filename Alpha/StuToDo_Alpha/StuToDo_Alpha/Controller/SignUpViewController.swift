@@ -51,8 +51,8 @@ class SignUpViewController: UIViewController, Animations {
             signUpTextField.delegate = self
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
@@ -87,9 +87,9 @@ class SignUpViewController: UIViewController, Animations {
         toolBar.setItems([flexibleSpace, doneButton], animated: true)
         toolBar.sizeToFit()
         
-        ageTextField.inputAccessoryView = toolBar
-        passwordTextField.inputAccessoryView = toolBar
-        emailTextField.inputAccessoryView = toolBar
+        //ageTextField.inputAccessoryView = toolBar
+        //passwordTextField.inputAccessoryView = toolBar
+        //emailTextField.inputAccessoryView = toolBar
         
     }
     
