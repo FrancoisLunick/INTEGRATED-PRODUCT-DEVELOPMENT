@@ -3,6 +3,7 @@ package com.exercise.stutodo_app.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.CalendarContract;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -173,6 +174,38 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             }
         });
 
+        holder.calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                taskTitleString = tasks.get(holder.getAdapterPosition()).getTitle();
+                taskNoteString = tasks.get(holder.getAdapterPosition()).getNote();
+                //taskDateString = tasks.get(holder.getAdapterPosition()).getDueDate().toDate().toString();
+                taskDateString = tasks.get(holder.getAdapterPosition()).getDueDate().toString();
+                taskID = tasks.get(holder.getAdapterPosition()).getTaskID();
+
+                Intent intent = new Intent(Intent.ACTION_INSERT);
+                intent.setData(CalendarContract.Events.CONTENT_URI);
+                intent.putExtra(CalendarContract.Events.CALENDAR_ID, 1);
+                intent.putExtra(CalendarContract.Events.TITLE, taskTitleString);
+                intent.putExtra(CalendarContract.Events.DESCRIPTION, taskNoteString);
+                intent.putExtra(CalendarContract.Events.DTSTART, tasks.get(holder.getAdapterPosition()).getDueDate().getTime());
+                intent.putExtra(CalendarContract.Events.DTEND, tasks.get(holder.getAdapterPosition()).getDueDate().getTime());
+                intent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, Time.getCurrentTimezone());
+                intent.putExtra(CalendarContract.Events.ALL_DAY, 1);
+
+                if (intent.resolveActivity(context.getPackageManager()) != null) {
+
+                    context.startActivity(intent);
+
+                } else {
+
+                    Toast.makeText(context, "Cannot support this action", Toast.LENGTH_SHORT).show();
+                    
+                }
+            }
+        });
+
 //        holder.addToCalendarButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -209,6 +242,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         TextView taskDue;
         TextView taskDate;
         ImageView taskCircle;
+        ImageButton calendarButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -218,6 +252,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             taskDue = itemView.findViewById(R.id.custom_item_due);
             taskDate = itemView.findViewById(R.id.custom_item_date);
             taskCircle = itemView.findViewById(R.id.task_circle);
+            calendarButton = itemView.findViewById(R.id.addCalendarButton);
 
         }
 
