@@ -16,5 +16,6 @@ target 'StuToDo_Alpha' do
   pod 'MBProgressHUD'
   pod 'SDWebImage'
   pod 'ReachabilitySwift'
-
+  pod 'IQKeyboardManagerSwift'
+  
 end
