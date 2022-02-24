@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>796638736061-ng1afru6a4e30hbc2ar1putvg9tu8ohm.apps.googleusercontent.com</string>
+	<string>827726910336-2g8s2pnv4purhk93e7994bp6nkb062ot.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.796638736061-ng1afru6a4e30hbc2ar1putvg9tu8ohm</string>
+	<string>com.googleusercontent.apps.827726910336-2g8s2pnv4purhk93e7994bp6nkb062ot</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAN_rL6tv9fTDESW1IrLCfHD9Y5NYPU9hU</string>
+	<string>AIzaSyDhWds8vLzXliDnlsdAvCEDPWaNiN5aOhY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>796638736061</string>
+	<string>827726910336</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.FrancoisLu.StuToDo-Alpha</string>
 	<key>PROJECT_ID</key>
-	<string>stutodo</string>
+	<string>stutodo-fbf9d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>stutodo.appspot.com</string>
+	<string>stutodo-fbf9d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:796638736061:ios:4c3dd35a7448b807c251d4</string>
+	<string>1:827726910336:ios:583b1fc6e75feef00ea765</string>
 </dict>
 </plist>
