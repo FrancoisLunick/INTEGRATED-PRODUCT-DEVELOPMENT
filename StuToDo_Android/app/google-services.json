@@ -1,37 +1,37 @@
 {
   "project_info": {
-    "project_number": "796638736061",
-    "project_id": "stutodo",
-    "storage_bucket": "stutodo.appspot.com"
+    "project_number": "827726910336",
+    "project_id": "stutodo-fbf9d",
+    "storage_bucket": "stutodo-fbf9d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:796638736061:android:f2d2fb8d9c58de42c251d4",
+        "mobilesdk_app_id": "1:827726910336:android:15785f73e9fa80ad0ea765",
         "android_client_info": {
           "package_name": "com.exercise.stutodo_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "796638736061-qucd51gr0mdgj4t76utnojddiprkt5h1.apps.googleusercontent.com",
+          "client_id": "827726910336-bfjv40vkmk5i9v9pokf7th54obfto19s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBhHWT020YuMiVygKvepzAVRm6RnLTnlYM"
+          "current_key": "AIzaSyDkZ16UUQRFuhqDpmtxcfjnBpBGK006Hos"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "796638736061-qucd51gr0mdgj4t76utnojddiprkt5h1.apps.googleusercontent.com",
+              "client_id": "827726910336-bfjv40vkmk5i9v9pokf7th54obfto19s.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "796638736061-ng1afru6a4e30hbc2ar1putvg9tu8ohm.apps.googleusercontent.com",
+              "client_id": "827726910336-2g8s2pnv4purhk93e7994bp6nkb062ot.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.FrancoisLu.StuToDo-Alpha"
