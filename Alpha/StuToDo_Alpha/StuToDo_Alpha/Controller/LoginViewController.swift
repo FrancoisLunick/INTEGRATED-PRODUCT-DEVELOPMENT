@@ -48,7 +48,7 @@ class LoginViewController: UIViewController, Animations {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        emailTextField.becomeFirstResponder()
+//        emailTextField.becomeFirstResponder()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
         
@@ -175,6 +175,26 @@ extension LoginViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let currentText = textField.text ?? ""
+        
+        guard let StringRange = Range(range, in: currentText) else {
+            return false
+        }
+        
+        let updatedText = currentText.replacingCharacters(in: StringRange, with: string)
+        
+        if textField == emailTextField {
+            
+            return updatedText.count <= 60
+            
+        } else {
+            
+            return updatedText.count <= 40
+        }
     }
 }
 
