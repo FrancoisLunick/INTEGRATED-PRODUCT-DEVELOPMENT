@@ -10,7 +10,7 @@
 		4E01D75D27A0D5EC00065787 /* OnGoingTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01D75C27A0D5EC00065787 /* OnGoingTasksViewController.swift */; };
 		4E01D75F27A0D61B00065787 /* TasksHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01D75E27A0D61B00065787 /* TasksHistoryViewController.swift */; };
 		4E01D76127A0E7BD00065787 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01D76027A0E7BD00065787 /* NewTaskViewController.swift */; };
-		4E291A2F27A11B0700DBF09D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E291A2E27A11B0700DBF09D /* GoogleService-Info.plist */; };
+		4E2078EF27C81D7200559CA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E2078EE27C81D7200559CA9 /* GoogleService-Info.plist */; };
 		4E291A3127A11D1900DBF09D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E291A3027A11D1900DBF09D /* Task.swift */; };
 		4E291A3427A1234E00DBF09D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E291A3327A1234E00DBF09D /* DatabaseManager.swift */; };
 		4E291A3627A1274000DBF09D /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E291A3527A1274000DBF09D /* FirebaseReference.swift */; };
@@ -54,7 +54,7 @@
 		4E01D75C27A0D5EC00065787 /* OnGoingTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnGoingTasksViewController.swift; sourceTree = "<group>"; };
 		4E01D75E27A0D61B00065787 /* TasksHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksHistoryViewController.swift; sourceTree = "<group>"; };
 		4E01D76027A0E7BD00065787 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
-		4E291A2E27A11B0700DBF09D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4E2078EE27C81D7200559CA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4E291A3027A11D1900DBF09D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		4E291A3327A1234E00DBF09D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		4E291A3527A1274000DBF09D /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 				4EA091DC27A5E571008866E9 /* Constants.swift */,
 				4E7E177D279F4A4B00358EE1 /* Assets.xcassets */,
 				4E7E1782279F4A4B00358EE1 /* Info.plist */,
-				4E291A2E27A11B0700DBF09D /* GoogleService-Info.plist */,
+				4E2078EE27C81D7200559CA9 /* GoogleService-Info.plist */,
 			);
 			path = StuToDo_Alpha;
 			sourceTree = "<group>";
@@ -288,7 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E7E1781279F4A4B00358EE1 /* LaunchScreen.storyboard in Resources */,
-				4E291A2F27A11B0700DBF09D /* GoogleService-Info.plist in Resources */,
+				4E2078EF27C81D7200559CA9 /* GoogleService-Info.plist in Resources */,
 				4E7E177E279F4A4B00358EE1 /* Assets.xcassets in Resources */,
 				4E7E177C279F4A4200358EE1 /* Main.storyboard in Resources */,
 			);
