@@ -276,6 +276,10 @@ extension SignUpViewController: UITextFieldDelegate {
             
             return updatedText.count <= 2
             
+        } else if textField == emailTextField {
+            
+            return updatedText.count <= 60
+            
         } else {
             
             return updatedText.count <= 40
