@@ -367,6 +367,7 @@ extension ProfileViewController: UITextFieldDelegate {
             return updatedText.count <= 40
         }
         
+        
     }
 }
 
