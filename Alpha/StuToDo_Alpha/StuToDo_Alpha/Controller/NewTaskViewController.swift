@@ -262,7 +262,10 @@ extension NewTaskViewController: UITextViewDelegate {
         
         didBeginEditing = true
         
-        textView.text = ""
+        if textView.text == "Add notes here..." {
+        
+            textView.text = ""
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
