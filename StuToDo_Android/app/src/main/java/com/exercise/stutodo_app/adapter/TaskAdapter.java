@@ -140,7 +140,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 //taskDate = StringToDate(taskDateCalendarView.getDayOfMonth());
 
 
-
 //                taskTitle = taskTitleEditText.getText().toString();
 //                taskNote = taskNotesEditText.getText().toString();
 
@@ -153,24 +152,47 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 DocumentReference taskRef = mDB.collection(FirebaseConstants.tasks)
                         .document(taskID);
 
-                taskRef.update(
-                        FirebaseConstants.ISDONE, true,
-                        FirebaseConstants.COMPLETEDAT, currentTime
-                ).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                if (!tasks.get(holder.getAdapterPosition()).getIsDone()) {
 
-                        if (task.isSuccessful()) {
+                    taskRef.update(
+                            FirebaseConstants.ISDONE, true,
+                            FirebaseConstants.COMPLETEDAT, currentTime
+                    ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
 
-                            Log.i("TASK", "Updated Task");
+                            if (task.isSuccessful()) {
 
-                        } else {
+                                Log.i("TASK", "Updated Task");
 
-                            Log.e("TASK", "Updated Task Failed");
+                            } else {
 
+                                Log.e("TASK", "Updated Task Failed");
+
+                            }
                         }
-                    }
-                });
+                    });
+                } else {
+
+                    taskRef.update(
+                            FirebaseConstants.ISDONE, false,
+                            FirebaseConstants.COMPLETEDAT, currentTime
+                    ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if (task.isSuccessful()) {
+
+                                Log.i("TASK", "Updated Task");
+
+                            } else {
+
+                                Log.e("TASK", "Updated Task Failed");
+
+                            }
+                        }
+                    });
+                }
             }
         });
 
