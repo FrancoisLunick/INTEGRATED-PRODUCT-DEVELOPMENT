@@ -184,7 +184,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor Doe Assignment Due" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="knI-Ag-evm">
-                                                    <rect key="frame" x="43" y="11" width="304" height="28"/>
+                                                    <rect key="frame" x="53" y="11" width="294" height="28"/>
                                                     <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -199,10 +199,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uls-QE-xOp">
-                                                    <rect key="frame" x="20" y="17" width="15" height="15"/>
+                                                    <rect key="frame" x="20" y="13" width="25" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="15" id="HIf-2q-T7D"/>
-                                                        <constraint firstAttribute="height" constant="15" id="NVY-tu-jlX"/>
+                                                        <constraint firstAttribute="width" constant="25" id="HIf-2q-T7D"/>
+                                                        <constraint firstAttribute="height" constant="25" id="NVY-tu-jlX"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system"/>
@@ -245,7 +245,7 @@
                                                 <constraint firstItem="P3E-fV-uIR" firstAttribute="top" secondItem="1Dq-p2-LHU" secondAttribute="bottom" constant="1" id="QcD-m7-JvW"/>
                                                 <constraint firstItem="P3E-fV-uIR" firstAttribute="leading" secondItem="C6m-Y6-v9g" secondAttribute="leading" constant="38" id="U8x-NA-1g0"/>
                                                 <constraint firstItem="lU6-DZ-WTH" firstAttribute="leading" secondItem="bAY-L4-Ig5" secondAttribute="trailing" constant="13" id="XTX-Ni-K53"/>
-                                                <constraint firstItem="uls-QE-xOp" firstAttribute="top" secondItem="C6m-Y6-v9g" secondAttribute="topMargin" constant="6" id="ZHT-PX-gmY"/>
+                                                <constraint firstItem="uls-QE-xOp" firstAttribute="top" secondItem="C6m-Y6-v9g" secondAttribute="topMargin" constant="2" id="ZHT-PX-gmY"/>
                                                 <constraint firstItem="knI-Ag-evm" firstAttribute="top" secondItem="C6m-Y6-v9g" secondAttribute="top" constant="11" id="fb0-Ph-rlK"/>
                                                 <constraint firstItem="uls-QE-xOp" firstAttribute="leading" secondItem="C6m-Y6-v9g" secondAttribute="leadingMargin" id="mGL-om-s9X"/>
                                                 <constraint firstAttribute="bottom" secondItem="bAY-L4-Ig5" secondAttribute="bottom" constant="2" id="meK-nh-pGb"/>
