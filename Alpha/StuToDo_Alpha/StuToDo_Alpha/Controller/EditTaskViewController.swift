@@ -120,7 +120,7 @@ class EditTaskViewController: UIViewController, Animations {
         
         $titleString.sink { [unowned self] text in
             
-            self.addTaskButton.isEnabled = text?.isEmpty == false
+            //self.addTaskButton.isEnabled = text?.isEmpty == false
             
         }.store(in: &subscribers)
         
@@ -300,7 +300,10 @@ extension EditTaskViewController: UITextViewDelegate {
         
         didBeginEditing = true
         
-        textView.text = ""
+        if textView.text == "Add notes here..." {
+        
+            textView.text = ""
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
