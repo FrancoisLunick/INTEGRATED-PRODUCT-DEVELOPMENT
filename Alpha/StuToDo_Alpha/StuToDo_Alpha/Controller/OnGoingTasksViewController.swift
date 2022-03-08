@@ -11,6 +11,7 @@ import Loaf
 import EventKit
 import EventKitUI
 import Reachability
+import ViewAnimator
 
 protocol OnGoingDelegate {
     
@@ -72,6 +73,11 @@ class OnGoingTasksViewController: UIViewController, Animations {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
     }
     
@@ -314,6 +320,16 @@ extension OnGoingTasksViewController: UITableViewDataSource {
             return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
         }
         
+        //let rotateAnimation = AnimationType.rotate(angle: CGFloat.pi/6)
+        let animation = AnimationType.from(direction: .top, offset: 30.0)
+        let zoomAnimation = AnimationType.zoom(scale: 0.2)
+        
+        let cells = [cell]
+        //var duration = 0
+        
+        UIView.animate(views: cells, animations: [animation, zoomAnimation])
+          
+        
         let task = tasks[indexPath.row]
         
         cell.didTapTaskCircle = { [weak self] in
@@ -389,6 +405,8 @@ extension OnGoingTasksViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - EKEventViewDelegate
+
 extension OnGoingTasksViewController: EKEventViewDelegate {
     
     func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
@@ -397,6 +415,8 @@ extension OnGoingTasksViewController: EKEventViewDelegate {
         
     }
 }
+
+// MARK: - EKEventEditViewDelegate
 
 extension OnGoingTasksViewController: EKEventEditViewDelegate {
     
