@@ -17,5 +17,6 @@ target 'StuToDo_Alpha' do
   pod 'SDWebImage'
   pod 'ReachabilitySwift'
   pod 'IQKeyboardManagerSwift'
+  pod 'ViewAnimator'
   
 end
