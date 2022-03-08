@@ -8,6 +8,7 @@
 import UIKit
 import EventKit
 import EventKitUI
+import ViewAnimator
 
 class TasksHistoryViewController: UIViewController, Animations {
     
@@ -163,6 +164,14 @@ extension TasksHistoryViewController: UITableViewDataSource {
             
             return tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
         }
+        
+        let animation = AnimationType.from(direction: .top, offset: 30.0)
+        let zoomAnimation = AnimationType.zoom(scale: 0.2)
+        
+        let cells = [cell]
+        //var duration = 0
+        
+        UIView.animate(views: cells, animations: [animation, zoomAnimation])
         
         let task = tasks[indexPath.row]
         
