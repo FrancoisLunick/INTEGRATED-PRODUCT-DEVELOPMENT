@@ -498,6 +498,7 @@ PODS:
   - SDWebImage (5.12.2):
     - SDWebImage/Core (= 5.12.2)
   - SDWebImage/Core (5.12.2)
+  - ViewAnimator (3.1.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -511,6 +512,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - ReachabilitySwift
   - SDWebImage
+  - ViewAnimator
 
 SPEC REPOS:
   trunk:
@@ -540,6 +542,7 @@ SPEC REPOS:
     - PromisesObjC
     - ReachabilitySwift
     - SDWebImage
+    - ViewAnimator
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -568,7 +571,8 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
+  ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
 
-PODFILE CHECKSUM: d358507b9fc89c575210e2fb6309ba153712367f
+PODFILE CHECKSUM: 7a9cceb77f76e417a0ccac568504ecad3dc59f0c
 
 COCOAPODS: 1.11.2
