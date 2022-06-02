@@ -11,12 +11,12 @@ This repository will be used to submit my work every week in class.
 **Degree Program:** Mobile Development <br>
 
 ## Progress
-- [X] Repo Created: Completed!
+- [X] Repo Created: Done!
 - [X] Week 1 work: Completed!
 - [X] Week 2 work: Completed!
 - [X] Week 3 work: Completed!
 - [X] Week 4 work: Completed!
-- [ ] Week 5 work:
-- [ ] Week 6 work:
-- [ ] Week 7 work:
-- [ ] Week 8 work:
+- [X] Week 5 work: Completed!
+- [X] Week 6 work: Completed!
+- [X] Week 7 work: Completed!
+- [X] Week 8 work: Completed!
